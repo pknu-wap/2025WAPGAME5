@@ -11,6 +11,7 @@ public class Bat : MonoBehaviour
     private float SwingProgress = 0f;
     public float SwingSpeed = 1f;
     bool IsSwinging = false;
+    public float SwingForce;
     void Start()
     {
         
@@ -26,15 +27,6 @@ public class Bat : MonoBehaviour
             DoSwing();
         }
     }
-
-    //private void TailBatPosition()
-    //{
-    //    if (player == null||!IsBatEquipped)
-    //        return;      
-    //    if(MainCam != null)
-    //        transform.rotation=MainCam.transform.rotation;
-    //    Debug.Log(transform.rotation);
-    //}
 
     private void DoSwing()
     {
@@ -73,12 +65,19 @@ public class Bat : MonoBehaviour
             MainCam = player.GetComponentInChildren<Camera>();
             transform.SetParent(MainCam.transform);            
             transform.localPosition = new Vector3(0.3f, -0.3f, 0.5f);
-            transform.localRotation = Quaternion.identity;
-            
-            //Transform player_trs = player.transform;
-            //transform.position = player_trs.position+(player_trs.right * 0.4f)+(player_trs.forward * 0.7f)+(player_trs.up * 0.3f);
+            transform.localRotation = Quaternion.identity;            
 
             IsBatEquipped = true;
         }
+    }
+
+    public bool GetIsSwing()
+    {
+        return IsSwinging;
+    }
+
+    public float GetSwingForce()
+    {
+        return SwingForce;
     }
 }
