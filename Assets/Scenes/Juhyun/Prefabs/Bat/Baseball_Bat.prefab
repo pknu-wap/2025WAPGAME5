@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 205169929779769978}
   - component: {fileID: 66014645225810575}
   m_Layer: 0
-  m_Name: Baseball_Bat_01
+  m_Name: Baseball_Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
