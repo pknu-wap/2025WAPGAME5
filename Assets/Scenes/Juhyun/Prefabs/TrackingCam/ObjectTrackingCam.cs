@@ -29,8 +29,7 @@ public class ObjectTrackCam : MonoBehaviour
             if(IsFirstTrigger&&!IsMoreThanOnceTrigger)
             {
                 float step = TrackingSpeed * Time.deltaTime;
-
-                Debug.Log(PlayerCamera.transform.position);
+             
                 if (!CamBack)
                 {
                     PlayerCamera.transform.position = Vector3.Lerp(PlayerCamera.transform.position, TrackingCam.transform.position, step);
