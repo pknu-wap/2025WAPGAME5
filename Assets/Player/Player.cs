@@ -38,13 +38,23 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        InputHandle();
-        CameraRotation();
+        if(!DontMove)
+        {
+            InputHandle();
+            CameraRotation();
+        }        
     }
 
     void FixedUpdate()
     {
-        MoveMent();        
+        if (!DontMove)
+        {            
+            MoveMent();        
+        }
+        else
+        {
+            m_rigid.velocity = new Vector3(0f, 0f, 0f);
+        }
     }
 
     void InputHandle()
