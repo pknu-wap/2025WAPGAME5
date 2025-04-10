@@ -37,7 +37,7 @@ public class Gauge : MonoBehaviour
     }
     public void CheckUp() //* 데미지 받는 함수
     {
-        if (Input.GetKeyDown("space") && canEat && !DrinkWater.isDrinking)
+        if (Input.GetKeyDown("space") && canEat && !DrinkWater.isDrinking && Interaction.gameStart)
         {
 
             curGauge += 2;
