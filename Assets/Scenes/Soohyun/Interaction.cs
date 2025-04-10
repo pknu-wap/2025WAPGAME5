@@ -17,7 +17,6 @@ public class Interaction : MonoBehaviour
                 Debug.Log("클릭! 거리:" + Dist);
                 gameStart = true;
                 Cursor.visible = true;
-                Player.transform.position = new Vector3(0, 1, 0);
             }
         }
     }

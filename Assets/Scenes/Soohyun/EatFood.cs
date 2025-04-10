@@ -15,6 +15,7 @@ public class EatFood : MonoBehaviour
     public GameObject Food3;
     public GameObject Food4;
     public GameObject Food5;
+    public GameObject particle;
     public Slider FoodGauge;
     void Awake()
     {
@@ -36,21 +37,25 @@ public class EatFood : MonoBehaviour
         {
             
             Food1.SetActive(false);
+            particle.transform.position = new Vector3(0, 0.8f, 2.25f);
 
         }
         else if (eat == 40)
         {
             Food2.SetActive(false);
+            particle.transform.position = new Vector3(0.5f, 0.8f, 2.25f);
 
         }
         else if (eat == 60)
         {
             Food3.SetActive(false);
+            particle.transform.position = new Vector3(0.25f, 0.85f, 1.75f);
 
         }
         else if (eat == 80)
         {
             Food4.SetActive(false);
+            particle.transform.position = new Vector3(-0.25f, 0.85f, 1.75f);
 
         }
         else if (eat == 100)
@@ -59,6 +64,7 @@ public class EatFood : MonoBehaviour
             eatFinish = Time.time;
             totalEatTime = eatFinish - eatStart;
             Food5.SetActive(false);
+            particle.SetActive(false);
 
         }
     }
@@ -72,14 +78,17 @@ public class EatFood : MonoBehaviour
         }
         Debug.Log(totalEatTime);
         Debug.Log("²¨¾ï, Àß ¸Ô¾ú´Ù. " + a * 5 + "ºÐ °É·È³×");
+        Interaction.gameStart = false;
     }
     void OnMouseDown()
     {
-
-        if (Input.GetKeyDown("space") && Gauge.canEat && !DrinkWater.isDrinking)
+        if (Interaction.gameStart)
         {
-            Debug.Log(++eat);
+            if (Input.GetKeyDown("space") && Gauge.canEat && !DrinkWater.isDrinking)
+            {
+                Debug.Log(++eat);
 
+            }
         }
     }
 
