@@ -7,7 +7,6 @@ public class Player22 : MonoBehaviour
     public void SetPlaying(bool playing)
     {
         isPlaying = playing;
-        Debug.Log("Player22 isPlaying set to: " + isPlaying);
     }
 
     /*public bool IsPlaying()
