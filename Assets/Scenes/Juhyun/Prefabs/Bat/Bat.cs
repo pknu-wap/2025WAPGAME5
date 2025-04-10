@@ -17,18 +17,18 @@ public class Bat : MonoBehaviour
         
     }
     void Update()
-    {        
-        if (Input.GetMouseButtonDown(0)&&IsBatEquipped)
+    {
+        if (Input.GetMouseButtonDown(0) && IsBatEquipped)
         {
             IsSwinging = true;
-        }       
-        if(IsSwinging)
+        }
+        if (IsSwinging)
         {
             DoSwing();
         }
     }
 
-    private void DoSwing()
+    public void DoSwing()
     {
         if(IsBatEquipped)
         {
@@ -79,5 +79,10 @@ public class Bat : MonoBehaviour
     public float GetSwingForce()
     {
         return SwingForce;
+    }
+
+    public bool GetIsBatEquipped()
+    {
+        return IsBatEquipped;
     }
 }

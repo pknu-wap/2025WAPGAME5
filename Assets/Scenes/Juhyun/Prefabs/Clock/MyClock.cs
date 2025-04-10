@@ -23,17 +23,23 @@ public class MyClock : MonoBehaviour
 
     //Hit
     bool IsHit = false;
+    //ClockOff
+    bool IsClockOff = false;
+
+    //Player Inside Room
+    NoMeshTriggerObject IsInsideRoom;
     void Start()
     {
         rigid=GetComponent<Rigidbody>();
         InitPosition = transform.position;
         player = GetComponent<Player>();
+        IsInsideRoom= GetComponent<NoMeshTriggerObject>();
     }
  
     void Update()
-    {
-        if(!IsHit)
-            Jump();      
+    {        
+        if (!IsHit&&!IsClockOff)
+            Jump();   
     }    
 
     void Jump()
@@ -87,8 +93,7 @@ public class MyClock : MonoBehaviour
     private void OnCollisionEnter(Collision b)
     {
         bat = b.gameObject.GetComponent<Bat>();
-        //ChatGPT ÅëÂ°·Î º£²¸¿È
-        //È¤½Ã ¹°¾îºÁµµ ¾ÆÁ÷Àº ¸ô¶ó¿ä....
+       
         if (bat != null && bat.GetIsSwing())
         {
             float batForce = bat.GetSwingForce();
@@ -116,6 +121,9 @@ public class MyClock : MonoBehaviour
             IsHit = true;
         }
     }
-
-
+    
+    public void SetClockOff(bool off)
+    {
+        IsClockOff = off;
+    }
 }
