@@ -23,4 +23,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            currentEmotion++;
+
+            // 감정 수가 예를 들어 10개라면 0~9로 제한
+            if (currentEmotion >= 5)
+            {
+                currentEmotion = 0;
+            }
+        }
+    }
+
 }
