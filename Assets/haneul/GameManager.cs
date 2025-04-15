@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject Emotion;
     public static int currentEmotion = 0;
+    public GameObject Mission;
+    public static int currentMission = 0;
 
     private void Awake()
     {
@@ -29,12 +31,24 @@ public class GameManager : MonoBehaviour
         {
             currentEmotion++;
 
-            // 감정 수가 예를 들어 10개라면 0~9로 제한
-            if (currentEmotion >= 5)
+            
+            if (currentEmotion >= 5) // 감정 개수
             {
                 currentEmotion = 0;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            currentMission++;
+
+
+            if (currentMission >= 2) // 미션 수 넣기
+            {
+                currentMission = 0;
+            }
+        }
     }
+
 
 }
