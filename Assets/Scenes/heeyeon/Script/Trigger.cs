@@ -6,7 +6,7 @@ public class Trigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            FindObjectOfType<GameManager>().EndGame();
+            FindObjectOfType<Manager>().EndGame();
         }
     }
 }

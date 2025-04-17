@@ -5,11 +5,13 @@ public class NPCMovement : MonoBehaviour
 {
     public float moveSpeed = 2f;
     public bool isnotStudent = true;
+    public Animator NPC;
 
     private Vector3 moveDirection;
 
     void Start()
     {
+        NPC = GetComponent<Animator>();
         moveDirection = isnotStudent ? Vector3.forward : Vector3.back;
     }
 

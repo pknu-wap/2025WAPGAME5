@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class GameManager : MonoBehaviour
+public class Manager : MonoBehaviour
 {
     public GameObject startUI;
     public GameObject endUI;
