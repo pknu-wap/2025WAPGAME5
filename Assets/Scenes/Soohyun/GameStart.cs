@@ -10,7 +10,8 @@ public class GameStart : MonoBehaviour
         {
 
             gameObject.transform.position = new Vector3(0, 1, 0);
-            
+
+
         }
     }
 }

@@ -31,7 +31,8 @@ public class Interaction : MonoBehaviour
                     Cursor.visible = true;
                     On = false;
                     Slider1.SetActive(!On);
-                    Slider2.SetActive(!On);
+                    Slider2.SetActive(!On); 
+                    Button.SetActive(On);
                 }
             }
             else
