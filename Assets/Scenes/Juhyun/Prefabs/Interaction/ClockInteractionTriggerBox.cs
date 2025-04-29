@@ -16,12 +16,7 @@ public class ClockInteractionTriggerBox : MonoBehaviour
     bool isPlayerInside = false;
 
     void Update()
-    {
-        //if (isPlayerInside && Input.GetKeyDown(KeyCode.E))
-        //{
-        //    clock.SetClockOff(true);   
-            
-        //}
+    {             
     }
 
     private void OnTriggerEnter(Collider p)
