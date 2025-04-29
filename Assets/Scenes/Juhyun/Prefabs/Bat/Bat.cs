@@ -59,6 +59,10 @@ public class Bat : MonoBehaviour
 
     private void OnCollisionEnter(Collision p)
     {
+        if (IsSwinging)
+            return;
+
+
         player=p.gameObject.GetComponent<Player>();
         if(player!=null)
         {
@@ -84,5 +88,12 @@ public class Bat : MonoBehaviour
     public bool GetIsBatEquipped()
     {
         return IsBatEquipped;
+    }
+    public void Drop()
+    {
+        transform.SetParent(null);
+        transform.position = player.transform.position + player.transform.forward + Vector3.down * 0.5f;
+        transform.localRotation = Quaternion.identity;
+        IsBatEquipped = false;
     }
 }
