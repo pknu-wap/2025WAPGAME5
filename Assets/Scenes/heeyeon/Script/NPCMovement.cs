@@ -18,5 +18,8 @@ public class NPCMovement : MonoBehaviour
     void Update()
     {
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+
+        NPC.applyRootMotion = false;
+        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
 }
