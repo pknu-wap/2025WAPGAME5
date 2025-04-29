@@ -32,8 +32,6 @@ public class Player : MonoBehaviour
 
         m_fLookSensitivity = 5f;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
     }
 
     void Update()

@@ -7,6 +7,8 @@ public class Trigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             FindObjectOfType<Manager>().EndGame();
+
+            Manager mouseController = FindObjectOfType<Manager>();
         }
     }
 }
