@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Mouse : MonoBehaviour
 {
+    public Texture2D fistCursor; 
     private bool isCursorVisible = false;
 
     void Start()
@@ -25,6 +26,8 @@ public class Mouse : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         isCursorVisible = false;
+
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 
     public void UnlockCursor()
@@ -32,6 +35,8 @@ public class Mouse : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         isCursorVisible = true;
+
+        Cursor.SetCursor(fistCursor, Vector2.zero, CursorMode.Auto);
     }
 
     public bool IsCursorVisible()

@@ -970,7 +970,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: fac54571ff27f2b46b28cd6d82cd3c4c, type: 2}
     - target: {fileID: 6891063103867095402, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2770,6 +2770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2306d6eeecb0649897e5a2b553aaa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fistCursor: {fileID: 0}
 --- !u!4 &1254648931
 Transform:
   m_ObjectHideFlags: 0
@@ -3459,11 +3460,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 146935546818660778, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
   m_PrefabInstance: {fileID: 379167938}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1473903234 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6891063103867095402, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
-  m_PrefabInstance: {fileID: 379167938}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1473903235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3476,9 +3472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6afd2b17ca395488f777a1822f8ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 2
   isnotStudent: 1
-  NPC: {fileID: 1473903234}
 --- !u!54 &1473903236
 Rigidbody:
   m_ObjectHideFlags: 0
