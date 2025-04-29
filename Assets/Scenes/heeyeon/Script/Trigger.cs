@@ -8,11 +8,7 @@ public class Trigger : MonoBehaviour
         {
             FindObjectOfType<Manager>().EndGame();
 
-            Mouse mouseController = FindObjectOfType<Mouse>();
-            if (mouseController != null)
-            {
-                mouseController.LockCursor();
-            }
+            Manager mouseController = FindObjectOfType<Manager>();
         }
     }
 }

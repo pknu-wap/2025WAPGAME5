@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb1fa34f970e504294e07f87d8b66d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fWalkSpeed: 12
+  m_fWalkSpeed: 13
   m_camera: {fileID: 811855819}
   m_fLookSensitivity: 300
   m_fMaxLookAngle: 80
@@ -592,7 +592,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   launchForceUp: 2000
-  launchForceForward: 500
+  launchForceForward: 1000
+--- !u!65 &245994161
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245994138}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 2, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &258969111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -918,7 +939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 667049195000124176, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 667049195000124176, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2767,10 +2788,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1254648929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad2306d6eeecb0649897e5a2b553aaa6, type: 3}
+  m_Script: {fileID: 11500000, guid: dddf90c76ebbc9240b4e95f5ec81c5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fistCursor: {fileID: 0}
+  startUI: {fileID: 1795008601}
+  endUI: {fileID: 403946368}
 --- !u!4 &1254648931
 Transform:
   m_ObjectHideFlags: 0
@@ -3472,7 +3494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6afd2b17ca395488f777a1822f8ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 3
   isnotStudent: 1
 --- !u!54 &1473903236
 Rigidbody:
@@ -3497,7 +3519,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 1
@@ -4636,6 +4658,10 @@ PrefabInstance:
       propertyPath: m_fLookSensitivity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3161611849624552292, guid: 4c5beb5699b6bb546926b1df0ade2213, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 182901298573055817, guid: 4c5beb5699b6bb546926b1df0ade2213, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4704,6 +4730,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 182901298573055817, guid: 4c5beb5699b6bb546926b1df0ade2213, type: 3}
       insertIndex: -1
       addedObject: {fileID: 245994155}
+    - targetCorrespondingSourceObject: {fileID: 182901298573055817, guid: 4c5beb5699b6bb546926b1df0ade2213, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 245994161}
   m_SourcePrefab: {fileID: 100100000, guid: 4c5beb5699b6bb546926b1df0ade2213, type: 3}
 --- !u!1001 &2017955796
 PrefabInstance:

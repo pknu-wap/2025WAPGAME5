@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class NPCpunch : MonoBehaviour
 {
-    public float launchForceUp = 2f;
-    public float launchForceForward = 3f;
+    public float launchForceUp = 6f;
+    public float launchForceForward = 9f;
 
     void Update()
     {
@@ -18,6 +18,7 @@ public class NPCpunch : MonoBehaviour
 
                 if (rb != null)
                 {
+                    rb.isKinematic = false;
                     Vector3 launchDirection = Camera.main.transform.forward * launchForceForward + Vector3.up * launchForceUp;
                     rb.AddForce(launchDirection);
                 }
