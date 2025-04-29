@@ -17,10 +17,11 @@ public class ClockInteractionTriggerBox : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerInside && Input.GetKeyDown(KeyCode.E))
-        {
-            clock.SetClockOff(true);            
-        }
+        //if (isPlayerInside && Input.GetKeyDown(KeyCode.E))
+        //{
+        //    clock.SetClockOff(true);   
+            
+        //}
     }
 
     private void OnTriggerEnter(Collider p)
@@ -37,11 +38,13 @@ public class ClockInteractionTriggerBox : MonoBehaviour
 
 
     private void OnTriggerStay(Collider p)
-    {        
+    {
+        if (clock.GetClockOff())
+            return;
         player = p.GetComponent<Player>();        
         if (player != null)
         {
-            bool IsMoving = false;
+            bool IsMoving = false;            
             player.SetDontMove(true);
             if (Input.GetKeyDown(KeyCode.E))
             {                                            

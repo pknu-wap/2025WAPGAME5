@@ -126,4 +126,5 @@ public class MyClock : MonoBehaviour
     {
         IsClockOff = off;
     }
+    public bool GetClockOff() { return IsClockOff; }
 }
