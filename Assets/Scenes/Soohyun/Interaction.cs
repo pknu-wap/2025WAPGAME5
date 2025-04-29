@@ -3,11 +3,13 @@ public class Interaction : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static bool gameStart = false;
+    public static bool repeat = true;
     public GameObject Player;
     public GameObject Table;
     public GameObject Button;
     public GameObject Slider1;
     public GameObject Slider2;
+    public GameObject SliderDrink;
     float Dist;
     bool On = false;
     // Update is called once per frame
@@ -15,10 +17,11 @@ public class Interaction : MonoBehaviour
     {
         Slider1.SetActive(false);
         Slider2.SetActive(false);
+        SliderDrink.SetActive(false);
     }
     void Update()
     {
-        if (!gameStart)
+        if (!gameStart && repeat)
         {
             Button_on();
             Dist = Vector3.Distance(Player.transform.position, Table.transform.position);
@@ -28,11 +31,12 @@ public class Interaction : MonoBehaviour
                 if (Input.GetKey("f"))
                 {
                     gameStart = true;
+                    repeat = false;
                     Cursor.visible = true;
-                    On = false;
-                    Slider1.SetActive(!On);
-                    Slider2.SetActive(!On); 
-                    Button.SetActive(On);
+                    Slider1.SetActive(On);
+                    Slider2.SetActive(On);
+                    SliderDrink.SetActive(On); 
+                    Button.SetActive(!On);
                 }
             }
             else
