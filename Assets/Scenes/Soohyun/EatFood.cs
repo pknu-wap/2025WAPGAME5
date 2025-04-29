@@ -16,7 +16,9 @@ public class EatFood : MonoBehaviour
     public GameObject Food4;
     public GameObject Food5;
     public GameObject particle;
+    public GameObject Space;
     public Slider FoodGauge;
+    float b;
     void Awake()
     {
         eatStart = Time.time;
@@ -77,7 +79,7 @@ public class EatFood : MonoBehaviour
             a++;
         }
         Debug.Log(totalEatTime);
-        Debug.Log("²¨¾ï, Àß ¸Ô¾ú´Ù. " + a * 5 + "ºÐ °É·È³×");
+        //Debug.Log("²¨¾ï, Àß ¸Ô¾ú´Ù. " + a * 5 + "ºÐ °É·È³×");
         Interaction.gameStart = false;
     }
     void OnMouseDown()
@@ -87,7 +89,19 @@ public class EatFood : MonoBehaviour
             if (Input.GetKeyDown("space") && Gauge.canEat && !DrinkWater.isDrinking)
             {
                 Debug.Log(++eat);
+                Space.SetActive(false);
+                b = 0;
 
+            }
+            else
+            {
+                b+=Time.deltaTime;
+                Debug.Log(b);
+                if (b > 0.1)
+                {
+                    b = 0;
+                    Space.SetActive(true);
+                }
             }
         }
     }
