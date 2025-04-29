@@ -23,19 +23,22 @@ public class Gauge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ReEat();
-        if (!canEat && curGauge <= 95)
-            canEat = true;
-        curGauge -= 2 * Time.deltaTime;
-        if (curGauge < 0)
-            curGauge = 0;
-        CheckUp();
-        if (curGauge == 100) //* 이미 체력 0이하면 패스
-            canEat = false;
-        SliderEat.value = curGauge / maxGauge;
-        SliderDrink.value = DrinkGauge / maxGauge;
+        if (Interaction.gameStart)
+        {
+            ReEat();
+            if (!canEat && curGauge <= 95)
+                canEat = true;
+            curGauge -= 2 * Time.deltaTime;
+            if (curGauge < 0)
+                curGauge = 0;
+            CheckUp();
+            if (curGauge == 100)
+                canEat = false;
+            SliderEat.value = curGauge / maxGauge;
+            SliderDrink.value = DrinkGauge / maxGauge;
+        }
     }
-    public void CheckUp() //* 데미지 받는 함수
+    public void CheckUp()
     {
         if (Input.GetKeyDown("space") && canEat && !DrinkWater.isDrinking)
         {
