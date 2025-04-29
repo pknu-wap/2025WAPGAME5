@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class NPCpunch : MonoBehaviour
 {
-    public float launchForceUp = 2000f;
-    public float launchForceForward = 500f;
+    public float launchForceUp = 6f;
+    public float launchForceForward = 9f;
 
     void Update()
     {
@@ -16,8 +16,9 @@ public class NPCpunch : MonoBehaviour
             {
                 Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
 
-                if (rb != null) //
+                if (rb != null)
                 {
+                    rb.isKinematic = false;
                     Vector3 launchDirection = Camera.main.transform.forward * launchForceForward + Vector3.up * launchForceUp;
                     rb.AddForce(launchDirection);
                 }
