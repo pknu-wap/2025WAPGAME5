@@ -593,7 +593,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchForceUp: 2000
   launchForceForward: 500
-  explosionRadius: 1
 --- !u!1001 &258969111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -971,7 +970,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: fac54571ff27f2b46b28cd6d82cd3c4c, type: 2}
     - target: {fileID: 6891063103867095402, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

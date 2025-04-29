@@ -4,8 +4,7 @@ using System.Collections;
 
 public class Manager : MonoBehaviour
 {
-    public GameObject startUI;
-    public GameObject endUI;
+    public GameObject startUI, endUI;
     private bool isPlaying = false;
     private float startTime;
     private GameObject player;
