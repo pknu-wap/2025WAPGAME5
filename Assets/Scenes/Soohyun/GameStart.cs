@@ -9,7 +9,7 @@ public class GameStart : MonoBehaviour
         if (Interaction.gameStart)
         {
 
-            gameObject.transform.position = new Vector3(0, 1, 0);
+            gameObject.transform.position =new Vector3(-1,4,-48);
 
 
         }

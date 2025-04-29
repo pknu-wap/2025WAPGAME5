@@ -96,7 +96,6 @@ public class EatFood : MonoBehaviour
             else
             {
                 b+=Time.deltaTime;
-                Debug.Log(b);
                 if (b > 0.1)
                 {
                     b = 0;
