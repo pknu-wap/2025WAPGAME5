@@ -567,6 +567,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3894587876255723793, guid: f8c1d923d15777a4ba4548e8bc2ce720, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.28
+      objectReference: {fileID: 0}
     - target: {fileID: 8128668236925612103, guid: f8c1d923d15777a4ba4548e8bc2ce720, type: 3}
       propertyPath: m_Name
       value: low_poly_house_interior
