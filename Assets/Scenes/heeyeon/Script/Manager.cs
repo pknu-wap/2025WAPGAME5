@@ -4,14 +4,16 @@ using System.Collections;
 
 public class Manager : MonoBehaviour
 {
-    public GameObject startUI;
-    public GameObject endUI;
+    public GameObject startUI, endUI;
     private bool isPlaying = false;
     private float startTime;
     private GameObject player;
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         Time.timeScale = 0;
         startUI.SetActive(true);
         endUI.SetActive(false);
@@ -31,7 +33,10 @@ public class Manager : MonoBehaviour
         startUI.SetActive(false);
         Time.timeScale = 1;
         isPlaying = true;
-        startTime = Time.time; // 시간 측정 시작 일단 넣긴 넣..
+        startTime = Time.time;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         if (player != null)
         {
@@ -61,6 +66,9 @@ public class Manager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(2f);
         endUI.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         if (player != null)
         {
