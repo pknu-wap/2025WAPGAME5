@@ -16,14 +16,23 @@ public class particle : MonoBehaviour
     {
         if (Interaction.gameStart)
         {
-            if (Input.GetKeyDown("space"))
-            {
-                foodParticle.Play();
-            }
-            if (foodParticle.isPlaying)
+
+            if (Input.GetKeyDown("space") && !DrinkWater.isDrinking )
             {
                 foodParticle.Stop();
+                StartCoroutine(ParticleDelay());
             }
         }
+    }
+    IEnumerator ParticleDelay()
+    {
+        foodParticle.Play();
+        yield return new WaitForSeconds(0.05f);
+        foodParticle.Stop();
+
+    }
+    void OnDisable()
+    {
+        foodParticle.Stop();
     }
 }
