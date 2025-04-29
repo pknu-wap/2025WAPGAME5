@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ClockInteractionTriggerBox : MonoBehaviour
@@ -57,6 +58,10 @@ public class ClockInteractionTriggerBox : MonoBehaviour
             if(IsMoving)
             {
                 player.SetDontMove(false);
+                if (bat.GetIsBatEquipped())
+                {
+                    bat.Drop();
+                }
             }            
         }
     }
