@@ -10,6 +10,7 @@ public class Car_to_school : MonoBehaviour
     public float driftFactor = 0.95f;
     public GameObject player;
     public GameObject carCamera;
+    public GameObject point;
     private Rigidbody rb;
 
     [SerializeField] private bool isRide = false;
@@ -47,6 +48,7 @@ public class Car_to_school : MonoBehaviour
             
             player.SetActive(false);
             carCamera.SetActive(true);
+            point.SetActive(false);
 
         }
     }
