@@ -2793,6 +2793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startUI: {fileID: 1795008601}
   endUI: {fileID: 403946368}
+  fistCursor: {fileID: 0}
 --- !u!4 &1254648931
 Transform:
   m_ObjectHideFlags: 0
@@ -3251,6 +3252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startUI: {fileID: 1795008601}
   endUI: {fileID: 403946368}
+  fistCursor: {fileID: 2800000, guid: 28d4f551c1dc34148a4b672e162080fe, type: 3}
 --- !u!4 &1380084959
 Transform:
   m_ObjectHideFlags: 0
@@ -3504,7 +3506,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473903233}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
