@@ -4,7 +4,6 @@ public class NPCMovement : MonoBehaviour
 {
     public float moveSpeed = 2f;
     public bool isnotStudent = true;
-
     private Vector3 moveDirection;
 
     void Start()
@@ -12,7 +11,7 @@ public class NPCMovement : MonoBehaviour
         moveDirection = isnotStudent ? transform.forward : -transform.forward;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
     }
