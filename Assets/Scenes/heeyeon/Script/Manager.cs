@@ -6,7 +6,7 @@ public class Manager : MonoBehaviour
 {
     public GameObject startUI, endUI;
     public Texture2D fistCursor;
-    private bool isPlaying = false;
+    public bool isPlaying = false;
     private float startTime;
     private GameObject player;
 

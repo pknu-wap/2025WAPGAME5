@@ -11,8 +11,7 @@ public class NPCMovement : MonoBehaviour
         moveDirection = isnotStudent ? transform.forward : -transform.forward;
     }
 
-
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
     }
