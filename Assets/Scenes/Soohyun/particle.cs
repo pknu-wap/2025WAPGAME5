@@ -17,7 +17,7 @@ public class particle : MonoBehaviour
         if (Interaction.gameStart)
         {
 
-            if (Input.GetKeyDown("space") && !DrinkWater.isDrinking )
+            if (Input.GetKeyDown("space") && !DrinkWater.isDrinking && Gauge.canEat)
             {
                 foodParticle.Stop();
                 StartCoroutine(ParticleDelay());

@@ -22,6 +22,12 @@ public class Bat : MonoBehaviour
         {
             IsSwinging = true;
         }
+        //
+        if (Input.GetMouseButtonDown(1) && IsBatEquipped)
+        {
+            Drop();
+        }
+        //
         if (IsSwinging)
         {
             DoSwing();

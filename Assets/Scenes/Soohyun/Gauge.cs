@@ -33,7 +33,10 @@ public class Gauge : MonoBehaviour
                 curGauge = 0;
             CheckUp();
             if (curGauge == 100)
+            {
+                Debug.Log("¸ñ¸·Èû");
                 canEat = false;
+            }
             SliderEat.value = curGauge / maxGauge;
             SliderDrink.value = DrinkGauge / maxGauge;
         }
@@ -63,5 +66,10 @@ public class Gauge : MonoBehaviour
 
 
         }
+    }
+    private void OnDisable()
+    {
+        SliderEat.gameObject.SetActive(false);
+        SliderDrink.gameObject.SetActive(false);
     }
 }

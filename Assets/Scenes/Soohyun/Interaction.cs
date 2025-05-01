@@ -25,12 +25,13 @@ public class Interaction : MonoBehaviour
         {
             Button_on();
             Dist = Vector3.Distance(Player.transform.position, Table.transform.position);
-            if (Dist < 3)
+            if (Dist < 5)
             {
                 On = true;
                 if (Input.GetKey("f"))
                 {
                     gameStart = true;
+                    Player.transform.position = new Vector3(-1, 5, -48);
                     repeat = false;
                     Cursor.visible = true;
                     Slider1.SetActive(On);

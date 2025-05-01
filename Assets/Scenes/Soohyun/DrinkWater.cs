@@ -10,12 +10,15 @@ public class DrinkWater : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Input.GetMouseButton(0) && Physics.Raycast(ray, out hit))
+        int layer = LayerMask.GetMask("Water");
+        if (Input.GetMouseButton(0) && Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
         {
             Debug.Log(hit.transform.name);
-            if (hit.transform.name == "Water" && !isDrinking && Interaction.gameStart)
-                Debug.Log("²Ü²© ²Ü²©" + Time.time);
+            if (!isDrinking && Interaction.gameStart)
+            {
+                Debug.Log("²Ü²© ²Ü²©");
                 isDrinking = true;
+            }
         }
     }
 
