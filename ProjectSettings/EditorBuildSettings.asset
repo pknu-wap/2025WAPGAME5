@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/haneul/Start.unity
     guid: 378a0762a0213f3419d5f2c127e53196
   - enabled: 1
-    path: Assets/Scenes/haneul/Ui&Game.unity
-    guid: 46732f35551d38b4497f315cb68cd057
+    path: Assets/Scenes/Juhyun/Juhyun.unity
+    guid: 897a6e816aef98c4795010ee73521bc1
+  - enabled: 1
+    path: Assets/Scenes/haneul/racing/haneul_racing.unity
+    guid: 5ae0a4179a8ff1c428fd16b601c7443d
+  - enabled: 1
+    path: Assets/Scenes/heeyeon/heeyeon.unity
+    guid: a5d40debc9e6e9745b88568bb844bdf6
   m_configObjects: {}

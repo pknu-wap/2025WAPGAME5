@@ -66,13 +66,13 @@ public class GameManager : MonoBehaviour
         switch (currentScene)
         {
             case 1:
-                SceneManager.LoadScene("Ui&Game");
+                SceneManager.LoadScene(1);
                 break;
             case 2:
-                SceneManager.LoadScene("Scene2");
+                SceneManager.LoadScene(2);
                 break;
             case 3:
-                SceneManager.LoadScene("Scene3");
+                SceneManager.LoadScene(3);
                 break;
             case 4:
                 SceneManager.LoadScene("Scene4");
