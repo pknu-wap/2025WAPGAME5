@@ -56,23 +56,37 @@ public class ObjectTrackCam : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider p)
-    {        
-        player=p.GetComponent<Player>();
+    {
+        player = p.GetComponent<Player>();
+
+        if (player == null)
+        {
+            Debug.LogWarning("충돌한 오브젝트에 Player 컴포넌트가 없습니다.");
+            return; // player가 없으면 아무것도 하지 않음
+        }
+
         if (IsFirstTrigger)
         {
             IsMoreThanOnceTrigger = true;
             return;
         }
-        if (p!=null&& !IsFirstTrigger)
-        {            
-            PlayerCamera=player.GetComponentInChildren<Camera>();
-            IsFirstTrigger = true;            
+
+        if (!IsFirstTrigger)
+        {
+            PlayerCamera = player.GetComponentInChildren<Camera>();
+            IsFirstTrigger = true;
+
             if (PlayerCamera != null)
             {
                 player.SetDontMove(true);
                 InitPlayerCamPos = PlayerCamera.transform.position;
-                InitPlayerCamRot = PlayerCamera.transform.rotation;                
-            }            
+                InitPlayerCamRot = PlayerCamera.transform.rotation;
+            }
+            else
+            {
+                Debug.LogWarning("Player 하위에 Camera가 없습니다.");
+            }
         }
     }
+
 }
