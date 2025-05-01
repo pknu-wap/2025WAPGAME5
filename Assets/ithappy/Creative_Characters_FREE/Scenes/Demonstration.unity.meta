@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Juhyun/Prefabs/Bread.prefab.meta
+guid: beb77b1ab84809a488de0e0f5700ba9a
+PrefabImporter:
+========
 guid: c56691c4cbf7a9847961fcef21eed9fe
 DefaultImporter:
+>>>>>>>> merge-br:Assets/ithappy/Creative_Characters_FREE/Scenes/Demonstration.unity.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

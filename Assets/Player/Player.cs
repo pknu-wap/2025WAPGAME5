@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     
 
     bool DontMove = false;
+    bool canMove = true;
+
     void Start()
     {
         m_rigid = GetComponent<Rigidbody>();
@@ -40,7 +42,10 @@ public class Player : MonoBehaviour
         {
             InputHandle();
             CameraRotation();
-            MoveMent();
+            if (!Interaction.gameStart)
+            {
+                MoveMent();
+            }
         }
         else
         {

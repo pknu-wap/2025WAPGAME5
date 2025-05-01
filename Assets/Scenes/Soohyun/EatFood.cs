@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class EatFood : MonoBehaviour
 {
 
-    float eatStart;
+    float eatStart=0;
     float eatFinish;
     float totalEatTime;
     int a = 1;
@@ -35,29 +35,33 @@ public class EatFood : MonoBehaviour
     {
         FoodGauge.value = (float)eat / 100;
         OnMouseDown();
+        if (eatStart == 0 )
+        {
+            eatStart = Time.time;
+        }
         if (eat == 20)
         {
             
             Food1.SetActive(false);
-            particle.transform.position = new Vector3(0, 0.8f, 2.25f);
+            particle.transform.position = Food2.transform.position;
 
         }
         else if (eat == 40)
         {
             Food2.SetActive(false);
-            particle.transform.position = new Vector3(0.5f, 0.8f, 2.25f);
+            particle.transform.position = Food3.transform.position;
 
         }
         else if (eat == 60)
         {
             Food3.SetActive(false);
-            particle.transform.position = new Vector3(0.25f, 0.85f, 1.75f);
+            particle.transform.position = Food4.transform.position;
 
         }
         else if (eat == 80)
         {
             Food4.SetActive(false);
-            particle.transform.position = new Vector3(-0.25f, 0.85f, 1.75f);
+            particle.transform.position = Food5.transform.position;
 
         }
         else if (eat == 100)
@@ -67,6 +71,7 @@ public class EatFood : MonoBehaviour
             totalEatTime = eatFinish - eatStart;
             Food5.SetActive(false);
             particle.SetActive(false);
+            FoodGauge.gameObject.SetActive(false);
 
         }
     }
@@ -96,7 +101,6 @@ public class EatFood : MonoBehaviour
             else
             {
                 b+=Time.deltaTime;
-                Debug.Log(b);
                 if (b > 0.1)
                 {
                     b = 0;
