@@ -8,21 +8,39 @@ public class Emotion : MonoBehaviour
     private List<GameObject> emotionObjects = new List<GameObject>();
 
     private int lastEmotion = -1;
+    private bool isChangeEmotion = false;
 
     private void Update()
     {
-        if (GameManager.currentEmotion != lastEmotion)
+        if (!isChangeEmotion && GameManager.currentEmotion != lastEmotion)
         {
-            UpdateEmotionVisual();
-            lastEmotion = GameManager.currentEmotion;
+            StartCoroutine(HandleEmotionChange());
         }
     }
 
-    private void UpdateEmotionVisual()
+    private IEnumerator HandleEmotionChange()
     {
+        isChangeEmotion = true;
+
+        lastEmotion = GameManager.currentEmotion;
+
+        // 현재 감정 오브젝트만 활성화
         for (int i = 0; i < emotionObjects.Count; i++)
         {
-            emotionObjects[i].SetActive(i == GameManager.currentEmotion);
+            emotionObjects[i].SetActive(i == lastEmotion);
         }
+
+        yield return new WaitForSeconds(3f);
+
+        // 감정 초기화
+        GameManager.currentEmotion = 0;
+        lastEmotion = 0;
+
+        for (int i = 0; i < emotionObjects.Count; i++)
+        {
+            emotionObjects[i].SetActive(i == 0);
+        }
+
+        isChangeEmotion = false;
     }
 }
