@@ -31,7 +31,7 @@ public class Interaction : MonoBehaviour
                 if (Input.GetKey("f"))
                 {
                     gameStart = true;
-                    Player.transform.position = new Vector3(-1, 5, -48);
+                    Player.transform.position = new Vector3(-1, 6, -48);
                     repeat = false;
                     Cursor.visible = true;
                     Slider1.SetActive(On);

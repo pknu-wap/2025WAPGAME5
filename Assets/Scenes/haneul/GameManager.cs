@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public static int currentMission = 0;
     public static int lastScene = 0;
     public static int currentScene= 0;
+    public static int scoreGTS = 0;//학교도착까지의 점수
 
     private void Awake()
     {

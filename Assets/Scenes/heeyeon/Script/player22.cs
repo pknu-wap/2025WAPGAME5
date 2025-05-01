@@ -61,7 +61,7 @@ public class Player22 : MonoBehaviour
         float duration = 2f;
         float elapsed = 0f;
         float startY = transform.eulerAngles.y;
-        GameManager.currentEmotion = 4;
+        GameManager.currentEmotion = 5;
 
         while (elapsed < duration)
         {

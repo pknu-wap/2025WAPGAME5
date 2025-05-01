@@ -76,7 +76,9 @@ public class MyClock : MonoBehaviour
                 Jumping = false;
             }
         }
-            
+
+
+
     }
     void Vibration()
     {
@@ -92,10 +94,13 @@ public class MyClock : MonoBehaviour
 
     private void OnCollisionEnter(Collision b)
     {
+        
         bat = b.gameObject.GetComponent<Bat>();
        
         if (bat != null && bat.GetIsSwing())
         {
+            GameManager.currentMission = 1;
+            GameManager.currentEmotion = 2;
             float batForce = bat.GetSwingForce();
 
             // 충돌 지점의 첫 번째 contact normal 사용
@@ -119,6 +124,7 @@ public class MyClock : MonoBehaviour
             rigid.AddForce(funnyBounce * exaggerateForce, ForceMode.Impulse);
 
             IsHit = true;
+
         }
     }
     

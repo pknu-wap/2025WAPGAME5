@@ -85,6 +85,7 @@ public class EatFood : MonoBehaviour
         }
         Debug.Log(totalEatTime);
         //Debug.Log("²¨¾ï, Àß ¸Ô¾ú´Ù. " + a * 5 + "ºÐ °É·È³×");
+        GameManager.currentMission += 1;
         Interaction.gameStart = false;
     }
     void OnMouseDown()
