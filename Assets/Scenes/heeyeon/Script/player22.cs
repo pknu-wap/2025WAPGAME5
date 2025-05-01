@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEditor.Build.Content;
 
 public class Player22 : MonoBehaviour
 {
@@ -59,6 +60,7 @@ public class Player22 : MonoBehaviour
         float duration = 2f;
         float elapsed = 0f;
         float startY = transform.eulerAngles.y;
+        GameManager.currentEmotion = 4;
 
         while (elapsed < duration)
         {
@@ -73,6 +75,7 @@ public class Player22 : MonoBehaviour
         isRotating = false;
         yield return new WaitForSeconds(2f);
         isCrash = false;
+        GameManager.currentEmotion = 0;
     }
 
     public void SetPlaying(bool playing)
