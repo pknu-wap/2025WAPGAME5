@@ -9,7 +9,8 @@ public class StartBg : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("Ui&Game");
+            Debug.Log("Å¬¸¯");
+            GameManager.currentScene += 1;
         }
     }
 }

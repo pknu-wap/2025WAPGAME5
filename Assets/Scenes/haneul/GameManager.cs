@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     public static int currentEmotion = 0;
     public GameObject Mission;
     public static int currentMission = 0;
+    public static int lastScene = 0;
+    public static int currentScene= 0;
 
     private void Awake()
     {
@@ -47,6 +50,35 @@ public class GameManager : MonoBehaviour
             {
                 currentMission = 0;
             }
+        }
+
+        //SceneManager
+        if(currentScene != lastScene)
+            {
+                UpdateScene();
+                lastScene = currentScene;
+            }
+
+    }
+
+    public void UpdateScene()
+    {
+        switch (currentScene)
+        {
+            case 1:
+                SceneManager.LoadScene("Ui&Game");
+                break;
+            case 2:
+                SceneManager.LoadScene("Scene2");
+                break;
+            case 3:
+                SceneManager.LoadScene("Scene3");
+                break;
+            case 4:
+                SceneManager.LoadScene("Scene4");
+                break;
+            default:
+                break;
         }
     }
 
