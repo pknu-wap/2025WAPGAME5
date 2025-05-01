@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
             currentMission++;
 
 
-            if (currentMission >= 2) // 미션 수 넣기
+            if (currentMission >= 4) // 미션 수 넣기
             {
                 currentMission = 0;
             }
