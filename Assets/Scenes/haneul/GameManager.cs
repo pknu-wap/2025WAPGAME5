@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
             currentEmotion++;
 
             
-            if (currentEmotion >= 5) // 감정 개수
+            if (currentEmotion >= 6) // 감정 개수
             {
                 currentEmotion = 0;
             }
