@@ -9,6 +9,7 @@ public class Manager : MonoBehaviour
     public bool isPlaying = false;
     private float startTime;
     private GameObject player;
+    public GameObject PunchCoolDown;
 
     void Start()
     {
@@ -26,11 +27,13 @@ public class Manager : MonoBehaviour
         if (!isPlaying && Input.GetKeyDown(KeyCode.Space))
         {
             StartGame();
+            PunchCoolDown.SetActive(true);
         }
     }
 
     void StartGame()
     {
+        PunchCoolDown.SetActive(true);
         startUI.SetActive(false);
         Time.timeScale = 1;
         isPlaying = true;
@@ -38,8 +41,8 @@ public class Manager : MonoBehaviour
 
         Cursor.SetCursor(fistCursor, Vector2.zero, CursorMode.Auto);
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Locked; // Ä¿¼­ Àá±Ý
+        Cursor.visible = false;                   // Ä¿¼­ ¼û±è
 
         if (player != null)
         {
@@ -49,6 +52,7 @@ public class Manager : MonoBehaviour
 
     public void EndGame()
     {
+        PunchCoolDown.SetActive(false);
         if (isPlaying)
         {
             isPlaying = false;

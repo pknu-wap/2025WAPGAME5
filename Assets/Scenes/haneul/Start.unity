@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!223 &140353600 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6346438743236110470, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
+  m_PrefabInstance: {fileID: 1645113536}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &221209210
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +459,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4288104293994497779, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4904336116479110636, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 972.8448
@@ -494,11 +503,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4905914108138351058, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 140353600}
+    - target: {fileID: 6208766620496857235, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
+      propertyPath: emotionObjects.Array.data[6]
+      value: 
+      objectReference: {fileID: 1645113537}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
+--- !u!1 &1645113537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227112286294814802, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
+  m_PrefabInstance: {fileID: 1645113536}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1726141708
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +749,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

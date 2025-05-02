@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     public static int lastScene = 0;
     public static int currentScene= 0;
     public static int scoreGTS = 0;//학교도착까지의 점수
+    public Canvas canvas;
 
     private void Awake()
     {
@@ -31,12 +33,20 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (currentScene == 0)
+        {
+            canvas.enabled = false;
+        }
+        else
+        {
+            canvas.enabled = true;
+        }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            currentEmotion++;
+            //currentEmotion++;
 
             
-            if (currentEmotion >= 6) // 감정 개수
+            if (currentEmotion >= 7) // 감정 개수
             {
                 currentEmotion = 0;
             }
@@ -44,7 +54,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            currentMission++;
+            //currentMission++;
 
 
             if (currentMission >= 4) // 미션 수 넣기

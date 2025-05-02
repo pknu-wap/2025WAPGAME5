@@ -34,7 +34,7 @@ public class Gauge : MonoBehaviour
             CheckUp();
             if (curGauge == 100)
             {
-                Debug.Log("¸ñ¸·Èû");
+                GameManager.currentEmotion = 6;
                 canEat = false;
             }
             SliderEat.value = curGauge / maxGauge;

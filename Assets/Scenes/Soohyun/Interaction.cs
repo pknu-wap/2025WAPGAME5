@@ -33,7 +33,7 @@ public class Interaction : MonoBehaviour
                     gameStart = true;
                     Player.transform.position = new Vector3(-1, 6, -48);
                     repeat = false;
-                    Cursor.visible = true;
+                    //Cursor.visible = true;
                     Slider1.SetActive(On);
                     Slider2.SetActive(On);
                     SliderDrink.SetActive(On); 

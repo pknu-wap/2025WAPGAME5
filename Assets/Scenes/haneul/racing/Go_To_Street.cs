@@ -10,6 +10,7 @@ public class Go_To_Street : MonoBehaviour
         {
             Debug.Log("°ñ¸ñ");
             GameManager.currentScene += 1;
+            GameManager.currentMission += 1;
         }
     }
 }

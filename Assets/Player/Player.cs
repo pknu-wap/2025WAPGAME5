@@ -5,8 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody m_rigid;
-    Transform m_trs;    
-
+    Transform m_trs;
 
     [SerializeField] private float m_fWalkSpeed;
     private Vector3 m_vMoveDirection;
@@ -22,7 +21,6 @@ public class Player : MonoBehaviour
 
     private float m_fMouseXInput;
     private float m_fMouseYInput;
-    
 
     bool DontMove = false;
     bool canMove = true;
@@ -34,6 +32,9 @@ public class Player : MonoBehaviour
 
         m_fLookSensitivity = 5f;
 
+        // 마우스 커서 숨기기 설정
+        Cursor.lockState = CursorLockMode.Locked;   // 마우스를 화면 중앙에 고정
+        Cursor.visible = false;                      // 마우스 커서 숨기기
     }
 
     void Update()
@@ -56,12 +57,12 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         if (!DontMove)
-        {            
-                 
+        {
+            // 물리적으로 이동 처리 시 여기에 추가적인 물리 처리 가능
         }
         else
         {
-            //m_rigid.velocity = new Vector3(0f, 0f, 0f);
+            // 마우스 커서 숨김 설정을 적용한 상태에서 다른 처리 가능
         }
     }
 
@@ -71,7 +72,7 @@ public class Player : MonoBehaviour
         m_fVerticalInput = Input.GetAxisRaw("Vertical");
 
         m_fMouseXInput = Input.GetAxisRaw("Mouse X");
-        m_fMouseYInput = Input.GetAxisRaw("Mouse Y");        
+        m_fMouseYInput = Input.GetAxisRaw("Mouse Y");
     }
 
     void MoveMent()
@@ -102,5 +103,4 @@ public class Player : MonoBehaviour
     {
         return DontMove;
     }
-   
 }
