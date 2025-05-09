@@ -135,7 +135,6 @@ public class MathGame : MonoBehaviour
     {
         float totalTime = Time.time - startTime;
         Debug.Log("총 풀이 시간: " + totalTime + "초");
-        PlayerPrefs.SetFloat("MathTime", totalTime);
         SceneManager.LoadScene("heeyeon");
     }
 

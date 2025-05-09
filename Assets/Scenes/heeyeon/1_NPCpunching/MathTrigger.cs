@@ -10,5 +10,4 @@ public class MathTrigger : MonoBehaviour
             SceneManager.LoadScene("Math");
         }
     }
-
 }
