@@ -11,10 +11,12 @@ public class MathGame : MonoBehaviour
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI questionText;
     public TMP_InputField answerInput;
+    public TextMeshProUGUI progressText;
 
     private float startTime;
     private bool gameStarted = false;
     private int currentQuestionIndex = 0;
+    private int totalQuestions = 10;
 
     private List<Question> questions = new List<Question>();
 
@@ -34,28 +36,47 @@ public class MathGame : MonoBehaviour
         StartCoroutine(CountdownAndStart());
     }
 
-    void CreateQuestions()
+void CreateQuestions()
+{
+    List<Question> allQuestions = new List<Question>
     {
-        questions.Add(new Question("2 + 3 = ?", 5));
-        questions.Add(new Question("6 - 1 = ?", 5));
-        questions.Add(new Question("7 ¡¿ 2 = ?", 14));
-        questions.Add(new Question("9 ¡À 3 = ?", 3));
-        questions.Add(new Question("10 + 15 = ?", 25));
-        questions.Add(new Question("12 - 4 = ?", 8));
-        questions.Add(new Question("3 ¡¿ 5 = ?", 15));
-        questions.Add(new Question("20 ¡À 4 = ?", 5));
+        new Question("14 ¡¿ 14 = ?", 196),
+        new Question("7(6 + 8) = ?", 98),
+        new Question("7 ¡¿ 2 = ?", 14),
+        new Question("9 ¡À 3 = ?", 3),
+        new Question("10 + 15 = ?", 25),
+        new Question("(18 + 24)¡À(6-3) = ?", 14),
+        new Question("3 ¡¿ 15 = ?", 45),
+        new Question("20 ¡À 4 ¡À 5 = ?", 1),
+        new Question("25 + 25 ¡À 5 = ?", 30),
+        new Question("81 ¡À 9 = ?", 9),
+        new Question("11 ¡¿ 3 = ?", 33),
+        new Question("18 - 7 - 2 = ?", 9),
+        new Question("5 + 7 ¡¿ 2 = ?", 19),
+        new Question("16 ¡À 2 ¡À 2 = ?", 8),
+        new Question("4 ¡¿ 6 ¡À 12 = ?", 2),
+        new Question("13 + 8 = ?", 21),
+        new Question("35 - 9 = ?", 26)
+    };
 
-        ShuffleQuestions();
-    }
+    ShuffleList(allQuestions);
 
-    void ShuffleQuestions()
+    int questionCount = 10;
+    for (int i = 0; i < questionCount && i < allQuestions.Count; i++)
     {
-        for (int i = 0; i < questions.Count; i++)
-        {
-            int randomIndex = Random.Range(i, questions.Count);
-            (questions[i], questions[randomIndex]) = (questions[randomIndex], questions[i]);
-        }
+        questions.Add(allQuestions[i]);
     }
+}
+
+void ShuffleList(List<Question> list)
+{
+    for (int i = 0; i < list.Count; i++)
+    {
+        int randomIndex = Random.Range(i, list.Count);
+        (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
+    }
+}
+
 
     IEnumerator CountdownAndStart()
     {
@@ -90,20 +111,22 @@ public class MathGame : MonoBehaviour
         }
     }
 
-    void ShowNextQuestion()
+void ShowNextQuestion()
+{
+    if (currentQuestionIndex >= questions.Count)
     {
-        if (currentQuestionIndex >= questions.Count)
-        {
-            EndGame();
-            return;
-        }
-
-        var q = questions[currentQuestionIndex];
-        questionText.text = q.question;
-        answerInput.text = "";
-        answerInput.Select(); 
-        answerInput.ActivateInputField(); 
+        EndGame();
+        return;
     }
+
+    var q = questions[currentQuestionIndex];
+    questionText.text = q.question;
+    progressText.text = $"{currentQuestionIndex + 1}/{totalQuestions}";
+    
+    answerInput.text = "";
+    answerInput.Select(); 
+    answerInput.ActivateInputField(); 
+}
 
     void SubmitAnswer()
     {
