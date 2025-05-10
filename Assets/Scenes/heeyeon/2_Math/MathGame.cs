@@ -139,8 +139,8 @@ void ShowNextQuestion()
             }
             else
             {
-                Debug.Log("오답!");
-                answerInput.text = "";
+                Debug.Log("오답!"); // 화면엔 오답이라는 표시가 없으니, 소리로 삐- 하면 좋을 듯. 
+                answerInput.text = ""; // 소리로 정답과 오답 나누기
                 answerInput.Select();
                 answerInput.ActivateInputField();
             }

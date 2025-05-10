@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - NPC
+  - ground
+  - Ground
   layers:
   - Default
   - TransparentFX
