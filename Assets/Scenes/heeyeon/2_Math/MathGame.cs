@@ -53,7 +53,7 @@ void CreateQuestions()
         new Question("11 × 3 = ?", 33),
         new Question("18 - 7 - 2 = ?", 9),
         new Question("5 + 7 × 2 = ?", 19),
-        new Question("16 ÷ 2 ÷ 2 = ?", 8),
+        new Question("16 ÷ 2 ÷ 2 = ?", 4),
         new Question("4 × 6 ÷ 12 = ?", 2),
         new Question("13 + 8 = ?", 21),
         new Question("35 - 9 = ?", 26)
@@ -157,7 +157,7 @@ void ShowNextQuestion()
     void EndGame()
     {
         float totalTime = Time.time - startTime;
-        Debug.Log("총 풀이 시간: " + totalTime + "초");
+        Debug.Log("수학 문제 풀이 시간: " + totalTime + "초");
         SceneManager.LoadScene("heeyeon");
     }
 
