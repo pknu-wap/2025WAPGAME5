@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - NPC
+  - forward
+  - left
+  - right
   layers:
   - Default
   - TransparentFX

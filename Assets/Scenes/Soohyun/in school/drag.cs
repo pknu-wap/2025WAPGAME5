@@ -12,7 +12,6 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     private GameObject cloneObject;
     private RectTransform cloneRect;
     private CanvasGroup cloneCanvasGroup;
-    int a=1;
     void Awake()
     {
         if (parentCanvas == null)
