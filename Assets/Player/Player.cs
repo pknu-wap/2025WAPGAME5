@@ -47,7 +47,6 @@ public class Player : MonoBehaviour
             InputHandle();
             CameraRotation();
 
-            // 애니메이션 파라미터 업데이트 함수 호출 추가
             UpdateAnimationParameters();
 
             if (!Interaction.gameStart)
