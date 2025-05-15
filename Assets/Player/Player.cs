@@ -22,19 +22,22 @@ public class Player : MonoBehaviour
     private float m_fMouseXInput;
     private float m_fMouseYInput;
 
+    private Animator m_anim;
+    private bool isRunning;
+    private bool isJumping;
+
     bool DontMove = false;
-    bool canMove = true;
 
     void Start()
     {
         m_rigid = GetComponent<Rigidbody>();
         m_trs = GetComponent<Transform>();
+        m_anim = GetComponent<Animator>();
 
         m_fLookSensitivity = 5f;
 
-        // 마우스 커서 숨기기 설정
-        Cursor.lockState = CursorLockMode.Locked;   // 마우스를 화면 중앙에 고정
-        Cursor.visible = false;                      // 마우스 커서 숨기기
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()
@@ -43,6 +46,10 @@ public class Player : MonoBehaviour
         {
             InputHandle();
             CameraRotation();
+
+            // 애니메이션 파라미터 업데이트 함수 호출 추가
+            UpdateAnimationParameters();
+
             if (!Interaction.gameStart)
             {
                 MoveMent();
@@ -50,21 +57,28 @@ public class Player : MonoBehaviour
         }
         else
         {
-            m_rigid.velocity = new Vector3(0f, 0f, 0f);
+            m_rigid.velocity = Vector3.zero;
         }
     }
 
-    void FixedUpdate()
+    void UpdateAnimationParameters()
     {
-        if (!DontMove)
-        {
-            // 물리적으로 이동 처리 시 여기에 추가적인 물리 처리 가능
-        }
-        else
-        {
-            // 마우스 커서 숨김 설정을 적용한 상태에서 다른 처리 가능
-        }
+        bool hasMovementInput = m_fHorizontalInput != 0 || m_fVerticalInput != 0;
+        isRunning = Input.GetKey(KeyCode.LeftShift) && hasMovementInput;
+        isJumping = Input.GetKeyDown(KeyCode.Space);
+
+        Vector3 horizontalVelocity = new Vector3(m_rigid.velocity.x, 0, m_rigid.velocity.z);
+        float speed = horizontalVelocity.magnitude;
+
+        bool isMoving = speed > 0.1f;
+
+        Debug.Log($"Speed: {speed}, isMoving: {isMoving}, isRunning: {isRunning}, isJumping: {isJumping}");
+
+        m_anim.SetBool("isMoving", isMoving);
+        m_anim.SetBool("isRunning", isRunning);
+        m_anim.SetBool("isJumping", isJumping);
     }
+
 
     void InputHandle()
     {
@@ -79,7 +93,8 @@ public class Player : MonoBehaviour
     {
         m_vMoveDirection = (m_trs.right * m_fHorizontalInput + m_trs.forward * m_fVerticalInput).normalized;
 
-        Vector3 vVelocity = m_vMoveDirection * m_fWalkSpeed;
+        float speed = isRunning ? m_fWalkSpeed * 2f : m_fWalkSpeed;  // 달리기일 땐 속도 2배로 설정(원하는 값으로 조절 가능)
+        Vector3 vVelocity = m_vMoveDirection * speed;
 
         m_rigid.velocity = new Vector3(vVelocity.x, m_rigid.velocity.y, vVelocity.z);
     }
@@ -103,4 +118,5 @@ public class Player : MonoBehaviour
     {
         return DontMove;
     }
+
 }

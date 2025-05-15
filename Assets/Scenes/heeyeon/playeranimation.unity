@@ -315,7 +315,7 @@ Transform:
   m_GameObject: {fileID: 187071186}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.192, z: -0.755}
+  m_LocalPosition: {x: 0, y: 2.31, z: -0.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -441,19 +441,11 @@ PrefabInstance:
       addedObject: {fileID: 1237473644}
     - targetCorrespondingSourceObject: {fileID: 146935546818660778, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1237473647}
-    - targetCorrespondingSourceObject: {fileID: 146935546818660778, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1237473650}
     - targetCorrespondingSourceObject: {fileID: 146935546818660778, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1237473651}
   m_SourcePrefab: {fileID: 100100000, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
---- !u!95 &348401585 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6891063103867095402, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
-  m_PrefabInstance: {fileID: 348401584}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &865362490
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,23 +590,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 667049195000124176, guid: 7f6862d8aee10a042821738d523fc6fa, type: 3}
   m_PrefabInstance: {fileID: 348401584}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1237473647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237473643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58ea9ccfeb4cb794a848172cccbb5622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 348401585}
-  groundCheckDistance: 1.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!136 &1237473650
 CapsuleCollider:
   m_ObjectHideFlags: 0
