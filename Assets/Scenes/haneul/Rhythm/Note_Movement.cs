@@ -5,7 +5,7 @@ using UnityEngine;
 public class Note_Movement : MonoBehaviour
 {
     private Vector3 targetPosition = new Vector3(0f, -6f, -2f);
-    private float duration = 2f;
+    private float duration = 1.5f;
 
 
 

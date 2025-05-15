@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class Rhythm_Judgement : MonoBehaviour
 {
-    public KeyCode keyToPress;
-    public string noteTag;               // 해당 방향 노트 태그 (예: "LeftNote")
-    public GameObject hitObjectPrefab;   // 히트 시 생성될 오브젝트 프리펩
-    public GameObject missObjectPrefab;  // 미스 시 생성될 오브젝트 프리펩
+    public KeyCode keyToPress;                  // 키 입력
+    public string noteTag;                      // 노트 태그 (RightNote, LeftNote 등)
+    public GameObject hitObjectPrefab;          // 히트 이펙트 프리팹
+    public GameObject missObjectPrefab;         // 미스 이펙트 프리팹
 
-    private Queue<GameObject> noteQueue = new Queue<GameObject>();  // 노트 큐
+    public AudioClip clip_R;  // 오른쪽 드럼 소리
+    public AudioClip clip_L;  // 왼쪽 드럼 소리
+
+    private Queue<GameObject> noteQueue = new Queue<GameObject>(); // 충돌 중인 노트 큐
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        // AudioSource 자동 추가 (없으면)
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("In");
         if (other.CompareTag(noteTag))
         {
             noteQueue.Enqueue(other.gameObject);
@@ -24,7 +35,7 @@ public class Rhythm_Judgement : MonoBehaviour
     {
         if (other.CompareTag(noteTag) && noteQueue.Contains(other.gameObject))
         {
-            // 큐에서 해당 노트 제거
+            // 해당 노트를 큐에서 제거
             Queue<GameObject> newQueue = new Queue<GameObject>();
 
             foreach (var note in noteQueue)
@@ -48,21 +59,21 @@ public class Rhythm_Judgement : MonoBehaviour
                 GameObject firstNote = noteQueue.Dequeue();
                 Destroy(firstNote);
 
-                // 히트 오브젝트 생성 (z + 0.1f 위치에)
                 if (hitObjectPrefab != null)
-                {
                     Instantiate(hitObjectPrefab, spawnPosition, Quaternion.identity);
-                }
 
                 Debug.Log("Hit!");
+
+                // 방향에 따라 사운드 다르게 재생
+                if (noteTag == "RightNote" && clip_R != null)
+                    audioSource.PlayOneShot(clip_R,0.7f);
+                else if (noteTag == "LeftNote" && clip_L != null)
+                    audioSource.PlayOneShot(clip_L,0.7f);
             }
             else
             {
-                // 미스 오브젝트 생성 (z + 0.1f 위치에)
                 if (missObjectPrefab != null)
-                {
                     Instantiate(missObjectPrefab, spawnPosition, Quaternion.identity);
-                }
 
                 Debug.Log("Miss...");
             }
