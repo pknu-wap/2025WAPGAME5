@@ -12,6 +12,8 @@ public class MathGame : MonoBehaviour
     public TextMeshProUGUI questionText;
     public TMP_InputField answerInput;
     public TextMeshProUGUI progressText;
+    public TextMeshProUGUI wrongText;
+    public TextMeshProUGUI resultText;
 
     private float startTime;
     private bool gameStarted = false;
@@ -139,7 +141,8 @@ void ShowNextQuestion()
             }
             else
             {
-                Debug.Log("오답!"); // 화면엔 오답이라는 표시가 없으니, 소리로 삐- 하면 좋을 듯. 
+                //소리로 삐- 하면 좋을 듯. 
+                StartCoroutine (ShowWrongText());
                 answerInput.text = ""; // 소리로 정답과 오답 나누기
                 answerInput.Select();
                 answerInput.ActivateInputField();
@@ -158,7 +161,27 @@ void ShowNextQuestion()
     {
         float totalTime = Time.time - startTime;
         Debug.Log("수학 문제 풀이 시간: " + totalTime + "초");
+
+        gameStarted = false;
+        questionText.gameObject.SetActive(false);
+
+    resultText.text = $"게임 끝!\n{totalTime:F2}초 걸렸습니다.";
+        resultText.gameObject.SetActive(true);
+
+        StartCoroutine(GoToNextSceneAfterDelay(2f));
+    }
+
+    IEnumerator GoToNextSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene("heeyeon");
+    }
+
+    IEnumerator ShowWrongText()
+    {
+        wrongText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        wrongText.gameObject.SetActive(false);
     }
 
     class Question
