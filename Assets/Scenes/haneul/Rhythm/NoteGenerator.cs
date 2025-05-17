@@ -6,6 +6,7 @@ public class NoteGenerator : MonoBehaviour
 {
     public GameObject Note_R;
     public GameObject Note_L;
+    public GameObject Spectrum;
 
     public float bpm = 240f;
     private Coroutine currentIsCoroutine;
@@ -42,6 +43,7 @@ public class NoteGenerator : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
+            Spectrum.SetActive(true);
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
@@ -174,5 +176,9 @@ public class NoteGenerator : MonoBehaviour
         yield return new WaitForSeconds(time_Signatures / 9);
         scriptNoteR.Create_Note();
         yield return new WaitForSeconds(time_Signatures / 9);
+
+
+        Spectrum.SetActive(false);
     }
+
 }
