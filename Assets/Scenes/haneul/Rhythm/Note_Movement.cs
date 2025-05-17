@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Note_Movement : MonoBehaviour
 {
-    private Vector3 targetPosition = new Vector3(0f, -6f, -2f);
+    public float x_Pos = 0f;
+    private Vector3 targetPosition;
     private float duration = 1.5f;
 
 
 
     void Start()
     {
+        targetPosition = new Vector3(x_Pos, -6f, -2f);
         StartCoroutine(MoveToTarget());
     }
 
@@ -30,6 +32,6 @@ public class Note_Movement : MonoBehaviour
 
 
 
-        Destroy(gameObject,0.2f);
+        Destroy(gameObject,0.1f);
     }
 }

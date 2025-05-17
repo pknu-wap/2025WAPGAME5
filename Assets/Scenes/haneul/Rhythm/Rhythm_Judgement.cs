@@ -66,9 +66,9 @@ public class Rhythm_Judgement : MonoBehaviour
 
                 // 방향에 따라 사운드 다르게 재생
                 if (noteTag == "RightNote" && clip_R != null)
-                    audioSource.PlayOneShot(clip_R,0.7f);
+                    audioSource.PlayOneShot(clip_R,0.5f);
                 else if (noteTag == "LeftNote" && clip_L != null)
-                    audioSource.PlayOneShot(clip_L,0.7f);
+                    audioSource.PlayOneShot(clip_L,0.6f);
             }
             else
             {

@@ -1,21 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class NoteGenerator : MonoBehaviour
 {
     public GameObject Note_R;
     public GameObject Note_L;
 
     public float bpm = 240f;
-    private Coroutine currentPatternCoroutine;
+    private Coroutine currentIsCoroutine;
 
-    private Note scriptNoteR; // 전역 멤버 변수로 선언
+    private Note scriptNoteR;
     private Note scriptNoteL;
+
+    private AudioSource audioSource;
+    private float time_Signatures = 0f;
 
     void Start()
     {
         scriptNoteR = Note_R.GetComponent<Note>();
         scriptNoteL = Note_L.GetComponent<Note>();
+
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void Update()
@@ -28,6 +38,15 @@ public class NoteGenerator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             scriptNoteR.Create_Note();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+                currentIsCoroutine=StartCoroutine(PlaySong1());
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) PlayPatternSafe(new bool[] { false, true, false, true });
@@ -44,11 +63,11 @@ public class NoteGenerator : MonoBehaviour
 
     void PlayPatternSafe(bool[] pattern)
     {
-        if (currentPatternCoroutine != null)
+        if (currentIsCoroutine != null)
         {
-            StopCoroutine(currentPatternCoroutine);
+            StopCoroutine(currentIsCoroutine);
         }
-        currentPatternCoroutine = StartCoroutine(PlayPattern(pattern));
+        currentIsCoroutine = StartCoroutine(PlayPattern(pattern));
     }
 
     IEnumerator PlayPattern(bool[] pattern)
@@ -68,6 +87,92 @@ public class NoteGenerator : MonoBehaviour
             yield return new WaitForSeconds(beatDuration);
         }
 
-        currentPatternCoroutine = null;
+        currentIsCoroutine = null;
+    }
+    IEnumerator PlaySong1()
+    {
+        bpm = 175f;
+        time_Signatures = 60 / bpm * 8f;
+        yield return new WaitForSeconds(time_Signatures*8-1f);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures/4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 4);
+        yield return new WaitForSeconds(time_Signatures * 16);
+
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 9);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 9);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 9);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 9);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 9);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 9);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 9);
+        scriptNoteL.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 9);
+        scriptNoteR.Create_Note();
+        yield return new WaitForSeconds(time_Signatures / 9);
     }
 }
