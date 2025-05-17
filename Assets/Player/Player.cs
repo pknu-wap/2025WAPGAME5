@@ -71,8 +71,6 @@ public class Player : MonoBehaviour
 
         bool isMoving = speed > 0.1f;
 
-        Debug.Log($"Speed: {speed}, isMoving: {isMoving}, isRunning: {isRunning}, isJumping: {isJumping}");
-
         m_anim.SetBool("isMoving", isMoving);
         m_anim.SetBool("isRunning", isRunning);
         m_anim.SetBool("isJumping", isJumping);
@@ -92,7 +90,7 @@ public class Player : MonoBehaviour
     {
         m_vMoveDirection = (m_trs.right * m_fHorizontalInput + m_trs.forward * m_fVerticalInput).normalized;
 
-        float speed = isRunning ? m_fWalkSpeed * 2f : m_fWalkSpeed;  // 달리기일 땐 속도 2배로 설정(원하는 값으로 조절 가능)
+        float speed = isRunning ? m_fWalkSpeed * 2f : m_fWalkSpeed;  // 달리기- 속도 2배로 설정
         Vector3 vVelocity = m_vMoveDirection * speed;
 
         m_rigid.velocity = new Vector3(vVelocity.x, m_rigid.velocity.y, vVelocity.z);
