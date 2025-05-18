@@ -31,7 +31,7 @@ public class Note_Movement : MonoBehaviour
         transform.position = targetPosition;
 
 
-
+        Rhythm_Judgement.Rhythm_Score -= 3;
         Destroy(gameObject,0.1f);
     }
 }
