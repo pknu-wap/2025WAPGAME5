@@ -1,47 +1,35 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using UnityEngine;
 using TMPro;
 
-    public class Sciencemanager : MonoBehaviour
+public class Sciencemanager : MonoBehaviour
 {
+    public static bool gameStarted = false;
+
     public TextMeshProUGUI countdownText;
-    public Camera cam;
-    public float zoomStartSize = 10f;
-    public float zoomEndSize = 5f;
-    public float zoomSpeed = 1f;
-    public EggController egg;
+    public EggController eggController;
 
     void Start()
     {
-        cam.orthographicSize = zoomStartSize;
-        StartCoroutine(CountdownAndStart());
+        gameStarted = false;
+        StartCoroutine(StartCountdown());
     }
 
-    IEnumerator CountdownAndStart()
+    IEnumerator StartCountdown()
     {
-        string[] countTexts = { "3", "2", "1" };
-        foreach (string text in countTexts)
+        int countdown = 3;
+        while (countdown > 0)
         {
-            countdownText.text = text;
+            countdownText.text = countdown.ToString();
             yield return new WaitForSeconds(1f);
+            countdown--;
         }
 
         countdownText.text = "START!";
-        yield return new WaitForSeconds(0.5f); 
-
+        yield return new WaitForSeconds(0.5f);
         countdownText.gameObject.SetActive(false);
 
-        StartCoroutine(ZoomIn());
-        egg.StartFalling();
-    }
-
-    IEnumerator ZoomIn()
-    {
-        while (cam.orthographicSize > zoomEndSize)
-        {
-            cam.orthographicSize -= Time.deltaTime * zoomSpeed;
-            yield return null;
-        }
+        gameStarted = true;
+        eggController.StartFalling();
     }
 }

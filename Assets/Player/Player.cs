@@ -115,5 +115,4 @@ public class Player : MonoBehaviour
     {
         return DontMove;
     }
-
 }

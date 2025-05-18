@@ -9,7 +9,7 @@ public class EggController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Static; // 처음엔 정지 상태
+        rb.bodyType = RigidbodyType2D.Static;
     }
 
     public void StartFalling()
