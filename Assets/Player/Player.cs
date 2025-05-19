@@ -22,19 +22,17 @@ public class Player : MonoBehaviour
     private float m_fMouseXInput;
     private float m_fMouseYInput;
 
-    private Animator m_anim;
-    private bool isRunning;
-    private bool isJumping;
-
-    bool DontMove = false;
+    private bool DontMove = false;
+    private PlayerAnimation m_animController;
 
     void Start()
     {
         m_rigid = GetComponent<Rigidbody>();
         m_trs = GetComponent<Transform>();
-        m_anim = GetComponent<Animator>();
 
         m_fLookSensitivity = 5f;
+
+        m_animController = GetComponent<PlayerAnimation>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -46,36 +44,14 @@ public class Player : MonoBehaviour
         {
             InputHandle();
             CameraRotation();
-
-            UpdateAnimationParameters();
-
-            if (!Interaction.gameStart)
-            {
-                MoveMent();
-            }
+            MoveMent();
+            m_animController.UpdateAnimationParameters(m_rigid.velocity, m_fHorizontalInput, m_fVerticalInput);
         }
         else
         {
             m_rigid.velocity = Vector3.zero;
         }
     }
-
-    void UpdateAnimationParameters()
-    {
-        bool hasMovementInput = m_fHorizontalInput != 0 || m_fVerticalInput != 0;
-        isRunning = Input.GetKey(KeyCode.LeftShift) && hasMovementInput;
-        isJumping = Input.GetKeyDown(KeyCode.Space);
-
-        Vector3 horizontalVelocity = new Vector3(m_rigid.velocity.x, 0, m_rigid.velocity.z);
-        float speed = horizontalVelocity.magnitude;
-
-        bool isMoving = speed > 0.1f;
-
-        m_anim.SetBool("isMoving", isMoving);
-        m_anim.SetBool("isRunning", isRunning);
-        m_anim.SetBool("isJumping", isJumping);
-    }
-
 
     void InputHandle()
     {
@@ -90,7 +66,7 @@ public class Player : MonoBehaviour
     {
         m_vMoveDirection = (m_trs.right * m_fHorizontalInput + m_trs.forward * m_fVerticalInput).normalized;
 
-        float speed = isRunning ? m_fWalkSpeed * 2f : m_fWalkSpeed;  // 달리기- 속도 2배로 설정
+        float speed = m_fWalkSpeed;
         Vector3 vVelocity = m_vMoveDirection * speed;
 
         m_rigid.velocity = new Vector3(vVelocity.x, m_rigid.velocity.y, vVelocity.z);
