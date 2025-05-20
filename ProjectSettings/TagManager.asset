@@ -44,3 +44,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: egg
+    uniqueID: 433326831
+    locked: 0
