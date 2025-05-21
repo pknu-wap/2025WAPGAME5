@@ -7,53 +7,55 @@ public class DistanceMeter : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public Transform egg;
 
-    private SpriteRenderer eggRenderer;
     private SpriteRenderer lineRenderer;
-
     private bool hasFinished = false;
 
     void Start()
     {
-        eggRenderer = egg.GetComponent<SpriteRenderer>();
         lineRenderer = targetLine.GetComponent<SpriteRenderer>();
     }
 
-    public void CalculateScore(Vector3 eggPosition)
+    public void CalculateScore(Vector3 eggPosition, bool forcedFail)
     {
-        float eggTopY = eggPosition.y + (eggRenderer.bounds.size.y / 2f);
-        float eggBottomY = eggPosition.y - (eggRenderer.bounds.size.y / 2f);
+        if (hasFinished) return;
+        hasFinished = true;
 
+        float eggBottomY = eggPosition.y;
         float lineTopY = targetLine.position.y + (lineRenderer.bounds.size.y / 2f);
-        float lineBottomY = targetLine.position.y - (lineRenderer.bounds.size.y / 2f);
 
-        float minY = lineBottomY + (eggRenderer.bounds.size.y / 2f);
-        if (eggPosition.y < minY)
-        {
-            egg.position = new Vector3(eggPosition.x, minY, eggPosition.z);
-            eggBottomY = minY - (eggRenderer.bounds.size.y / 2f);
-        }
+        float rawDistance = lineTopY - eggBottomY;
 
-        if (eggTopY > lineTopY)
+        if (forcedFail)
         {
-            scoreText.text = "실패! 선을 넘었습니다.";
-            hasFinished = true;
+            scoreText.text = "실패! 너무 늦게 멈췄습니다.\n점수: 0";
             return;
         }
 
-        float rawDistance = lineTopY - eggBottomY;
-        float maxDistance = 0.5f;
-        float distanceInCm = rawDistance * 100f;
-        float score = Mathf.Clamp01(1f - rawDistance / maxDistance) * 100f;
-
-        if (Mathf.Approximately(rawDistance, 0f))
+        if (rawDistance <= 0f)
         {
-            scoreText.text = $"딱 맞췄습니다!\n점수: 100.0";
+            scoreText.text = "실패! 선을 넘었습니다.\n점수: 0";
+            return;
         }
+
+        float distanceInCm = rawDistance * 0.1f;
+
+        float score = 0f;
+        if (distanceInCm <= 0.1f) score = 100f;
+        else if (distanceInCm <= 1f) score = 95f;
+        else if (distanceInCm <= 2f) score = 80f;
+        else if (distanceInCm <= 3f) score = 60f;
+        else if (distanceInCm <= 4f) score = 40f;
+        else if (distanceInCm <= 5f) score = 20f;
+        else score = 0f;
+
+        if (score == 100f)
+            scoreText.text = $"딱 맞췄습니다!\n점수: 100";
         else
-        {
-            scoreText.text = $"{distanceInCm:F1}cm 남기고 멈췄습니다!\n점수: {score:F1}";
-        }
+            scoreText.text = $"{distanceInCm:F1}cm 남기고 멈췄습니다!\n점수: {score}";
+    }
 
-        hasFinished = true;
+    public float GetLineBottomY()
+    {
+        return targetLine.position.y - (lineRenderer.bounds.size.y / 2f);
     }
 }
