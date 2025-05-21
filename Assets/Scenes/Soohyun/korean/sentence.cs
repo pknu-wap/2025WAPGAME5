@@ -140,8 +140,8 @@ public class sentence : MonoBehaviour
                 if (i < input.Length)
                 {
                     if (input[i] == correct[i])
-                        highlighted += correct[i];
-                    else
+                        highlighted += $"<color=blue>{correct[i]}</color>";
+                else
                         highlighted += $"<color=red>{correct[i]}</color>";
                 }
                 else
