@@ -294,7 +294,7 @@ MonoBehaviour:
   choices:
   - button: {fileID: 553341115}
     isCorrect: 0
-  - button: {fileID: 0}
+  - button: {fileID: 60294264}
     isCorrect: 0
   timer: {fileID: 739982800}
   CorrectPrefab: {fileID: 6085017843711108629, guid: f4b43dd92bbf5f94eb6dac1d932ea07b, type: 3}
