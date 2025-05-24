@@ -21,7 +21,7 @@ public class History_Timer : MonoBehaviour
     void UpdateTimerText()
     {
         
-        timerText.text = "Time: " + timeElapsed.ToString("F2") + "s";
+        timerText.text = "Time: " + timeElapsed.ToString("F1") + "s";
     }
     public void TimeStop()
     {

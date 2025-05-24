@@ -21,8 +21,12 @@ public class Quiz_judgement : MonoBehaviour
 
     public Transform spawnParent;
 
+    private Quiz_Random quizRandom;
+
     void Start()
     {
+        quizRandom = FindObjectOfType<Quiz_Random>();
+
         foreach (var choice in choices)
         {
             choice.button.onClick.AddListener(() => OnChoiceSelected(choice));
@@ -35,7 +39,6 @@ public class Quiz_judgement : MonoBehaviour
         {
             Instantiate(CorrectPrefab, spawnParent);
             Debug.Log("정답!");
-            History_Correct();
         }
         else
         {
@@ -43,11 +46,7 @@ public class Quiz_judgement : MonoBehaviour
             Debug.Log("오답!");
             timer.WrongAnswer();
         }
-    }
 
-    void History_Correct()
-    {
-    
+        quizRandom.ShowNextQuiz();
     }
-
 }

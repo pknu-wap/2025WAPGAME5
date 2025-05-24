@@ -5,10 +5,10 @@ using UnityEngine;
 public class Correct_and_Wrong : MonoBehaviour
 {
     public float scaleSpeed = 1f;
-    public float rotateSpeed = 25f;
+    public float rotateSpeed = 40f;
     void Start()
     {
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 0.7f);
     }
 
 
