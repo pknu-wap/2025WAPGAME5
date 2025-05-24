@@ -67,6 +67,7 @@ public class EggController : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Static;
             isStopped = true;
             distanceMeter.CalculateScore(transform.position, true);
+            StartCoroutine(stageManager.ShowScoreThenReset(0f));
             return;
         }
 

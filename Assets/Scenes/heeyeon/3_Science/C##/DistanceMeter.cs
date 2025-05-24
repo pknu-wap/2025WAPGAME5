@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class DistanceMeter : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DistanceMeter : MonoBehaviour
     private SpriteRenderer lineRenderer;
     private bool hasFinished = false;
 
+    private List<float> scores = new List<float>();
     void Start()
     {
         lineRenderer = targetLine.GetComponent<SpriteRenderer>();
@@ -19,7 +21,7 @@ public class DistanceMeter : MonoBehaviour
     {
         hasFinished = false;
         scoreText.text = "";
-        scoreText.gameObject.SetActive(false);  // 필요시
+        scoreText.gameObject.SetActive(false);
     }
 
     public float CalculateScore(Vector3 eggPosition, bool forcedFail)
@@ -30,8 +32,6 @@ public class DistanceMeter : MonoBehaviour
 
         float eggBottomY = eggPosition.y;
         float lineTopY = targetLine.position.y + (lineRenderer.bounds.size.y / 2f);
-
-        Debug.Log($"[디버그] lineTopY: {lineTopY}, eggBottomY: {eggBottomY}");
 
         float score = 0f;
 
@@ -66,8 +66,21 @@ public class DistanceMeter : MonoBehaviour
             scoreText.text = $"{distanceInCm:F1}cm 남기고 멈췄습니다!\n점수: {score:F0}";
         }
 
+        scores.Add(score);
         return score;
     }
+
+    public float GetAverageScore()
+    {
+        if (scores.Count == 0) return 0f;
+        float sum = 0f;
+        foreach (var s in scores)
+        {
+            sum += s;
+        }
+        return sum / scores.Count;
+    }
+
 
     public float GetLineBottomY()
     {

@@ -16,6 +16,10 @@ public class StageManager : MonoBehaviour
     public TextMeshProUGUI instructionText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI countdownText;
+    public GameObject fakeLine;
+    public GameObject handBlocker;
+    public GameObject blackFlashImage;
+    private bool hasFlippedScreen = false;
 
     private bool gameStarted = false;
 
@@ -32,11 +36,52 @@ public class StageManager : MonoBehaviour
 
     void ShowStageInstruction(int stage)
     {
+        countdownText.text = "";
+        countdownText.gameObject.SetActive(false);
+
         instructionText.text = $"-- 스테이지 {stage} --\n빨간 선에 최대한 가깝게 닿도록 하세요!";
         instructionText.gameObject.SetActive(true);
         Invoke(nameof(HideInstruction), 3f);
+
+        if (fakeLine != null)
+        {
+            fakeLine.SetActive(stage == 2); 
+        }
+
+        if (handBlocker != null)
+        {
+            handBlocker.SetActive(stage == 3);
+        }
+
+        if (stage == 4 && !hasFlippedScreen)
+        {
+            StartCoroutine(PlayCombinedEffect());
+            hasFlippedScreen = true;
+        }
     }
 
+    IEnumerator PlayCombinedEffect()
+    {
+        yield return new WaitForSeconds(8f);
+
+        blackFlashImage.SetActive(true);
+        yield return new WaitForSeconds(0.6f);
+        blackFlashImage.SetActive(false);
+        yield return new WaitForSeconds(0.6f);
+        blackFlashImage.SetActive(true);
+        yield return new WaitForSeconds(0.6f);
+        blackFlashImage.SetActive(false);
+        yield return new WaitForSeconds(0.6f);
+        blackFlashImage.SetActive(true);
+        yield return new WaitForSeconds(0.6f);
+        blackFlashImage.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+        Camera.main.transform.rotation = Quaternion.Euler(0, 0, 180);
+
+        yield return new WaitForSeconds(1.0f);
+        Camera.main.transform.rotation = Quaternion.identity;
+    }
     void HideInstruction()
     {
         instructionText.gameObject.SetActive(false);
@@ -53,7 +98,7 @@ public class StageManager : MonoBehaviour
 
     public IEnumerator StartCountdown()
     {
-        instructionText.gameObject.SetActive(true);
+        countdownText.gameObject.SetActive(true);
         gameStarted = false;
         yield return new WaitForSeconds(3f);
 
@@ -75,33 +120,27 @@ public class StageManager : MonoBehaviour
 
     public IEnumerator ShowScoreThenReset(float score)
     {
-        Debug.Log("Start Score Reset Coroutine");
-
         yield return new WaitForSeconds(2f);
-        Debug.Log("Wait Done");
 
         scoreText.gameObject.SetActive(false);
 
         eggController.ResetEgg();
         eggController.StopEgg();
-        Debug.Log("Egg Reset");
 
         distanceMeter.ClearText();
 
         currentStage++;
         if (currentStage > maxStage)
         {
-            Debug.Log("All stages complete!");
-            instructionText.text = "모든 스테이지 완료!\n수고하셨습니다.";
+            float averageScore = distanceMeter.GetAverageScore();
+            instructionText.text = $"모든 스테이지 완료!\n수고하셨습니다.\n\n평균 점수: {averageScore:F1}";
             instructionText.gameObject.SetActive(true);
             yield break;
         }
 
-        ShowStageInstruction(currentStage);
-        Debug.Log("Show new stage instruction");
+        instructionText.gameObject.SetActive(true);
+        ShowStageInstruction(currentStage); //스테이지 안내 뜨고
 
         yield return StartCoroutine(StartCountdown());
-        Debug.Log("Countdown complete");
-        instructionText.gameObject.SetActive(true);
     }
 }
