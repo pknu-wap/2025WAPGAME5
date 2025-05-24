@@ -1119,6 +1119,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 144073708773163095, guid: 62003a6ff03d850409ea2b438107ee54, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dcc2448ad07367a4da606a55f93d7b90, type: 2}
     - target: {fileID: 920556867789410139, guid: 62003a6ff03d850409ea2b438107ee54, type: 3}
       propertyPath: m_Name
       value: Water
@@ -1710,9 +1714,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 520500678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e266df7d249667f4a969d665756827ad, type: 3}
+  m_Script: {fileID: 11500000, guid: b952ea3bf2f359d4d99ede7426101ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eatStart: 0
+  eatFinish: 0
+  totalEatTime: 0
+  a: 1
   eat: 0
   Food1: {fileID: 822499236}
   Food2: {fileID: 200605688}
@@ -1722,6 +1730,7 @@ MonoBehaviour:
   particle: {fileID: 1891374977}
   Space: {fileID: 5714913692893676822}
   FoodGauge: {fileID: 1550558259}
+  b: 0
 --- !u!114 &520500680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2583,6 +2592,14 @@ PrefabInstance:
     - target: {fileID: 7195828014549660989, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7745890587106375637, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6fbfbddbdb13dcf4ea75422ff72ab30f, type: 2}
+    - target: {fileID: 7745890587106375637, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4940,9 +4957,9 @@ SceneRoots:
   - {fileID: 1472209554}
   - {fileID: 598808901}
   - {fileID: 991686218}
+  - {fileID: 1092709750}
   - {fileID: 435454527}
   - {fileID: 1385427314}
-  - {fileID: 1092709750}
   - {fileID: 991356497}
   - {fileID: 2063992138}
   - {fileID: 134375706}

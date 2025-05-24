@@ -667,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1056cd0c2fe26f4ba79f04cf76bb02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  came: {fileID: 1082245954}
   parentCanvas: {fileID: 0}
 --- !u!114 &1371346789
 MonoBehaviour:
@@ -901,6 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1056cd0c2fe26f4ba79f04cf76bb02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  came: {fileID: 1082245954}
   parentCanvas: {fileID: 0}
 --- !u!114 &1475984894
 MonoBehaviour:
@@ -1017,6 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1056cd0c2fe26f4ba79f04cf76bb02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  came: {fileID: 1082245954}
   parentCanvas: {fileID: 0}
 --- !u!114 &1546724586
 MonoBehaviour:
@@ -1332,5 +1335,5 @@ SceneRoots:
   - {fileID: 827893736}
   - {fileID: 1306702813}
   - {fileID: 1417341368}
-  - {fileID: 1082245958}
   - {fileID: 576813246}
+  - {fileID: 1082245958}
