@@ -69,26 +69,26 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             transform.SetParent(parentCanvas.transform);
         }
         if (hit.collider != null && hit.collider.gameObject != gameObject)
-            Debug.Log(hit.collider);
+            Debug.Log(hit.collider.gameObject);
             Debug.Log(gameObject+"나");
 
         //맞았으면 연결
         if (hit.collider != null && hit.collider.gameObject != gameObject)
         {
             Debug.Log(hit.collider);
-            if (transform.parent.gameObject.layer == LayerMask.NameToLayer("UI"))
-                transform.SetParent(hit.collider.transform);
-            if (transform.parent.childCount>0)
-            {
-                hit.collider.gameObject.layer = LayerMask.NameToLayer("Parent");
-                Debug.Log(hit.collider+"부모됨");
-            }
+            //if (transform.parent.gameObject.layer == LayerMask.NameToLayer("UI"))
+            transform.SetParent(hit.collider.transform);
+            //if (transform.parent.childCount>0)
+            //{
+            hit.collider.gameObject.layer = LayerMask.NameToLayer("Parent");
+            Debug.Log(hit.collider+"부모됨");
+            //}
 
 
             if (transform.parent.gameObject.layer == LayerMask.NameToLayer("Parent"))
             {
-                gameObject.transform.position = hit.collider.gameObject.transform.position;
-                transform.localPosition = Vector3.zero + new Vector3(0, -50, 0);
+            gameObject.transform.position = hit.collider.gameObject.transform.position;
+            transform.localPosition = Vector3.zero + new Vector3(0, -50, 0);
             }
             //Debug.Log(transform.position);
             if (gameObject.GetComponent<BoxCollider2D>() == null)
