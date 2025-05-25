@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Go_To_Street : MonoBehaviour
 {
@@ -21,10 +22,12 @@ public class Go_To_Street : MonoBehaviour
             float elapsedTime = Time.time - startTime;
             Debug.Log($"°ñ¸ñ µµÂø - ¼Ò¿ä ½Ã°£: {elapsedTime:F2}ÃÊ");
 
-            GameManager.currentScene += 1;
             GameManager.currentMission += 1;
 
-            timerStarted = false; 
+            timerStarted = false;
+
+            LateManager.Instance.racingTime = elapsedTime;
+            SceneManager.LoadScene("heeyeon");
         }
     }
 }
