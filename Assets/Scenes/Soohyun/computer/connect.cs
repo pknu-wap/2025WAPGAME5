@@ -1,74 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class connect : MonoBehaviour
 {
     public GameObject robot;
+    public GameObject canvas;
     public float moveSpeed = 10f;
     public RectTransform start;
     public static Vector2 startpos;
+    public bool gameStart   =false ;
+
     //bool isMoving = false;
     //bool isRotating = false;
     //List<GameObject> children =new List<GameObject>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        startpos = start.anchoredPosition;
-
-        Debug.Log("start 좌표" +  start.anchoredPosition);
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || gameStart)
         {
             //if (!isMoving && !isRotating) {
-            foreach (Transform child in transform.GetComponentsInChildren<Transform>())
-                if (child != transform)  // 자기 자신은 제외
-                {
-                    //children.Add(child.gameObject);
-                    if (child.tag == "forward")
-                    {
-                        Vector3 childPos = child.transform.position;
-                        Debug.Log("앞으로");
-                        StartCoroutine(ForwardCoroutine(child.gameObject, 10f));
-                    }
-                    else if (child.tag == "left")
-                    {
-                        Debug.Log("왼쪽으로");
-
-                    }
-                    else if (child.tag == "right")
-                    {
-                        Debug.Log("오른쪽으로");
-
-                    }
-                }
+            foreach (Transform child in start.transform.GetComponentsInChildren<Transform>())
+            {
+                Debug.Log(child.name);
+                Vector3 childPos = child.transform.position;
+                canvas.SetActive(false);
+                StartCoroutine(ActionCoroutine(child));
+                gameStart = false;
+            }
+            canvas.SetActive(true);
         }
     }
-    IEnumerator ForwardCoroutine(GameObject obj, float distance)
+    IEnumerator ActionCoroutine(Transform child)
     {
-        Vector3 startPos = obj.transform.position;
-        Vector3 direction = obj.transform.forward; // 현재 앞 방향
-        Vector3 targetPos = startPos + direction * distance;
+        yield return new WaitForSeconds(1f);
 
-        while (Vector3.Distance(obj.transform.position, targetPos) > 0.01f)
+        if (child.tag == "forward")
         {
-            Debug.Log(Vector3.Distance(obj.transform.position, targetPos));
-            obj.transform.position = Vector3.MoveTowards(
-                obj.transform.position,
-                targetPos,
-                moveSpeed * Time.deltaTime
-            );
-
-            yield return null; // 다음 프레임까지 기다림
+            transform.position += transform.forward;
+            Debug.Log("앞으로");
         }
+        else if (child.tag == "left")
+        {
+            Debug.Log("왼쪽으로");
+            transform.eulerAngles += new Vector3(0f, -90f, 0f);
 
-        // 최종 위치 보정
-        obj.transform.position = targetPos;
-        Debug.Log("이동 완료");
+        }
+        else if (child.tag == "right")
+        {
+            Debug.Log("오른쪽으로");
+            transform.eulerAngles += new Vector3(0f, 90f, 0f);
+
+        }
     }
 }
