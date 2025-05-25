@@ -38,12 +38,14 @@ public class DistanceMeter : MonoBehaviour
         if (forcedFail)
         {
             scoreText.text = "실패! 너무 늦게 멈췄습니다.\n점수: 0";
+            scores.Add(0f);
             return 0f;
         }
 
         if (eggBottomY < lineTopY)
         {
             scoreText.text = "실패! 선을 넘었습니다.\n점수: 0";
+            scores.Add(0f);
             return 0f;
         }
 
@@ -53,6 +55,7 @@ public class DistanceMeter : MonoBehaviour
         if (distanceInCm > maxDistance)
         {
             scoreText.text = $"실패! 20cm 이상 남기고 멈췄습니다.\n점수: 0";
+            scores.Add(0f);
             return 0f;
         }
         else if (Mathf.Approximately(eggBottomY, lineTopY)) 

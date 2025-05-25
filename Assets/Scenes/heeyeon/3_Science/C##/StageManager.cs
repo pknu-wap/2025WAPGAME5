@@ -39,7 +39,7 @@ public class StageManager : MonoBehaviour
         countdownText.text = "";
         countdownText.gameObject.SetActive(false);
 
-        instructionText.text = $"-- 스테이지 {stage} --\n빨간 선에 최대한 가깝게 닿도록 하세요!";
+        instructionText.text = $"-- 스테이지 {stage} --\n<color=#FF0000>빨간 선</color>에 최대한 가깝게 닿도록 하세요!";
         instructionText.gameObject.SetActive(true);
         Invoke(nameof(HideInstruction), 3f);
 
