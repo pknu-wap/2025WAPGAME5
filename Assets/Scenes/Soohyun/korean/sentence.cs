@@ -38,10 +38,50 @@ public class sentence : MonoBehaviour
         "대한 사람 대한으로 길이 보전하세"
         },
 
-        new List<string>(){"자세히 보아야 예쁘다",
+        new List<string>(){
+            "풀꽃",
+            "나태주",
+            "자세히 보아야 예쁘다",
         "오래 보아야 사랑스럽다",
-        "너도 그렇다",
-        "대한 사람 대한으로 길이 보전하세"
+        "너도 그렇다" },
+
+        new List<string>()
+        {
+        "흔들리며 피는 꽃",
+        "도종환",
+        "흔들리지 않고 피는 꽃이 어디 있으랴",
+        "이 세상 그 어떤 아름다운 꽃들도",
+        "다 흔들리며 피었나니",
+        "흔들리며 줄기를 세우고",
+        "꽃잎 따뜻한 햇살을 받아가며",
+        "그렇게 피었나니"
+        },
+        new List<string>()
+        {
+        "그날",
+        "김용택" ,
+        "그날 나는 그 사람을",
+        "좋아한다고 말하지 않았다",
+        "그날 이후 나는",
+        "그 사람을 매일 좋아했다"
+        },
+        new List<string>()
+        {
+        "그리움",
+        "이정하",
+        "그리움은 눈물 속에 살고",
+        "사랑은 그리움 속에 산다",
+        "그리고 나는",
+        "너 속에 산다"
+        },
+        new List<string>()
+        {
+        "반달",
+        "정호승",
+        "아무도 반달을 사랑하지 않는다면",
+        "반달은 보름달이 될 수 있겠는가",
+        "보름달이 반달이 되지 않는다면",
+        "사랑은 그 얼마나 오만할 것인가"
         }
 
     };
@@ -56,7 +96,7 @@ public class sentence : MonoBehaviour
     {
         startTime = Time.time;
         isGameRunning = true; 
-        randomindex = Random.Range(0, 4);
+        randomindex = Random.Range(0, sentenceList.Count);
         ShowCurrentSentence();
         inputField.onSubmit.AddListener(OnInputSubmit);
         inputField.onValueChanged.AddListener(OnInputChanged);
@@ -79,7 +119,7 @@ public class sentence : MonoBehaviour
         if (playTime <= 2)
         {
             sentence1.text = sentenceList[randomindex][currentIndex];
-            if (currentIndex < 3)
+            if (currentIndex < sentenceList[randomindex].Count-1)
             {
                 sentence2.text = sentenceList[randomindex][currentIndex + 1];
             }
@@ -94,7 +134,7 @@ public class sentence : MonoBehaviour
                 {
                     do
                     {
-                        randomindexx = Random.Range(0, 4);
+                        randomindexx = Random.Range(0, sentenceList.Count);
                     } while (randomindexx == randomindex);
                     Debug.Log(randomindexx);
                     sentence2.text = sentenceList[randomindexx][0];
@@ -115,7 +155,7 @@ public class sentence : MonoBehaviour
     {
         if (userInput.Trim() == sentenceList[randomindex][currentIndex])
         {
-            if (currentIndex >= 3)
+            if (currentIndex >= sentenceList[randomindex].Count - 1)
             {
                 randomindex= randomindexx;
                 currentIndex = 0;
