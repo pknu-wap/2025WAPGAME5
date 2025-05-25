@@ -52,7 +52,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         canvasGroup.blocksRaycasts = true;
 
         // 레이어 필터 설정
-        int layerMask = 1 << LayerMask.NameToLayer("Parentable");
+        int layerMask = LayerMask.GetMask("Parentable");
 
         // 마우스 위치 → 월드 위치
         Vector3 mousePos = Input.mousePosition;

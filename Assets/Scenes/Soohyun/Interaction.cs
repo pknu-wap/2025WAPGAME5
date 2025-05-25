@@ -36,7 +36,6 @@ public class Interaction : MonoBehaviour
                     rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
                     rb.constraints = RigidbodyConstraints.None;
                     repeat = false;
-                    //Cursor.visible = true;
                     Slider1.SetActive(On);
                     Slider2.SetActive(On);
                     SliderDrink.SetActive(On); 
