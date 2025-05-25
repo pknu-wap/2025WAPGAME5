@@ -11,6 +11,8 @@ public class Car_to_school : MonoBehaviour
     public GameObject player;
     public GameObject carCamera;
     public GameObject point;
+    public GameObject CarKEY;
+    public GameObject Potal;
     private Rigidbody rb;
 
     [SerializeField] private bool isRide = false;
@@ -29,7 +31,7 @@ public class Car_to_school : MonoBehaviour
     [SerializeField] private GameObject ridePanel;
 
     private bool isCollidedWithPlayer = false;
-    private bool hasPanelShown = false; // ← 한 번만 켜지도록 체크
+    private bool hasPanelShown = false;
 
     void Start()
     {
@@ -49,7 +51,8 @@ public class Car_to_school : MonoBehaviour
             player.SetActive(false);
             carCamera.SetActive(true);
             point.SetActive(false);
-
+            CarKEY.SetActive(true);
+            Potal.SetActive(true);
         }
     }
 
@@ -60,10 +63,10 @@ public class Car_to_school : MonoBehaviour
         float moveInput = Input.GetAxis("Vertical");
         float turnInput = Input.GetAxis("Horizontal");
 
-        // 브레이크: 쉬프트 키를 누르면 속도 감속
+        // 브레이크
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            rb.velocity *= 0.983f; // 감속률 (원하는 정도에 따라 조절 가능)
+            rb.velocity *= 0.983f; // 감속률 
         }
         else if (rb.velocity.magnitude < maxSpeed)
         {
@@ -111,5 +114,30 @@ public class Car_to_school : MonoBehaviour
             isCollidedWithPlayer = true;
             hasPanelShown = true; // 한 번 표시한 것으로 기록
         }
+    }
+
+    public void ApplySpeedBoost(float speedAmount, float accelAmount, float duration)
+    {
+        Debug.Log("가감코루틴작동");
+        StartCoroutine(SpeedBoostRoutine(speedAmount, accelAmount, duration));
+    }
+
+    private IEnumerator SpeedBoostRoutine(float speedAmount, float accelAmount, float duration)
+    {
+        float originalMaxSpeed = 80f;
+        float originalAcceleration = 30f;
+
+        maxSpeed = speedAmount;
+        acceleration = accelAmount;
+
+        Vector3 currentDir = rb.velocity.normalized;
+        
+        rb.velocity = currentDir * speedAmount;
+        
+
+        yield return new WaitForSeconds(duration);
+
+        maxSpeed = originalMaxSpeed;
+        acceleration = originalAcceleration;
     }
 }
