@@ -7,11 +7,7 @@ public class FinishTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Á¤¹® µµÂø!");
-
-            if (LateManager.Instance != null)
-            {
-                LateManager.Instance.JudgeLateness();
-            }
+            GameManager.Instance.JudgeLateness();
         }
     }
 }

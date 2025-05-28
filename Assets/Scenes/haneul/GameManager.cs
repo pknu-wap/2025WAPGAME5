@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public static int currentScene= 0;
     public static int scoreGTS = 0;//학교도착까지의 점수
     public Canvas canvas;
+    public float breakfastTime;
+    public float racingTime;
+    public float alleyTime;
 
     private void Awake()
     {
@@ -72,6 +75,17 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void JudgeLateness()
+    {
+        float total = breakfastTime + racingTime + alleyTime;
+        Debug.Log($"총 소요 시간: {total:F1}초, (120초 초과 시 지각입니다)");
+
+        if (total > 120f)
+            Debug.Log("지각입니다!");
+        else
+            Debug.Log("정상 등교!");
+    }
+
     public void UpdateScene()
     {
         switch (currentScene)
@@ -92,6 +106,4 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
-
 }

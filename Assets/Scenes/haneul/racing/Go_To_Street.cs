@@ -26,7 +26,7 @@ public class Go_To_Street : MonoBehaviour
 
             timerStarted = false;
 
-            LateManager.Instance.racingTime = elapsedTime;
+            GameManager.Instance.racingTime = elapsedTime;
             SceneManager.LoadScene("heeyeon");
         }
     }

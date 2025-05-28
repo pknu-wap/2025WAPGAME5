@@ -66,7 +66,7 @@ public class Manager : MonoBehaviour
             }
 
             StartCoroutine(HideEndUI());
-            LateManager.Instance.alleyTime = playTime;
+            GameManager.Instance.alleyTime = playTime;
         }
     }
 
