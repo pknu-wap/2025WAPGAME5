@@ -1,4 +1,6 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SitTrigger : MonoBehaviour
@@ -8,8 +10,13 @@ public class SitTrigger : MonoBehaviour
     public Image actionImage;
     public GameObject point;
 
+    public GameObject board;  
+    public Texture koreanClassTexture;
+
     private bool isPlayerNearby = false;
     private bool isSeated = false;
+    private bool readyToStartKorean = false;
+
 
     void Start()
     {
@@ -38,6 +45,12 @@ public class SitTrigger : MonoBehaviour
             player.transform.position = seatPosition.position;
             player.transform.rotation = seatPosition.rotation;
             player.FixCameraRotation(seatPosition.rotation);
+
+            if (readyToStartKorean && Input.GetKeyDown(KeyCode.Space))
+            {
+                //종소리 이때 나게
+                SceneManager.LoadScene("Korean");
+            }
         }
     }
 
@@ -51,6 +64,19 @@ public class SitTrigger : MonoBehaviour
         player.FixCameraRotation(seatPosition.rotation);
 
         actionImage.gameObject.SetActive(false);
+
+        Invoke(nameof(Changeboard), 1f);
+    }
+
+    private void Changeboard()
+    {
+        Renderer rend = board.GetComponent<Renderer>();
+        if (rend != null && koreanClassTexture != null)
+        {
+            rend.material.mainTexture = koreanClassTexture;
+        }
+
+        readyToStartKorean = true;
     }
 
     private void OnTriggerEnter(Collider other)
