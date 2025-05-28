@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     private bool DontMove = false;
     private PlayerAnimation m_animController;
 
-    void Start()
+    public void Start()
     {
         m_rigid = GetComponent<Rigidbody>();
         m_trs = GetComponent<Transform>();
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    public void Update()
     {
         if (!DontMove)
         {
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void InputHandle()
+    public void InputHandle()
     {
         m_fHorizontalInput = Input.GetAxisRaw("Horizontal");
         m_fVerticalInput = Input.GetAxisRaw("Vertical");
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         m_fMouseYInput = Input.GetAxisRaw("Mouse Y");
     }
 
-    void MoveMent()
+    public void MoveMent()
     {
         m_vMoveDirection = (m_trs.right * m_fHorizontalInput + m_trs.forward * m_fVerticalInput).normalized;
 
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         m_rigid.velocity = new Vector3(vVelocity.x, m_rigid.velocity.y, vVelocity.z);
     }
 
-    void CameraRotation()
+    public void CameraRotation()
     {
         m_fCurrentCamRotationY += (m_fMouseXInput * m_fLookSensitivity);
         m_fCurrentCamRotationX -= (m_fMouseYInput * m_fLookSensitivity);
@@ -90,5 +90,16 @@ public class Player : MonoBehaviour
     public bool GetDontMove()
     {
         return DontMove;
+    }
+
+    public void FixCameraRotation(Quaternion rot)
+    {
+        m_camera.transform.rotation = rot;
+
+        float xAngle = rot.eulerAngles.x;
+        if (xAngle > 180f) xAngle -= 360f;
+
+        m_fCurrentCamRotationX = Mathf.Clamp(xAngle, -m_fMaxLookAngle, m_fMaxLookAngle);
+        m_fCurrentCamRotationY = rot.eulerAngles.y;
     }
 }
