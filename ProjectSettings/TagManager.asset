@@ -8,6 +8,9 @@ TagManager:
   - forward
   - left
   - right
+  - wall
+  - obstacle
+  - goal
   layers:
   - Default
   - TransparentFX

@@ -22,8 +22,6 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         }
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        Vector3 canvaspos=parentCanvas.transform.position;
-        came.transform.position=new Vector3(canvaspos.x, canvaspos.y, -canvaspos.x);
     }
 
     public void OnBeginDrag(PointerEventData eventData)

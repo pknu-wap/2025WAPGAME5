@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json.Serialization;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -7,13 +9,16 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class connect : MonoBehaviour
 {
+    Coroutine myCoroutine;
     public GameObject robot;
     public GameObject canvas;
     public float moveSpeed = 10f;
+    public static int limit=10;
     public RectTransform start;
     public static Vector2 startpos;
     public bool canStart =true ;
     public bool running = true;
+    public static bool stop = false;
     public List<Transform> children = new List<Transform>();
 
     //bool isMoving = false;
@@ -23,27 +28,39 @@ public class connect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (stop)
+        {
+            StopCoroutine(myCoroutine);
+            Debug.Log("정지");
+            canStart = true;
+            canvas.SetActive(true);
+            children.Clear();
+            stop = false;
+        }
         if (Input.GetKeyDown(KeyCode.Space) && canStart)
         {
-            
             canStart = false;
             foreach (Transform child in start.transform.GetComponentsInChildren<Transform>())
             {
-                if (child != transform)  // 자기 자신은 제외
+                if (child.CompareTag("forward")|| child.CompareTag("left")|| child.CompareTag("right"))  // 자기 자신은 제외
                 {
                     children.Add(child);
                 }
             }
-            StartCoroutine(ActionCoroutine());
+            Debug.Log("움직이는중");
+            if (children.Count <= limit )
+            {
+                myCoroutine = StartCoroutine(ActionCoroutine());
+
+            }
             Debug.Log("끝");
+
         }
     }
     IEnumerator ActionCoroutine()
     {
         Debug.Log("시작");
 
-        
-        Debug.Log(children);
         foreach (Transform child in children)
         {
             Debug.Log(start.transform.childCount);
@@ -54,10 +71,10 @@ public class connect : MonoBehaviour
             canvas.SetActive(false);
             Debug.Log(child.name);
             Vector3 startpos = robot.transform.position;
-            float movedistance = 0f;
+            float movedistance ;
             float totalangle = 0f;
-            float moveangle = 0f;
-            while (running)
+            float moveangle ;
+            while (running && !stop)
             {
 
                 if (child.tag == "forward")
@@ -121,6 +138,6 @@ public class connect : MonoBehaviour
         }
         canStart = true;
         canvas.SetActive(true);
-        children.Clear();
+        children.Clear(); 
     }
 }
