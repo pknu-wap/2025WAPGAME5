@@ -47,10 +47,6 @@ public class NoteGenerator : MonoBehaviour
             new bool[] { true, true, true, true },            // 4
             new bool[] { false, false, true, true, false },   // 5
             new bool[] { true, false, true, false, true },    // 6
-            new bool[] { false, true, true, false, true },    // 7
-            new bool[] { true, false, false, true, false },   // 8
-            new bool[] { false, false, true, false, true },   // 9
-            new bool[] { true, true, false, true, false }     // 0
         };
     }
 
@@ -79,19 +75,6 @@ public class NoteGenerator : MonoBehaviour
                 currentIsCoroutine = StartCoroutine(PlaySong1());
             }
 
-        }
-
-        // 테스트용 수동 키
-        if (Input.GetKeyDown(KeyCode.F)) scriptNoteL.Create_Note();
-        if (Input.GetKeyDown(KeyCode.J)) scriptNoteR.Create_Note();
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Spectrum.SetActive(true);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-                currentIsCoroutine = StartCoroutine(PlaySong1());
-            }
         }
     }
 
