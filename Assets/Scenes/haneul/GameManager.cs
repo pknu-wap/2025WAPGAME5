@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public static int scoreGTS = 0;//학교도착까지의 점수
     public Canvas canvas;
 
+    public GameObject pausePanel;
+    private bool isPaused = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -70,8 +73,41 @@ public class GameManager : MonoBehaviour
                 lastScene = currentScene;
             }
 
+        // esc
+        if (Input.GetKeyDown(KeyCode.Escape)&&!isPaused)
+        {
+            isPaused = true;
+            pausePanel.SetActive(true);
+            AudioListener.pause = true;
+            Time.timeScale = 0f; // 게임 일시정지
+
+        }
+
     }
 
+    public void Continue()
+    {
+        if (isPaused)
+        {
+            pausePanel.SetActive(false);
+            isPaused = false;
+            Time.timeScale = 1f;
+            AudioListener.pause = false;
+        }
+    }
+
+    public void Exit()
+    {
+
+        Application.Quit();
+        #if UNITY_EDITOR
+    // 에디터에서는 플레이 모드를 종료함
+    UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit();
+#endif
+
+    }
     public void UpdateScene()
     {
         switch (currentScene)
