@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;  // TextMeshPro 네임스페이스 추가
+using TMPro;  
 
 public class NPCpunch : MonoBehaviour
 {
@@ -22,6 +22,8 @@ public class NPCpunch : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && remainingCooldown <= 0f)
         {
+            GameManager.currentEmotion = 5;
+
             Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
             Ray ray = Camera.main.ScreenPointToRay(screenCenter);
             RaycastHit hit;
