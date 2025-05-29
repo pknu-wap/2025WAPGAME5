@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public float racingTime;
     public float alleyTime;
 
+    public GameObject quitPopupUI;
+
     private void Awake()
     {
         if (Instance == null)
@@ -47,8 +49,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             //currentEmotion++;
-
-            
             if (currentEmotion >= 7) // 감정 개수
             {
                 currentEmotion = 0;
@@ -58,8 +58,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             //currentMission++;
-
-
             if (currentMission >= 4) // 미션 수 넣기
             {
                 currentMission = 0;
@@ -72,6 +70,11 @@ public class GameManager : MonoBehaviour
                 UpdateScene();
                 lastScene = currentScene;
             }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            quitPopupUI.SetActive(true);
+        }
 
     }
 
@@ -105,5 +108,16 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+    public void OnClickYes()
+    {
+        Application.Quit();
+        Debug.Log("게임을 종료합니다. (빌드 상태에서만 동작)");
+    }
+
+    public void OnClickNo()
+    {
+        quitPopupUI.SetActive(false);
+        Debug.Log("아니오 누름");
     }
 }
