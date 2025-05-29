@@ -20,10 +20,13 @@ public class EatFood : MonoBehaviour
     public GameObject Space;
     public Slider FoodGauge;
     float b;
+
+    private Interaction interaction;
     void Awake()
     {
         eatStart = Time.time;
         /*Time.deltaTime*/
+        interaction = FindObjectOfType<Interaction>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     // Update is called once per frame
@@ -65,7 +68,7 @@ public class EatFood : MonoBehaviour
             particle.transform.position = Food5.transform.position;
 
         }
-        else if (eat == 100)
+        else if (eat >= 99)
         {
             FoodGauge.value = 1f;
             eatFinish = Time.time;
@@ -88,6 +91,11 @@ public class EatFood : MonoBehaviour
         GameManager.Instance.breakfastTime = totalEatTime;
         GameManager.currentMission += 1;
         Interaction.gameStart = false;
+        if (interaction != null)
+        {
+            interaction.GameEnd();
+            Debug.Log("³¡");
+        }
     }
     void OnMouseDown()
     {
@@ -95,7 +103,8 @@ public class EatFood : MonoBehaviour
         {
             if (Input.GetKeyDown("space") && Gauge.canEat && !DrinkWater.isDrinking)
             {
-                Debug.Log(++eat);
+                eat += 2;
+                Debug.Log(eat);
                 Space.SetActive(false);
                 b = 0;
 
