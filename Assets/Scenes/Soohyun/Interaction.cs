@@ -31,9 +31,11 @@ public class Interaction : MonoBehaviour
                 if (Input.GetKey("f"))
                 {
                     gameStart = true;
-                    Player.transform.position = new Vector3(-1, 6, -48);
+                    Player.transform.position = new Vector3(-1, 6, -48); 
+                    Rigidbody rb = GetComponent<Rigidbody>();
+                    rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+                    rb.constraints = RigidbodyConstraints.None;
                     repeat = false;
-                    //Cursor.visible = true;
                     Slider1.SetActive(On);
                     Slider2.SetActive(On);
                     SliderDrink.SetActive(On); 

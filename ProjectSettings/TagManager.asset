@@ -5,8 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - NPC
-  - ground
-  - Ground
+  - forward
+  - left
+  - right
+  - wall
+  - obstacle
+  - goal
   layers:
   - Default
   - TransparentFX
@@ -15,8 +19,8 @@ TagManager:
   - Water
   - UI
   - Car
-  - 
-  - Character Preview
+  - Parentable
+  - Parent
   - 
   - 
   - 
@@ -43,7 +47,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: egg
-    uniqueID: 433326831
     locked: 0
