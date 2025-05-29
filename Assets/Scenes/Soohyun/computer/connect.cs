@@ -74,7 +74,7 @@ public class connect : MonoBehaviour
             float movedistance ;
             float totalangle = 0f;
             float moveangle ;
-            while (running && !stop)
+            while (running )
             {
 
                 if (child.tag == "forward")
