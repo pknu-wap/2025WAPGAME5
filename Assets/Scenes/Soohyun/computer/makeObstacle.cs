@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class makeObstacle : MonoBehaviour
 {
     public GameObject obstacle;
     public GameObject goal;
+    public TextMeshProUGUI timer;
     public List<GameObject> spawnedobstacles = new List<GameObject>();
     bool noObstacle = true;
     public static bool clear = false;
@@ -19,6 +21,7 @@ public class makeObstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer.text = $"{level}/3";
         if (clear)
         {
             Debug.Log("클리어함");
@@ -43,13 +46,18 @@ public class makeObstacle : MonoBehaviour
             }
             else if (level==2)
             {
-                List<int> where = new List<int>() { 1, 2, 3, 4, 6,7,8,9,11,12, 13, 14, 22, 23, 24, 25 };
-                foreach (int i in where)
-                    SpawnObstacle(i);
-                SpawnGoal(5);
-                noObstacle = false;
+                StartCoroutine(WaitAndRun());
             }
         }
+    }
+    IEnumerator WaitAndRun()
+    {
+        yield return new WaitForSeconds(0.5f); 
+        List<int> where = new List<int>() { 1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 22, 23, 24, 25 };
+        foreach (int i in where)
+            SpawnObstacle(i);
+        SpawnGoal(5);
+        noObstacle = false;
     }
     void SpawnObstacle(int x)
     {

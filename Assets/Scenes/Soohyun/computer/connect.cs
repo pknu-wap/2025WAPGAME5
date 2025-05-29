@@ -1,82 +1,114 @@
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Serialization;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
+using System;
 using UnityEngine.UIElements;
 using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.UI;
 
 public class connect : MonoBehaviour
 {
     Coroutine myCoroutine;
     public GameObject robot;
     public GameObject canvas;
+    public GameObject canvas2;
+    public GameObject button11;
+    public GameObject button2;
+    public GameObject restart;
     public float moveSpeed = 10f;
     public static int limit=10;
     public RectTransform start;
     public static Vector2 startpos;
-    public bool canStart =true ;
-    public bool running = true;
+    public static bool canStart =true ;
+    public static bool running = true;
     public static bool stop = false;
+    public bool result = false;
     public List<Transform> children = new List<Transform>();
+    public Camera camera1;
+    public Camera camera2;
+    public RawImage rawImageUI;
+    public RenderTexture renderTex;
 
-    //bool isMoving = false;
-    //bool isRotating = false;
-    //List<GameObject> children =new List<GameObject>();
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // Update is called once per frame
     void Update()
     {
         if (stop)
         {
-            StopCoroutine(myCoroutine);
+            transform.position = new Vector3(-20, 1.1f, -20);
+            transform.rotation = Quaternion.identity;
+
+            if (myCoroutine != null)
+                StopCoroutine(myCoroutine);
+
             Debug.Log("정지");
-            canStart = true;
-            canvas.SetActive(true);
+            //restart.SetActive(false);
+            button11.SetActive(true);
+
             children.Clear();
             stop = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canStart)
+        if (Input.GetKeyDown(KeyCode.Space) && canStart || makeObstacle.clear)
         {
-            canStart = false;
+            canvas.SetActive(false);
+            canStart = false; 
+            camera1.gameObject.SetActive(false);
+            restart.SetActive(false);
+            camera2.gameObject.SetActive(true);
+            camera2.targetTexture = null;
+            rawImageUI.enabled = false;
+            button2.SetActive(false);
+
+            //transform.position = new Vector3(-20, 1.1f, -20);
+            //transform.rotation = Quaternion.identity;
+
+            children.Clear();
             foreach (Transform child in start.transform.GetComponentsInChildren<Transform>())
             {
-                if (child.CompareTag("forward")|| child.CompareTag("left")|| child.CompareTag("right"))  // 자기 자신은 제외
+                if (child.CompareTag("forward")|| child.CompareTag("left")|| child.CompareTag("right"))
                 {
                     children.Add(child);
                 }
             }
+            Debug.Log("움직일 횟수:" + children.Count);
             Debug.Log("움직이는중");
-            if (children.Count <= limit )
+            if (Input.GetKeyDown(KeyCode.Space) &&children.Count <= limit && children.Count > 0)
             {
                 myCoroutine = StartCoroutine(ActionCoroutine());
 
             }
-            Debug.Log("끝");
+            else
+            {
+                Debug.Log("못움직임");
+                canStart=true;
+                restart.SetActive(true);
+                button2.SetActive(false);
+
+
+            }
 
         }
+        //실패했을때 
+        if (Input.GetKeyDown(KeyCode.Space) && result )
+        {
+            result = false;
+            restart.SetActive(false);
+            button11.SetActive(true);
+            //restart.SetActive(false);
+            //button11.SetActive(true);
+        }
+
     }
     IEnumerator ActionCoroutine()
     {
-        Debug.Log("시작");
 
         foreach (Transform child in children)
         {
-            Debug.Log(start.transform.childCount);
-            if (child == start.transform)
-            {
-                continue;
-            }
-            canvas.SetActive(false);
             Debug.Log(child.name);
             Vector3 startpos = robot.transform.position;
             float movedistance ;
             float totalangle = 0f;
             float moveangle ;
-            while (running )
+            while (running)
             {
-
                 if (child.tag == "forward")
                 {
                     robot.transform.position += robot.transform.forward * moveSpeed * Time.deltaTime;
@@ -86,7 +118,6 @@ public class connect : MonoBehaviour
                     {
                         running = false;
                         Vector3 direction = (robot.transform.position - startpos).normalized;
-                        Debug.Log(direction);
                         robot.transform.position = startpos + direction * 10;
                     }
                     yield return null;
@@ -100,13 +131,13 @@ public class connect : MonoBehaviour
                     if (totalangle < -90)
                     {
                         running = false;
-                        float yangle = Mathf.FloorToInt(Mathf.Abs(robot.transform.eulerAngles.y));
+                        float yangle = (float)Math.Truncate(robot.transform.eulerAngles.y);
                         if ((yangle%90)!=0)
                             {
                             yangle = Mathf.FloorToInt(yangle / 90) * 90 + 90;
                             }
 
-                        robot.transform.eulerAngles = new Vector3(0, yangle, 0);
+                        robot.transform.eulerAngles = new Vector3(0, (int)yangle, 0);
                     }
                     yield return null;
 
@@ -128,7 +159,7 @@ public class connect : MonoBehaviour
                 {
                     // 예외 처리 또는 대기
                     Debug.LogWarning($"알 수 없는 태그: {child.tag}");
-                    running = false;  // 잘못된 태그일 경우 루프 종료 (또는 yield return null;)
+                    running = false;  
                     yield return null;
                 }
             }
@@ -136,8 +167,11 @@ public class connect : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             running = true ;
         }
+        result = true;
         canStart = true;
-        canvas.SetActive(true);
+        canvas2.SetActive(true);
+        restart.SetActive(true);
+        //button2.SetActive(false);
         children.Clear(); 
     }
 }
