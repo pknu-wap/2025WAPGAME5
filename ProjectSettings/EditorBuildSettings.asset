@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/heeyeon/2_ClassRoom/ClassRoom.unity
     guid: 00450e890c616844292fdd8c28fa9d05
+  - enabled: 1
+    path: Assets/Scenes/Soohyun/korean/korean.unity
+    guid: 3a3e983dced2c4343abd7de68482682d
   m_configObjects: {}
