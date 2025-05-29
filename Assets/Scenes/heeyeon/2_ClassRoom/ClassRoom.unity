@@ -3933,6 +3933,8 @@ MonoBehaviour:
   point: {fileID: 1140123540}
   board: {fileID: 584895675}
   koreanClassTexture: {fileID: 2800000, guid: 267d746f34dbfdc47a2286852b9ad8c2, type: 3}
+  defaultBoardTexture: {fileID: 2800000, guid: b4ae4553ad770f74fa81c20d1c4ea01a, type: 3}
+  scienceClassTexture: {fileID: 2800000, guid: 1584e3bee19522542b25a7ee56086df4, type: 3}
 --- !u!65 &750803180
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class sentence : MonoBehaviour
 {
@@ -148,6 +149,9 @@ public class sentence : MonoBehaviour
             inputField.gameObject.SetActive(false);
             Debug.Log(timer.text);
             isGameRunning = false;
+
+            PlayerPrefs.SetInt("ReturnedFromKorean", 1);
+            SceneManager.LoadScene("ClassRoom");
         }
     }
     void OnInputSubmit(string userInput)
