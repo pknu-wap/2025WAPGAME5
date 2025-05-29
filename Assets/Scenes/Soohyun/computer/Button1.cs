@@ -18,6 +18,12 @@ public class button1 : MonoBehaviour
     public RenderTexture renderTex;
     public TextMeshProUGUI nextLevel;
 
+    private void Awake()
+    {
+        Canvas parentCanvas = GetComponentInParent<Canvas>();
+        Vector3 canvaspos = parentCanvas.transform.position;
+        camera1.transform.position = new Vector3(canvaspos.x, canvaspos.y, -canvaspos.x);
+    }
     void Start()
     {
         button11.onClick.AddListener(MyFunction1);

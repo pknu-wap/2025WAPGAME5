@@ -48,6 +48,10 @@ public class makeObstacle : MonoBehaviour
             {
                 StartCoroutine(WaitAndRun());
             }
+            else if (level==3)
+            {
+                StartCoroutine(WaitAndRun());
+            }
         }
     }
     IEnumerator WaitAndRun()
