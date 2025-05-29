@@ -40,7 +40,7 @@ public class CatMove : MonoBehaviour
             yield return null;
 
             // x 값이 1800 이상이면 로그 출력
-            if (uiElement.anchoredPosition.x >= 1680f)
+            if (uiElement.anchoredPosition.x >= 1600f)
             {
                 Debug.Log("도착");
                 break;
