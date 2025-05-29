@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
     {
         if (isPaused)
         {
+            Debug.Log("이어하기");
             pausePanel.SetActive(false);
             isPaused = false;
             Time.timeScale = 1f;
