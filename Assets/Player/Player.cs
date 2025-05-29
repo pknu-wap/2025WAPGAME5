@@ -67,6 +67,12 @@ public class Player : MonoBehaviour
         m_vMoveDirection = (m_trs.right * m_fHorizontalInput + m_trs.forward * m_fVerticalInput).normalized;
 
         float speed = m_fWalkSpeed;
+
+        if (Input.GetKey(KeyCode.LeftShift) && m_vMoveDirection.magnitude > 0)
+        {
+            speed = m_fWalkSpeed * 2f;
+        }
+
         Vector3 vVelocity = m_vMoveDirection * speed;
 
         m_rigid.velocity = new Vector3(vVelocity.x, m_rigid.velocity.y, vVelocity.z);

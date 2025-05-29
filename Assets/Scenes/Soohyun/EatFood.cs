@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EatFood : MonoBehaviour
@@ -84,7 +85,7 @@ public class EatFood : MonoBehaviour
             a++;
         }
         Debug.Log(totalEatTime);
-        //Debug.Log("²¨¾ï, Àß ¸Ô¾ú´Ù. " + a * 5 + "ºÐ °É·È³×");
+        GameManager.Instance.breakfastTime = totalEatTime;
         GameManager.currentMission += 1;
         Interaction.gameStart = false;
     }

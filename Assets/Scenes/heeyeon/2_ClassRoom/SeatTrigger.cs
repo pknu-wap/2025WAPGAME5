@@ -49,7 +49,7 @@ public class SitTrigger : MonoBehaviour
             if (readyToStartKorean && Input.GetKeyDown(KeyCode.Space))
             {
                 //종소리 이때 나게
-                SceneManager.LoadScene("Math");
+                SceneManager.LoadScene("korean");
             }
         }
     }
