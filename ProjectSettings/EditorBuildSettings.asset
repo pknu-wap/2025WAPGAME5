@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/haneul/Start.unity
+    path: Assets/Scenes/start/Start.unity
     guid: 378a0762a0213f3419d5f2c127e53196
   - enabled: 1
     path: Assets/Scenes/Juhyun/Juhyun.unity
