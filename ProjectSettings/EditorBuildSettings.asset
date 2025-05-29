@@ -18,12 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/heeyeon/1_NPCpunching/heeyeon.unity
     guid: a5d40debc9e6e9745b88568bb844bdf6
   - enabled: 1
-    path: Assets/Scenes/heeyeon/3_Math/Math.unity
-    guid: 06cc10353f1d1444dbd8abb0a4ba3ee1
-  - enabled: 1
-    path: Assets/Scenes/heeyeon/4_Science/Science.unity
-    guid: 1737d8bf950354043951b756e10817fc
-  - enabled: 1
     path: Assets/Scenes/heeyeon/0_Player_Animation/playeranimation.unity
     guid: 1ab97083318e56840a2368f36762f929
   - enabled: 1
@@ -32,4 +26,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Soohyun/korean/korean.unity
     guid: 3a3e983dced2c4343abd7de68482682d
+  - enabled: 1
+    path: Assets/Scenes/heeyeon/4_Science/Science.unity
+    guid: 1737d8bf950354043951b756e10817fc
+  - enabled: 1
+    path: Assets/Scenes/Soohyun/computer/school.unity
+    guid: de9f07e708b5fce4999a80ab246d8dc0
+  - enabled: 1
+    path: Assets/Scenes/haneul/Lunch/Lunch.unity
+    guid: b34f040650102cd40b1a540cbe12eb4b
+  - enabled: 1
+    path: Assets/Scenes/haneul/Society_History/History.unity
+    guid: a14a792f1f0f0e844820b3befbeedb5c
+  - enabled: 1
+    path: Assets/Scenes/heeyeon/3_Math/Math.unity
+    guid: 06cc10353f1d1444dbd8abb0a4ba3ee1
+  - enabled: 1
+    path: Assets/Scenes/haneul/Rhythm/Rhythm_Game.unity
+    guid: e54c98284ebbdb446b0fe4b1f32b8eac
   m_configObjects: {}

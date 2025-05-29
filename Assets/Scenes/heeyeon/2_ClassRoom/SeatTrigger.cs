@@ -10,9 +10,14 @@ public class SitTrigger : MonoBehaviour
     public GameObject point;
 
     public GameObject board;
-    public Texture koreanClassTexture;
     public Texture defaultBoardTexture;
+    public Texture koreanClassTexture;
     public Texture scienceClassTexture;
+    public Texture programmingClassTexture;
+    public Texture lunchTexture;
+    public Texture historyClassTexture;
+    public Texture mathClassTexture;
+    public Texture musicClassTexture;
 
     private bool isPlayerNearby = false;
     private bool isSeated = false;
@@ -22,16 +27,61 @@ public class SitTrigger : MonoBehaviour
     void Start()
     {
         actionImage.gameObject.SetActive(false);
-
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        // 국어 씬에서 돌아온 경우 처리
+        SitDownIfReturned();
+    }
+
+    void SitDownIfReturned()
+    {
         if (PlayerPrefs.GetInt("ReturnedFromKorean", 0) == 1)
         {
             PlayerPrefs.SetInt("ReturnedFromKorean", 0);
-            SitDown(true);  // true면 첫 앉기 아님, 곧바로 앉고 진행
+            SitDown(true);
             ResetToDefaultBoard();
-            Invoke(nameof(PrepareNextClass), 3f); // 3초 뒤 과학 인트로로 변경
+            Invoke(nameof(PrepareScience), 3f);
+        }
+        else if (PlayerPrefs.GetInt("ReturnedFromScience", 0) == 1)
+        {
+            PlayerPrefs.SetInt("ReturnedFromScience", 0);
+            SitDown(true);
+            ResetToDefaultBoard();
+            Invoke(nameof(PrepareProgramming), 3f);
+        }
+        else if (PlayerPrefs.GetInt("ReturnedFromProgramming", 0) == 1)
+        {
+            PlayerPrefs.SetInt("ReturnedFromProgramming", 0);
+            SitDown(true);
+            ResetToDefaultBoard();
+            Invoke(nameof(PrepareLunch), 3f);
+        }
+        else if (PlayerPrefs.GetInt("ReturnedFromLunch", 0) == 1)
+        {
+            PlayerPrefs.SetInt("ReturnedFromLunch", 0);
+            SitDown(true);
+            ResetToDefaultBoard();
+            Invoke(nameof(PrepareHistory), 3f);
+        }
+        else if (PlayerPrefs.GetInt("ReturnedFromHistory", 0) == 1)
+        {
+            PlayerPrefs.SetInt("ReturnedFromHistory", 0);
+            SitDown(true);
+            ResetToDefaultBoard();
+            Invoke(nameof(PrepareMath), 3f);
+        }
+        else if (PlayerPrefs.GetInt("ReturnedFromMath", 0) == 1)
+        {
+            PlayerPrefs.SetInt("ReturnedFromMath", 0);
+            SitDown(true);
+            ResetToDefaultBoard();
+            Invoke(nameof(PrepareMusic), 3f);
+        }
+        else if (PlayerPrefs.GetInt("ReturnedFromMusic", 0) == 1)
+        {
+            PlayerPrefs.SetInt("ReturnedFromMusic", 0);
+            SitDown(true);
+            ResetToDefaultBoard();
+            Invoke(nameof(PrepareMusic), 3f);
         }
     }
 
@@ -42,8 +92,8 @@ public class SitTrigger : MonoBehaviour
             actionImage.gameObject.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                point.gameObject.SetActive(false);
-                SitDown(false); // false는 첫 앉기
+                point.SetActive(false);
+                SitDown(false);
             }
         }
         else
@@ -59,10 +109,8 @@ public class SitTrigger : MonoBehaviour
 
             if (readyToStartClass && Input.GetKeyDown(KeyCode.Space))
             {
-                if (nextScene == "korean")
-                {
-                    PlayerPrefs.SetInt("ReturnedFromKorean", 1); // 국어 끝났다는 표시
-                }
+                string key = "ReturnedFrom" + char.ToUpper(nextScene[0]) + nextScene.Substring(1);
+                PlayerPrefs.SetInt(key, 1);
                 SceneManager.LoadScene(nextScene);
             }
         }
@@ -82,28 +130,63 @@ public class SitTrigger : MonoBehaviour
 
         if (!fromReturn)
         {
-            // 첫 앉기면 1초 뒤 국어 인트로
-            Invoke(nameof(ChangeboardToKorean), 1f);
+            Invoke(nameof(PrepareKorean), 1f);
         }
     }
 
-    private void ChangeboardToKorean()
+    private void PrepareKorean()
     {
         SetBoardTexture(koreanClassTexture);
         readyToStartClass = true;
         nextScene = "korean";
     }
 
-    private void ResetToDefaultBoard()
-    {
-        SetBoardTexture(defaultBoardTexture);
-    }
-
-    private void PrepareNextClass()
+    private void PrepareScience()
     {
         SetBoardTexture(scienceClassTexture);
         readyToStartClass = true;
-        nextScene = "science";
+        nextScene = "Science";
+    }
+
+    private void PrepareProgramming()
+    {
+        SetBoardTexture(programmingClassTexture);
+        readyToStartClass = true;
+        nextScene = "school";
+    }
+
+    private void PrepareLunch()
+    {
+        SetBoardTexture(lunchTexture);
+        readyToStartClass = true;
+        nextScene = "Lunch";
+    }
+
+    private void PrepareHistory()
+    {
+        SetBoardTexture(historyClassTexture);
+        readyToStartClass = true;
+        nextScene = "History";
+    }
+
+    private void PrepareMath()
+    {
+        SetBoardTexture(mathClassTexture);
+        readyToStartClass = true;
+        nextScene = "Math";
+    }
+
+    private void PrepareMusic()
+    {
+        SetBoardTexture(musicClassTexture);
+        readyToStartClass = true;
+        nextScene = "Rhythm_Game";
+    }
+
+
+    private void ResetToDefaultBoard()
+    {
+        SetBoardTexture(defaultBoardTexture);
     }
 
     private void SetBoardTexture(Texture texture)
@@ -131,10 +214,7 @@ public class SitTrigger : MonoBehaviour
         }
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // 씬 로드 시 필요한 추가 작업 있으면 여기에
-    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) { }
 
     private void OnDestroy()
     {

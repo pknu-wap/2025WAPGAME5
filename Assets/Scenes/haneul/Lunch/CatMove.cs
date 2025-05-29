@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CatMove : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class CatMove : MonoBehaviour
             if (uiElement.anchoredPosition.x >= 1600f)
             {
                 Debug.Log("µµÂø");
+                PlayerPrefs.SetInt("ReturnedFromLunch", 1);
+                SceneManager.LoadScene("ClassRoom");
                 break;
             }
         }

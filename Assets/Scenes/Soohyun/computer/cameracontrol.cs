@@ -23,7 +23,14 @@ public class cameracontrol : MonoBehaviour
     // Update is called once per frame
     private void OnDisable()
     {
-        camera1.SetActive(false);
-        camera2.SetActive(true);
+        if (camera1 != null)
+        {
+            camera1.SetActive(false);
+        }
+        if (camera2 != null)
+        {
+            camera2.SetActive(true);
+        }
+
     }
 }

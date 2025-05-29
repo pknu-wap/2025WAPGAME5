@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Quiz_Random : MonoBehaviour
 {
@@ -56,7 +57,15 @@ public class Quiz_Random : MonoBehaviour
             {
                 quizProgressText.text = "";
                 Debug.Log("퀴즈 종료");
+
+                PlayerPrefs.SetInt("ReturnedFromHistory", 1);
+                SceneManager.LoadScene("ClassRoom");
             }
+        }
+        if (Input.GetKeyDown(KeyCode.BackQuote)) //숫자 1 왼쪽의 ~키
+        {
+            PlayerPrefs.SetInt("ReturnedFromHistory", 1);
+            SceneManager.LoadScene("ClassRoom");
         }
     }
 

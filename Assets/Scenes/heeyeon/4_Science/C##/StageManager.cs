@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
@@ -126,15 +127,17 @@ public class StageManager : MonoBehaviour
 
         eggController.ResetEgg();
         eggController.StopEgg();
-
         distanceMeter.ClearText();
 
         currentStage++;
         if (currentStage > maxStage)
         {
             float averageScore = distanceMeter.GetAverageScore();
-            instructionText.text = $"모든 스테이지 완료!\n수고하셨습니다.\n\n평균 점수: {averageScore:F1}";
+            instructionText.text = $"모든 스테이지 완료!\n\n평균 점수: {averageScore:F1}";
             instructionText.gameObject.SetActive(true);
+
+            PlayerPrefs.SetInt("ReturnedFromScience", 1);
+            SceneManager.LoadScene("ClassRoom");
             yield break;
         }
 

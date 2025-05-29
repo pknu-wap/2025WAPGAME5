@@ -165,8 +165,11 @@ void ShowNextQuestion()
         gameStarted = false;
         questionText.gameObject.SetActive(false);
 
-    resultText.text = $"게임 끝!\n{totalTime:F2}초 걸렸습니다.";
+        resultText.text = $"게임 끝!\n{totalTime:F2}초 걸렸습니다.";
         resultText.gameObject.SetActive(true);
+
+        PlayerPrefs.SetInt("ReturnedFromMath", 1);
+        SceneManager.LoadScene("ClassRoom");
 
         StartCoroutine(GoToNextSceneAfterDelay(2f));
     }

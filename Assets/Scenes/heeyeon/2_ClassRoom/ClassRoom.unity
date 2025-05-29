@@ -3932,9 +3932,14 @@ MonoBehaviour:
   actionImage: {fileID: 1919848557}
   point: {fileID: 1140123540}
   board: {fileID: 584895675}
-  koreanClassTexture: {fileID: 2800000, guid: 267d746f34dbfdc47a2286852b9ad8c2, type: 3}
   defaultBoardTexture: {fileID: 2800000, guid: b4ae4553ad770f74fa81c20d1c4ea01a, type: 3}
+  koreanClassTexture: {fileID: 2800000, guid: 267d746f34dbfdc47a2286852b9ad8c2, type: 3}
   scienceClassTexture: {fileID: 2800000, guid: 1584e3bee19522542b25a7ee56086df4, type: 3}
+  programmingClassTexture: {fileID: 2800000, guid: 6584469099de3a9499f5252a5377e717, type: 3}
+  lunchTexture: {fileID: 2800000, guid: 33d80bb43d017a4489b3039da02de520, type: 3}
+  historyClassTexture: {fileID: 2800000, guid: c3036327d1e6e8e48bf46aff3a2f92f8, type: 3}
+  mathClassTexture: {fileID: 2800000, guid: 8c769c4fa6e4ba543a6a267504360c7b, type: 3}
+  musicClassTexture: {fileID: 2800000, guid: d6f3aa4f58466674092de4d423268327, type: 3}
 --- !u!65 &750803180
 BoxCollider:
   m_ObjectHideFlags: 0
