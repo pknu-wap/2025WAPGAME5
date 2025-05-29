@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rhythm_Judgement : MonoBehaviour
 {
@@ -52,6 +53,12 @@ public class Rhythm_Judgement : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.BackQuote)) // 1¿ÞÂÊ¿¡ ~ Å°
+        {
+            PlayerPrefs.SetInt("ReturnedFromMusic", 1);
+            SceneManager.LoadScene("ClassRoom");
+        }
+
         if (Input.GetKeyDown(keyToPress))
         {
             Vector3 spawnPosition = transform.position + new Vector3(0f, 0f, 0.1f);

@@ -62,11 +62,6 @@ public class Quiz_Random : MonoBehaviour
                 SceneManager.LoadScene("ClassRoom");
             }
         }
-        if (Input.GetKeyDown(KeyCode.BackQuote)) //숫자 1 왼쪽의 ~키
-        {
-            PlayerPrefs.SetInt("ReturnedFromHistory", 1);
-            SceneManager.LoadScene("ClassRoom");
-        }
     }
 
     void Shuffle(List<GameObject> list)

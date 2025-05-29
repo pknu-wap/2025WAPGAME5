@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Note_Movement : MonoBehaviour
 {
     public float x_Pos = 0f;
     private Vector3 targetPosition;
     private float duration = 1.5f;
-
-
 
     void Start()
     {

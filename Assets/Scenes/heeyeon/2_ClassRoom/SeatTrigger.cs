@@ -79,9 +79,8 @@ public class SitTrigger : MonoBehaviour
         else if (PlayerPrefs.GetInt("ReturnedFromMusic", 0) == 1)
         {
             PlayerPrefs.SetInt("ReturnedFromMusic", 0);
-            SitDown(true);
-            ResetToDefaultBoard();
-            Invoke(nameof(PrepareMusic), 3f);
+            SceneManager.LoadScene("EndingScene");
+            return;
         }
     }
 
