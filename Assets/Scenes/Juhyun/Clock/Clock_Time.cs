@@ -1,56 +1,79 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ClockSample
 {
+    public class Clock : MonoBehaviour
+    {
+        public Transform handHours;
+        public Transform handMinutes;
+        public Transform handSeconds;
 
-	public class Clock : MonoBehaviour
-	{
-		public Transform handHours;
-		public Transform handMinutes;
-		public Transform handSeconds;
+        private float hours = 8f;     // 시작 시각: 8시
+        private float minutes = 0f;
+        private float seconds = 0f;
 
-		private void Start()
-		{
-			//we are only updating everything once a second since this is sufficient for our clock
-			InvokeRepeating(nameof(UpdateHands), 0, 1);
-		}
+        private void Start()
+        {
+            
+            StartCoroutine(PlayerLooksAtClock());
 
-		void UpdateHands()
-		{
-			//get the current time and convert it to hand rotation
-			float handRotationHours		= System.DateTime.Now.Hour		* 30;	//360/12 = 30
-			float handRotationMinutes	= System.DateTime.Now.Minute	* 6;	//360/60 = 6
-			float handRotationSeconds	= System.DateTime.Now.Second	* 6;	//360/60 = 6
+            
+            InvokeRepeating(nameof(UpdateHands), 0, 1);
+        }
 
-			//create vectors that we can assign to the transforms
-			Vector3 hoursVec	= new Vector3(0, 0, handRotationHours);
-			Vector3 minutesVec	= new Vector3(0, 0, handRotationMinutes);
-			Vector3 secondsVec	= new Vector3(0, 0, handRotationSeconds);
+        IEnumerator PlayerLooksAtClock()
+        {
+            Transform player = Camera.main.transform; 
+            Vector3 originalRotation = player.eulerAngles;
 
-			//assign the rotation to the hand Transforms
-			if (handHours)
-			{
-				handHours.localEulerAngles = hoursVec;
-			}
+            float duration = 3f;
+            float timer = 0f;
 
-			if (handMinutes)
-			{
-				handMinutes.localEulerAngles = minutesVec;
-			}
+            while (timer < duration)
+            {
+                player.LookAt(transform);
+                timer += Time.deltaTime;
+                yield return null;
+            }
 
-			if (handSeconds)
-			{
-				handSeconds.localEulerAngles = secondsVec;
-			}
-		}
+        }
 
-		private void OnDestroy()
-		{
-			CancelInvoke();
-		}
-	}
+        void UpdateHands()
+        {
+            seconds += 1f;
+            if (seconds >= 60f)
+            {
+                seconds = 0f;
+                minutes += 1f;
 
+                if (minutes >= 60f)
+                {
+                    minutes = 0f;
+                    hours += 1f;
+
+                    if (hours >= 12f)
+                    {
+                        hours = 0f;
+                    }
+                }
+            }
+
+            float handRotationHours = (hours + minutes / 60f) * 30f;
+            float handRotationMinutes = minutes * 6f;
+            float handRotationSeconds = seconds * 6f;
+
+            if (handHours)
+                handHours.localEulerAngles = new Vector3(0, 0, handRotationHours);
+            if (handMinutes)
+                handMinutes.localEulerAngles = new Vector3(0, 0, handRotationMinutes);
+            if (handSeconds)
+                handSeconds.localEulerAngles = new Vector3(0, 0, handRotationSeconds);
+        }
+
+        private void OnDestroy()
+        {
+            CancelInvoke();
+        }
+    }
 }
