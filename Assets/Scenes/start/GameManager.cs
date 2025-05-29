@@ -40,14 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentScene == 0)
-        {
-            canvas.enabled = false;
-        }
-        else
-        {
-            canvas.enabled = true;
-        }
+        
         if (Input.GetKeyDown(KeyCode.F))
         {
             //currentEmotion++;
