@@ -11,7 +11,11 @@ public class CatMove : MonoBehaviour
     public bool ismove = false;
 
     public AudioSource audioSource;
-
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     public void Move()
     {
         if (!ismove)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class NoteGenerator : MonoBehaviour
 {
@@ -176,5 +177,8 @@ public class NoteGenerator : MonoBehaviour
         audioSource.Stop();
         Spectrum.SetActive(false);
         Debug.Log(Rhythm_Judgement.Rhythm_Score);
+
+        PlayerPrefs.SetInt("ReturnedFromMusic", 1);
+        SceneManager.LoadScene("ClassRoom");
     }
 }
