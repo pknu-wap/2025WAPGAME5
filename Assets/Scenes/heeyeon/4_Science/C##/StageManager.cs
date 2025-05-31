@@ -137,6 +137,8 @@ public class StageManager : MonoBehaviour
             instructionText.gameObject.SetActive(true);
 
             PlayerPrefs.SetInt("ReturnedFromScience", 1);
+            yield return new WaitForSeconds(2f);
+
             SceneManager.LoadScene("ClassRoom");
             yield break;
         }
