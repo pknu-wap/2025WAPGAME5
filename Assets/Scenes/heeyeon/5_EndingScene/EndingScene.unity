@@ -2249,13 +2249,13 @@ MonoBehaviour:
     playerPrefKey: Score_Programming
   - label: "\uC5ED\uC0AC"
     scoreText: {fileID: 222231928}
-    playerPrefKey: 
+    playerPrefKey: Score_History
   - label: "\uC218\uD559"
     scoreText: {fileID: 595685927}
     playerPrefKey: Score_Math
   - label: "\uC74C\uC545"
     scoreText: {fileID: 850108139}
-    playerPrefKey: 
+    playerPrefKey: Score_Music
 --- !u!136 &647365088
 CapsuleCollider:
   m_ObjectHideFlags: 0
