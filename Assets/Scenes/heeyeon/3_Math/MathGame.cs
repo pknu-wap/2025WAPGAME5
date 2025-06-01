@@ -177,6 +177,11 @@ void ShowNextQuestion()
         PlayerPrefs.SetInt("Score_Math", finalScore);
 
         PlayerPrefs.SetInt("ReturnedFromMath", 1);
+        StartCoroutine(DelayedReturnToClassroom());
+}
+    IEnumerator DelayedReturnToClassroom()
+    {
+        yield return new WaitForSeconds(2.5f);
         SceneManager.LoadScene("ClassRoom");
     }
 
