@@ -5,6 +5,7 @@ using System;
 using UnityEngine.UIElements;
 using static UnityEngine.Rendering.DebugUI;
 using UnityEngine.UI;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class connect : MonoBehaviour
 {
@@ -87,11 +88,13 @@ public class connect : MonoBehaviour
 
         }
         //실패했을때 
-        if (Input.GetKeyDown(KeyCode.Space) && result )
+        if (result)//Input.GetKeyDown(KeyCode.Space) && 
         {
             result = false;
-            restart.SetActive(false);
+            restart.SetActive(true);
             button11.SetActive(true);
+            collision.score -= 10;
+            Debug.Log(collision.score);
             //restart.SetActive(false);
             //button11.SetActive(true);
         }

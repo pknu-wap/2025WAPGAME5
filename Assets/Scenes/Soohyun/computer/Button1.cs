@@ -5,6 +5,7 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Metadata;
 
 public class button1 : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class button1 : MonoBehaviour
     public RawImage rawImageUI;
     public RenderTexture renderTex;
     public TextMeshProUGUI nextLevel;
-
     private void Awake()
     {
         Canvas parentCanvas = GetComponentInParent<Canvas>();

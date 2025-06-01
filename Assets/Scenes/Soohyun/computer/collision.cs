@@ -9,6 +9,7 @@ public class collision : MonoBehaviour
 {
     public GameObject restart;
     public TextMeshProUGUI nextLevel;
+    public static int score =100;
     // Start is called before the first frame update
     void Update()
     {
@@ -21,6 +22,8 @@ public class collision : MonoBehaviour
             transform.rotation = Quaternion.identity;
             connect.stop = true;
             restart.SetActive(true);
+            //score -= 10;
+            Debug.Log(score);
 
         }
     }
@@ -34,6 +37,8 @@ public class collision : MonoBehaviour
             Debug.Log("실패");
             connect.stop = true;
             restart.SetActive(true);
+            score -= 10;
+            Debug.Log(score);
         }
         else if (collision.collider.CompareTag("goal"))
         {
@@ -45,6 +50,15 @@ public class collision : MonoBehaviour
             makeObstacle.clear = true;
             nextLevel.text = "다음 레벨";
         }
+    }
+    private void LateUpdate()
+    {
+        if (score <= 0)
+        {
+            score = 0;
+        }
+
+        //Debug.Log(score);
     }
 }
 

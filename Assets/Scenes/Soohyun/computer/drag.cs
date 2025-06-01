@@ -38,6 +38,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             cloneCanvasGroup = cloneObject.GetComponent<CanvasGroup>();
             cloneCanvasGroup.blocksRaycasts = true;
         }
+        transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -51,6 +52,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
         // 레이어 필터 설정
         int layerMask = LayerMask.GetMask("Parentable");
+        int layerMask2 = LayerMask.GetMask("trash");
 
         // 마우스 위치 → 월드 위치
         Vector3 mousePos = Input.mousePosition;
@@ -59,6 +61,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
         mouseWorldPos.z = 0;
         RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, Mathf.Infinity, layerMask);
+        RaycastHit2D hit2 = Physics2D.Raycast(mouseWorldPos, Vector2.zero, Mathf.Infinity, layerMask2);
 
         if (transform.parent.gameObject.layer == LayerMask.NameToLayer("Parent"))
         {
@@ -85,6 +88,18 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
                 BoxCollider2D collider = gameObject.AddComponent<BoxCollider2D>();
                 collider.size = new Vector2(100f, 50f);
             }
+        }
+        if (hit2.collider != null )
+        {
+            foreach (Transform child in transform.GetComponentsInChildren<Transform>())
+            {
+                if (child.CompareTag("forward") || child.CompareTag("left") || child.CompareTag("right"))
+                {
+
+                    gameObject.SetActive(false);
+                }
+            }
+
         }
     }
 }
