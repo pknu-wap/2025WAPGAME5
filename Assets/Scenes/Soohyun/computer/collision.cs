@@ -14,12 +14,6 @@ public class collision : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.BackQuote )) //숫자 1 왼쪽의 ~키
-        {
-            PlayerPrefs.SetInt("ReturnedFromProgramming", 1);
-            SceneManager.LoadScene("ClassRoom");
-        }
-
         if (transform.position.y < -4)
         {
             //PlayerReset();
@@ -30,7 +24,6 @@ public class collision : MonoBehaviour
             restart.SetActive(true);
             //score -= 10;
             Debug.Log(score);
-
         }
     }
 

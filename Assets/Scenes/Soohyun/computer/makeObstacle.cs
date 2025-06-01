@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class makeObstacle : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class makeObstacle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
@@ -50,7 +52,11 @@ public class makeObstacle : MonoBehaviour
             }
             else if (level==3)
             {
-                StartCoroutine(WaitAndRun());
+                Debug.Log("코딩 점수 저장됨: " + collision.score);
+                PlayerPrefs.SetInt("Score_Programming", collision.score);
+
+                PlayerPrefs.SetInt("ReturnedFromProgramming", 1);
+                SceneManager.LoadScene("ClassRoom");
             }
         }
     }
