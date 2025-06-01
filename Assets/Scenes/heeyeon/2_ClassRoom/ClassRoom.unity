@@ -3936,7 +3936,7 @@ MonoBehaviour:
   koreanClassTexture: {fileID: 2800000, guid: 267d746f34dbfdc47a2286852b9ad8c2, type: 3}
   scienceClassTexture: {fileID: 2800000, guid: 1584e3bee19522542b25a7ee56086df4, type: 3}
   programmingClassTexture: {fileID: 2800000, guid: 6584469099de3a9499f5252a5377e717, type: 3}
-  lunchTexture: {fileID: 2800000, guid: 33d80bb43d017a4489b3039da02de520, type: 3}
+  lunchTexture: {fileID: 2800000, guid: 32889dae3cbdda447a31dc90f8325a3f, type: 3}
   historyClassTexture: {fileID: 2800000, guid: c3036327d1e6e8e48bf46aff3a2f92f8, type: 3}
   mathClassTexture: {fileID: 2800000, guid: 8c769c4fa6e4ba543a6a267504360c7b, type: 3}
   musicClassTexture: {fileID: 2800000, guid: d6f3aa4f58466674092de4d423268327, type: 3}
