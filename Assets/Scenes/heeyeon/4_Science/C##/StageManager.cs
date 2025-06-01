@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class StageManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI countdownText;
     public GameObject fakeLine;
-    public GameObject handBlocker;
+    public GameObject draw1;
+    public GameObject draw2;
+    public GameObject draw3;
     public GameObject blackFlashImage;
     private bool hasFlippedScreen = false;
 
@@ -49,9 +52,11 @@ public class StageManager : MonoBehaviour
             fakeLine.SetActive(stage == 2); 
         }
 
-        if (handBlocker != null)
+        if (draw1 != null && draw2 != null && draw3 != null)
         {
-            handBlocker.SetActive(stage == 3);
+            draw1.SetActive(stage == 3);
+            draw2.SetActive(stage == 3);
+            draw3.SetActive(stage == 3);
         }
 
         if (stage == 4 && !hasFlippedScreen)
@@ -130,6 +135,7 @@ public class StageManager : MonoBehaviour
         distanceMeter.ClearText();
 
         currentStage++;
+
         if (currentStage > maxStage)
         {
             float averageScore = distanceMeter.GetAverageScore();
