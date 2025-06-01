@@ -14,7 +14,7 @@ public class EndingPlayerMover : MonoBehaviour
     {
         public string label;
         public TMP_Text scoreText;
-        public string playerPrefKey;// 점수 불러오기 이름
+        public string playerPrefKey;// 점수 불러올 이름
     }
 
     public List<SubjectScoreUI> subjects = new List<SubjectScoreUI>();

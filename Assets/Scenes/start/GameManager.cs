@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class GameManager : MonoBehaviour
     public float breakfastTime;
     public float racingTime;
     public float alleyTime;
+
+    public GameObject latePanel;
+    public GameObject normalPanel;
 
     public GameObject pausePanel;
     private bool isPaused = false;
@@ -88,12 +92,28 @@ public class GameManager : MonoBehaviour
         Debug.Log($"총 소요 시간: {total:F1}초, (120초 초과 시 지각입니다)");
 
         if (total > 120f)
+        {
             Debug.Log("지각입니다!");
+            latePanel.SetActive(true);
+            Invoke("HideLatePanel", 2f); 
+        }
         else
+        {
             Debug.Log("정상 등교!");
+            normalPanel.SetActive(true);
+            Invoke("HideNormalPanel", 2f); 
+        }
     }
 
+    void HideLatePanel()
+    {
+        latePanel.SetActive(false);
+    }
 
+    void HideNormalPanel()
+    {
+        normalPanel.SetActive(false);
+    }
     public void Continue()
     {
         if (isPaused)
