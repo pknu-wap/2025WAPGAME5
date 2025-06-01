@@ -38,7 +38,7 @@ public class FinalGradeCalculator : MonoBehaviour
         int isLate = PlayerPrefs.GetInt("IsLate", 0); // 1이면 지각
 
         float deductedByMood = badMoodCount >= 7 ? 10f : 0f;
-        float deductedByLate = isLate == 1 ? 10f : 0f;
+        float deductedByLate = isLate == 1 ? 5f : 0f;
         float finalAverage = averageScore - deductedByMood - deductedByLate;
 
         // Step 1: 지각 여부 이미지 표시
@@ -57,7 +57,7 @@ public class FinalGradeCalculator : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         if (deductedByLate > 0)
-            resultText2.text = "<color=red>- 지각 10점</color>";
+            resultText2.text = "<color=red>- 지각 5점</color>";
 
         else
             resultText2.text = "<color=green>지각 감점 없음!</color>";

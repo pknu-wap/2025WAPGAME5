@@ -95,12 +95,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("지각입니다!");
             latePanel.SetActive(true);
+            PlayerPrefs.SetInt("IsLate", 1);
             Invoke("HideLatePanel", 2f); 
         }
         else
         {
             Debug.Log("정상 등교!");
             normalPanel.SetActive(true);
+            PlayerPrefs.SetInt("IsLate", 0);
             Invoke("HideNormalPanel", 2f); 
         }
     }
