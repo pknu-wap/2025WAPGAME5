@@ -57,9 +57,6 @@ public class Quiz_Random : MonoBehaviour
             {
                 quizProgressText.text = "";
                 Debug.Log("ДыБо Бѕ·б");
-
-                PlayerPrefs.SetInt("ReturnedFromHistory", 1);
-                SceneManager.LoadScene("ClassRoom");
             }
         }
     }
