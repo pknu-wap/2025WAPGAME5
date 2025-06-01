@@ -6,6 +6,8 @@ using System.Collections.Generic;
 public class EndingPlayerMover : MonoBehaviour
 {
     public float moveSpeed = 2f;
+    public AudioSource audioSource;
+    public AudioClip countUpSound;
 
     [System.Serializable]
     public struct SubjectScoreUI
@@ -37,13 +39,28 @@ public class EndingPlayerMover : MonoBehaviour
         int displayedScore = 0;
         float duration = 2f;
         float elapsed = 0f;
+        float soundDuration = 1.2f; 
+
+        int lastDisplayedScore = -1;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
             displayedScore = Mathf.RoundToInt(Mathf.Lerp(0, targetScore, t));
-            targetText.text = $"{label} 점수: {displayedScore} 점";
+
+            if (displayedScore != lastDisplayedScore)
+            {
+                targetText.text = $"{label} 점수: {displayedScore} 점";
+
+                if (elapsed <= soundDuration)
+                {
+                    audioSource.PlayOneShot(countUpSound);
+                }
+
+                lastDisplayedScore = displayedScore;
+            }
+
             yield return null;
         }
 
