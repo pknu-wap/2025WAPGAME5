@@ -123,7 +123,7 @@ public class SitTrigger : MonoBehaviour
 
         player.transform.position = seatPosition.position;
         player.transform.rotation = seatPosition.rotation;
-        player.FixCameraRotation(seatPosition.rotation);
+        player.SetLockCamera(true);
 
         actionImage.gameObject.SetActive(false);
 
