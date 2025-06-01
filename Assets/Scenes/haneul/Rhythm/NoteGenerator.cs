@@ -77,12 +77,6 @@ public class NoteGenerator : MonoBehaviour
             }
 
         }
-
-        if (Input.GetKeyDown(KeyCode.BackQuote)) // ~Ű
-        {
-            PlayerPrefs.SetInt("ReturnedFromMusic", 1);
-            SceneManager.LoadScene("ClassRoom");
-        }
     }
 
     void PlayNextPattern()
