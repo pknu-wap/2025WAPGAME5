@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class EatFood : MonoBehaviour
 {
-
-    float eatStart=0;
+    float eatStart = 0;
     float eatFinish;
     float totalEatTime;
     int a = 1;
@@ -22,63 +21,78 @@ public class EatFood : MonoBehaviour
     float b;
 
     private Interaction interaction;
+
     void Awake()
     {
         eatStart = Time.time;
-        /*Time.deltaTime*/
         interaction = FindObjectOfType<Interaction>();
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // Update is called once per frame
-    void FixedUpdate()
-    {
 
-        /*Time.deltaTime*/
-    }
     void Update()
     {
-        FoodGauge.value = (float)eat / 100;
+        if (FoodGauge != null)
+        {
+            FoodGauge.value = (float)eat / 100;
+        }
+
         OnMouseDown();
-        if (eatStart == 0 )
+
+        if (eatStart == 0)
         {
             eatStart = Time.time;
         }
+
         if (eat == 20)
         {
-            
-            Food1.SetActive(false);
-            particle.transform.position = Food2.transform.position;
+            if (Food1 != null)
+                Food1.SetActive(false);
 
+            if (particle != null && Food2 != null)
+                particle.transform.position = Food2.transform.position;
         }
         else if (eat == 40)
         {
-            Food2.SetActive(false);
-            particle.transform.position = Food3.transform.position;
+            if (Food2 != null)
+                Food2.SetActive(false);
 
+            if (particle != null && Food3 != null)
+                particle.transform.position = Food3.transform.position;
         }
         else if (eat == 60)
         {
-            Food3.SetActive(false);
-            particle.transform.position = Food4.transform.position;
+            if (Food3 != null)
+                Food3.SetActive(false);
 
+            if (particle != null && Food4 != null)
+                particle.transform.position = Food4.transform.position;
         }
         else if (eat == 80)
         {
-            Food4.SetActive(false);
-            particle.transform.position = Food5.transform.position;
+            if (Food4 != null)
+                Food4.SetActive(false);
 
+            if (particle != null && Food5 != null)
+                particle.transform.position = Food5.transform.position;
         }
         else if (eat >= 99)
         {
-            FoodGauge.value = 1f;
+            if (FoodGauge != null)
+            {
+                FoodGauge.value = 1f;
+                FoodGauge.gameObject.SetActive(false);
+            }
+
             eatFinish = Time.time;
             totalEatTime = eatFinish - eatStart;
-            Food5.SetActive(false);
-            particle.SetActive(false);
-            FoodGauge.gameObject.SetActive(false);
 
+            if (Food5 != null)
+                Food5.SetActive(false);
+
+            if (particle != null)
+                particle.SetActive(false);
         }
     }
+
     void OnDisable()
     {
         while (true)
@@ -87,15 +101,29 @@ public class EatFood : MonoBehaviour
                 break;
             a++;
         }
+
         Debug.Log(totalEatTime);
-        GameManager.Instance.breakfastTime = totalEatTime;
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.breakfastTime = totalEatTime;
+        }
+
         GameManager.currentMission += 1;
         Interaction.gameStart = false;
 
-        interaction.GameEnd();
-        Debug.Log("³¡");
+        if (interaction != null)
+        {
+            interaction.GameEnd();
+        }
+        else
+        {
+            Debug.LogWarning("Interaction script not found!");
+        }
 
+        Debug.Log("³¡");
     }
+
     void OnMouseDown()
     {
         if (Interaction.gameStart)
@@ -104,22 +132,21 @@ public class EatFood : MonoBehaviour
             {
                 eat += 1;
                 Debug.Log(eat);
-                Space.SetActive(false);
-                b = 0;
+                if (Space != null)
+                    Space.SetActive(false);
 
+                b = 0;
             }
             else
             {
-                b+=Time.deltaTime;
-                if (b > 0.1)
+                b += Time.deltaTime;
+                if (b > 0.1f)
                 {
                     b = 0;
-                    Space.SetActive(true);
+                    if (Space != null)
+                        Space.SetActive(true);
                 }
             }
         }
     }
-
 }
-
-

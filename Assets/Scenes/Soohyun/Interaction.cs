@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Interaction : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Interaction : MonoBehaviour
     private Player playerScript;
     private Rigidbody rb;
 
+    public static bool isGameEnded = false;
     void Start()
     {
         Slider1.SetActive(false);
@@ -78,5 +80,7 @@ public class Interaction : MonoBehaviour
         SliderDrink.SetActive(false);
         Button.SetActive(true);
         Button.SetActive(false);
+
+        isGameEnded = true;
     }
 }

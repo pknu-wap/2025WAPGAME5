@@ -16,7 +16,6 @@ public class Car_to_school : MonoBehaviour
     private Rigidbody rb;
 
     [SerializeField] private bool isRide = false;
-
     [Header("Wheel Transforms")]
     [SerializeField] private Transform frontLeftWheel;
     [SerializeField] private Transform frontRightWheel;
@@ -28,6 +27,7 @@ public class Car_to_school : MonoBehaviour
     public float steerAngle = 30f;
 
     [Header("UI")]
+
     [SerializeField] private GameObject ridePanel;
 
     private bool isCollidedWithPlayer = false;
