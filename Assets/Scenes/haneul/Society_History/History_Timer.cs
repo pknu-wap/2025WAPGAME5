@@ -6,7 +6,7 @@ using TMPro;
 public class History_Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;  
-    private float timeElapsed = 0f;
+    public float timeElapsed = 0f;
     private bool isTimerRunning = true;
 
     void Update()
@@ -26,7 +26,8 @@ public class History_Timer : MonoBehaviour
     public void TimeStop()
     {
         isTimerRunning = false;
-    }
+
+    }   
 
     public void WrongAnswer()
     {
