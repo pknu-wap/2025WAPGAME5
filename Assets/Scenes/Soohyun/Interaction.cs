@@ -1,44 +1,54 @@
 using UnityEngine;
+
 public class Interaction : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static bool gameStart = false;
     public static bool repeat = true;
+
     public GameObject Player;
     public GameObject Table;
     public GameObject Button;
     public GameObject Slider1;
     public GameObject Slider2;
     public GameObject SliderDrink;
+
     float Dist;
     bool On = false;
-    // Update is called once per frame
+
+    private Player playerScript;
+    private Rigidbody rb;
+
     void Start()
     {
         Slider1.SetActive(false);
         Slider2.SetActive(false);
         SliderDrink.SetActive(false);
+
+        playerScript = Player.GetComponentInParent<Player>();
+        rb = Player.GetComponent<Rigidbody>();
     }
+
     void Update()
     {
         if (!gameStart && repeat)
         {
             Button_on();
             Dist = Vector3.Distance(Player.transform.position, Table.transform.position);
+
             if (Dist < 5)
             {
                 On = true;
+
                 if (Input.GetKey("f"))
                 {
                     gameStart = true;
-                    Player.transform.position = new Vector3(-1, 2, -48); 
-                    Rigidbody rb = GetComponent<Rigidbody>();
-                    rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-                    rb.constraints = RigidbodyConstraints.None;
+                    Player.transform.position = new Vector3(-0.8f, 3.828f, -46.825f);
+
+                    playerScript.SetDontMove(true);
                     repeat = false;
                     Slider1.SetActive(On);
                     Slider2.SetActive(On);
-                    SliderDrink.SetActive(On); 
+                    SliderDrink.SetActive(On);
                     Button.SetActive(!On);
                 }
             }
@@ -48,9 +58,25 @@ public class Interaction : MonoBehaviour
             }
         }
     }
+
     void Button_on()
     {
         Button.SetActive(On);
     }
 
+    public void GameEnd()
+    {
+        Debug.Log("¿òÁ÷¿©");
+        gameStart = false;
+        repeat = false;
+        Player.transform.position = new Vector3(-2.47f, 2.71f, -51.82f);
+        rb.velocity = Vector3.zero;
+        playerScript.SetDontMove(false);
+        
+        Slider1.SetActive(false);
+        Slider2.SetActive(false);
+        SliderDrink.SetActive(false);
+        Button.SetActive(true);
+        Button.SetActive(false);
+    }
 }

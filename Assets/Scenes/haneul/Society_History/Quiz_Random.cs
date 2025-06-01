@@ -13,9 +13,11 @@ public class Quiz_Random : MonoBehaviour
     private int currentQuizIndex = 0;
 
     public GameObject Timer;
+    private History_Timer timer;
 
     void Start()
     {
+        timer = Timer.GetComponent<History_Timer>();
         Timer.SetActive(true);
         Shuffle(allQuizObjects);
         selectedQuizzes = allQuizObjects.GetRange(0, 12);
@@ -51,12 +53,13 @@ public class Quiz_Random : MonoBehaviour
             if (currentQuizIndex < selectedQuizzes.Count)
             {
                 selectedQuizzes[currentQuizIndex].SetActive(true);
-                quizProgressText.text = $"{currentQuizIndex + 1}/8";
+                quizProgressText.text = $"{currentQuizIndex + 1}/12";
             }
             else
             {
                 quizProgressText.text = "";
-                Debug.Log("퀴즈 종료");
+                Debug.Log(timer.timeElapsed.ToString("F0")+"초 걸림");
+                timer.TimeStop();
             }
         }
     }

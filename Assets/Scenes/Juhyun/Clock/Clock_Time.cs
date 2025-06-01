@@ -9,34 +9,50 @@ namespace ClockSample
         public Transform handMinutes;
         public Transform handSeconds;
 
-        private float hours = 8f;     // 시작 시각: 8시
+        private float hours = 8f;
         private float minutes = 0f;
         private float seconds = 0f;
 
+        private Tutorial tutorial;
+
         private void Start()
         {
-            
+            tutorial = FindObjectOfType<Tutorial>();
             StartCoroutine(PlayerLooksAtClock());
-
-            
             InvokeRepeating(nameof(UpdateHands), 0, 1);
         }
 
         IEnumerator PlayerLooksAtClock()
         {
-            Transform player = Camera.main.transform; 
-            Vector3 originalRotation = player.eulerAngles;
+            Transform playerCam = Camera.main.transform;
+            Player playerScript = playerCam.GetComponentInParent<Player>();
+
+            if (playerScript != null)
+            {
+                playerScript.SetLockCamera(true);
+                playerScript.SetDontMove(true);
+            }
 
             float duration = 3f;
             float timer = 0f;
 
             while (timer < duration)
             {
-                player.LookAt(transform);
+                playerCam.LookAt(transform);
                 timer += Time.deltaTime;
                 yield return null;
             }
 
+            if (playerScript != null)
+            {
+                playerScript.SetLockCamera(false);
+                playerScript.SetDontMove(false);
+            }
+
+            if (tutorial != null)
+            {
+                tutorial.Tuto();
+            }
         }
 
         void UpdateHands()

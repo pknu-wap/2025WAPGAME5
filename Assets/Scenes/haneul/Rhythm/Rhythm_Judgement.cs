@@ -55,7 +55,7 @@ public class Rhythm_Judgement : MonoBehaviour
     {
         if (Input.GetKeyDown(keyToPress))
         {
-            Vector3 spawnPosition = transform.position + new Vector3(0f, 0f, 0.1f);
+            Vector3 spawnPosition = transform.position + new Vector3(0f, 1.95f, 1f);
 
             if (noteQueue.Count > 0)
             {

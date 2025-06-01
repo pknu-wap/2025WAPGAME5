@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private float m_fMouseYInput;
 
     private bool DontMove = false;
+    private bool m_bLockCamera = false;
     private PlayerAnimation m_animController;
 
     public void Start()
@@ -42,15 +43,18 @@ public class Player : MonoBehaviour
     {
         if (!DontMove)
         {
-            InputHandle();
-            CameraRotation();
+            
+           
             MoveMent();
             m_animController.UpdateAnimationParameters(m_rigid.velocity, m_fHorizontalInput, m_fVerticalInput);
         }
         else
         {
+
             m_rigid.velocity = Vector3.zero;
         }
+        InputHandle();
+        CameraRotation();
     }
 
     public void InputHandle()
@@ -80,6 +84,8 @@ public class Player : MonoBehaviour
 
     public void CameraRotation()
     {
+        if (m_bLockCamera) return;
+
         m_fCurrentCamRotationY += (m_fMouseXInput * m_fLookSensitivity);
         m_fCurrentCamRotationX -= (m_fMouseYInput * m_fLookSensitivity);
         m_fCurrentCamRotationX = Mathf.Clamp(m_fCurrentCamRotationX, -m_fMaxLookAngle, m_fMaxLookAngle);
@@ -107,5 +113,10 @@ public class Player : MonoBehaviour
 
         m_fCurrentCamRotationX = Mathf.Clamp(xAngle, -m_fMaxLookAngle, m_fMaxLookAngle);
         m_fCurrentCamRotationY = rot.eulerAngles.y;
+    }
+
+    public void SetLockCamera(bool _lock)
+    {
+        m_bLockCamera = _lock;
     }
 }
