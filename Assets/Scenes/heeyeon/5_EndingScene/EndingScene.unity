@@ -2246,7 +2246,7 @@ MonoBehaviour:
     playerPrefKey: Score_Science
   - label: "\uCF54\uB529"
     scoreText: {fileID: 448828464}
-    playerPrefKey: 
+    playerPrefKey: Score_Programming
   - label: "\uC5ED\uC0AC"
     scoreText: {fileID: 222231928}
     playerPrefKey: 
@@ -4147,7 +4147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAD6D\uC5B4 \uC810\uC218: 32\uC810"
+  m_text: "\uAD6D\uC5B4 \uC810\uC218:      \uC810"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6fbfbddbdb13dcf4ea75422ff72ab30f, type: 2}
   m_sharedMaterial: {fileID: 6433889462535681774, guid: 6fbfbddbdb13dcf4ea75422ff72ab30f, type: 2}

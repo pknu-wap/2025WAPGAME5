@@ -102,20 +102,21 @@ public class connect : MonoBehaviour
     }
     IEnumerator ActionCoroutine()
     {
+        List<Transform> childrenCopy = new List<Transform>(children);
 
-        foreach (Transform child in children)
+        foreach (Transform child in childrenCopy)
         {
             Debug.Log(child.name);
             Vector3 startpos = robot.transform.position;
-            float movedistance ;
+            float movedistance;
             float totalangle = 0f;
-            float moveangle ;
+            float moveangle;
+
             while (running)
             {
                 if (child.tag == "forward")
                 {
                     robot.transform.position += robot.transform.forward * moveSpeed * Time.deltaTime;
-                    //10만큼 이동하면 중지
                     movedistance = Vector3.Distance(robot.transform.position, startpos);
                     if (movedistance > 10)
                     {
@@ -124,7 +125,6 @@ public class connect : MonoBehaviour
                         robot.transform.position = startpos + direction * 10;
                     }
                     yield return null;
-
                 }
                 else if (child.tag == "left")
                 {
@@ -135,15 +135,14 @@ public class connect : MonoBehaviour
                     {
                         running = false;
                         float yangle = (float)Math.Truncate(robot.transform.eulerAngles.y);
-                        if ((yangle%90)!=0)
-                            {
+                        if ((yangle % 90) != 0)
+                        {
                             yangle = Mathf.FloorToInt(yangle / 90) * 90 + 90;
-                            }
+                        }
 
                         robot.transform.eulerAngles = new Vector3(0, (int)yangle, 0);
                     }
                     yield return null;
-
                 }
                 else if (child.tag == "right")
                 {
@@ -156,25 +155,25 @@ public class connect : MonoBehaviour
                         robot.transform.eulerAngles = new Vector3(0, Mathf.FloorToInt(robot.transform.eulerAngles.y), 0);
                     }
                     yield return null;
-
                 }
                 else
                 {
-                    // 예외 처리 또는 대기
                     Debug.LogWarning($"알 수 없는 태그: {child.tag}");
-                    running = false;  
+                    running = false;
                     yield return null;
                 }
             }
-            Debug.Log(child+"끝");
+
+            Debug.Log(child + "끝");
             yield return new WaitForSeconds(0.5f);
-            running = true ;
+            running = true;
         }
+
         result = true;
         canStart = true;
         canvas2.SetActive(true);
         restart.SetActive(true);
-        //button2.SetActive(false);
-        children.Clear(); 
+        children.Clear();
     }
+
 }
