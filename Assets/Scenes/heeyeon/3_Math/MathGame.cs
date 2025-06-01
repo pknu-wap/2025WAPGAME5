@@ -156,7 +156,6 @@ void ShowNextQuestion()
             answerInput.ActivateInputField();
         }
     }
-
     void EndGame()
     {
         float totalTime = Time.time - startTime;
@@ -168,16 +167,17 @@ void ShowNextQuestion()
         resultText.text = $"게임 끝!\n{totalTime:F2}초 걸렸습니다.";
         resultText.gameObject.SetActive(true);
 
+        float bestTime = 20f;
+        float worstTime = 60f;
+        float t = Mathf.InverseLerp(worstTime, bestTime, totalTime); // 역순으로!
+        float score = Mathf.Clamp(t * 100f, 0f, 100f);
+        int finalScore = Mathf.RoundToInt(score);
+
+        Debug.Log("수학 점수 저장됨: " + finalScore);
+        PlayerPrefs.SetInt("Score_Math", finalScore);
+
         PlayerPrefs.SetInt("ReturnedFromMath", 1);
         SceneManager.LoadScene("ClassRoom");
-
-        StartCoroutine(GoToNextSceneAfterDelay(2f));
-    }
-
-    IEnumerator GoToNextSceneAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("heeyeon");
     }
 
     IEnumerator ShowWrongText()

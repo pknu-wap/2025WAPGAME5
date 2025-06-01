@@ -136,9 +136,12 @@ public class StageManager : MonoBehaviour
             instructionText.text = $"모든 스테이지 완료!\n\n평균 점수: {averageScore:F1}";
             instructionText.gameObject.SetActive(true);
 
+            PlayerPrefs.SetInt("Score_Science", Mathf.RoundToInt(averageScore));
+            Debug.Log("과학 점수 저장됨: " + Mathf.RoundToInt(averageScore));
             PlayerPrefs.SetInt("ReturnedFromScience", 1);
-            yield return new WaitForSeconds(2f);
+            PlayerPrefs.Save();
 
+            yield return new WaitForSeconds(2f);
             SceneManager.LoadScene("ClassRoom");
             yield break;
         }

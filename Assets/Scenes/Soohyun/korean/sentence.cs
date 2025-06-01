@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class sentence : MonoBehaviour
 {
@@ -12,31 +13,32 @@ public class sentence : MonoBehaviour
     public TextMeshProUGUI counter;
     public TMP_InputField inputField;
 
+    public float typingTime;
 
     private List<List<string>> sentenceList = new List<List<string>>()
     {
-        new List<string>(){ "애국가1절",
+        new List<string>(){ "애국가 1절",
             "동해물과 백두산이 마르고 닳도록",
         "하느님이 보우하사 우리나라 만세",
         "무궁화 삼천리 화려 강산",
         "대한 사람 대한으로 길이 보전하세"
         },
 
-        new List<string>(){"애국가2절",
+        new List<string>(){"애국가 2절",
             "남산 위에 저 소나무 철갑을 두른 듯",
         "바람 서리 불변함은 우리 기상일세",
         "무궁화 삼천리 화려 강산",
         "대한 사람 대한으로 길이 보전하세"
         },
 
-        new List<string>(){"애국가3절",
+        new List<string>(){"애국가 3절",
             "가을 하늘 공활한데 높고 구름 없이",
         "밝은 달은 우리 가슴 일편단심일세",
         "무궁화 삼천리 화려 강산",
         "대한 사람 대한으로 길이 보전하세"
         },
 
-        new List<string>(){"애국가4절",
+        new List<string>(){"애국가 4절",
             "이 기상과 이 맘으로 충성을 다하여",
         "괴로우나 즐거우나 나라 사랑하세",
         "무궁화 삼천리 화려 강산",
@@ -150,9 +152,25 @@ public class sentence : MonoBehaviour
             Debug.Log(timer.text);
             isGameRunning = false;
 
+            float elapsed = Time.time - startTime;
+            SaveKoreanScore(elapsed);
+
             PlayerPrefs.SetInt("ReturnedFromKorean", 1);
             SceneManager.LoadScene("ClassRoom");
         }
+    }
+
+    void SaveKoreanScore(float timeUsedInSeconds)
+    {
+        float bestTime = 50f;
+        float worstTime = 120f;
+
+        float t = Mathf.InverseLerp(worstTime, bestTime, timeUsedInSeconds);
+        float score = Mathf.Clamp(t * 100f, 0f, 100f);
+
+        PlayerPrefs.SetInt("Score_Korean", Mathf.RoundToInt(score));
+        Debug.Log("국어 점수 저장됨: " + Mathf.RoundToInt(score));
+        PlayerPrefs.Save();
     }
     void OnInputSubmit(string userInput)
     {
@@ -200,6 +218,7 @@ public class sentence : MonoBehaviour
             }
             sentence1.text = highlighted;
         }
+
     void OnDestroy()
     {
         inputField.onSubmit.RemoveListener(OnInputSubmit);
