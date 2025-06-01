@@ -39,6 +39,9 @@ public class Quiz_judgement : MonoBehaviour
         {
             Instantiate(CorrectPrefab, spawnParent);
             Debug.Log("Á¤´ä!");
+
+            int currentCorrect = PlayerPrefs.GetInt("Correct_History", 0);
+            PlayerPrefs.SetInt("Correct_History", currentCorrect + 1);
         }
         else
         {

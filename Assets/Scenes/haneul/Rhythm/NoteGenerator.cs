@@ -178,6 +178,9 @@ public class NoteGenerator : MonoBehaviour
         Spectrum.SetActive(false);
         Debug.Log(Rhythm_Judgement.Rhythm_Score);
 
+        Debug.Log("À½¾Ç Á¡¼ö ÀúÀåµÊ: " + Rhythm_Judgement.Rhythm_Score /10);
+        PlayerPrefs.SetInt("Score_Music", Rhythm_Judgement.Rhythm_Score / 10);
+
         PlayerPrefs.SetInt("ReturnedFromMusic", 1);
         SceneManager.LoadScene("ClassRoom");
     }
