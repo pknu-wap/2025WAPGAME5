@@ -88,7 +88,7 @@ void ShuffleList(List<Question> list)
         yield return new WaitForSeconds(1f);
         countdownText.text = "1";
         yield return new WaitForSeconds(1f);
-        countdownText.text = "Ω√¿€!";
+        countdownText.text = "Start!";
         yield return new WaitForSeconds(1f);
         countdownText.gameObject.SetActive(false);
 
