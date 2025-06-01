@@ -60,6 +60,8 @@ public class Quiz_Random : MonoBehaviour
                 quizProgressText.text = "";
                 Debug.Log(timer.timeElapsed.ToString("F0")+"√  ∞…∏≤");
                 timer.TimeStop();
+                PlayerPrefs.SetInt("ReturnedFromHistory", 1);
+                SceneManager.LoadScene("ClassRoom");
             }
         }
     }
