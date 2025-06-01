@@ -69,11 +69,10 @@ public class Interaction : MonoBehaviour
         Debug.Log("¿òÁ÷¿©");
         gameStart = false;
         repeat = false;
-        playerScript.SetDontMove(false);
         Player.transform.position = new Vector3(-2.47f, 2.71f, -51.82f);
-
+        rb.velocity = Vector3.zero;
+        playerScript.SetDontMove(false);
         
-
         Slider1.SetActive(false);
         Slider2.SetActive(false);
         SliderDrink.SetActive(false);

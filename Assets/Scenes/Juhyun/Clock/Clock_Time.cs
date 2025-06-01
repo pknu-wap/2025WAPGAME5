@@ -13,8 +13,11 @@ namespace ClockSample
         private float minutes = 0f;
         private float seconds = 0f;
 
+        private Tutorial tutorial;
+
         private void Start()
         {
+            tutorial = FindObjectOfType<Tutorial>();
             StartCoroutine(PlayerLooksAtClock());
             InvokeRepeating(nameof(UpdateHands), 0, 1);
         }
@@ -25,8 +28,10 @@ namespace ClockSample
             Player playerScript = playerCam.GetComponentInParent<Player>();
 
             if (playerScript != null)
+            {
                 playerScript.SetLockCamera(true);
                 playerScript.SetDontMove(true);
+            }
 
             float duration = 3f;
             float timer = 0f;
@@ -39,8 +44,15 @@ namespace ClockSample
             }
 
             if (playerScript != null)
+            {
                 playerScript.SetLockCamera(false);
-                playerScript.SetDontMove(false); 
+                playerScript.SetDontMove(false);
+            }
+
+            if (tutorial != null)
+            {
+                tutorial.Tuto();
+            }
         }
 
         void UpdateHands()

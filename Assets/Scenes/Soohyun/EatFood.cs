@@ -91,11 +91,10 @@ public class EatFood : MonoBehaviour
         GameManager.Instance.breakfastTime = totalEatTime;
         GameManager.currentMission += 1;
         Interaction.gameStart = false;
-        if (interaction != null)
-        {
-            interaction.GameEnd();
-            Debug.Log("³¡");
-        }
+
+        interaction.GameEnd();
+        Debug.Log("³¡");
+
     }
     void OnMouseDown()
     {
@@ -103,7 +102,7 @@ public class EatFood : MonoBehaviour
         {
             if (Input.GetKeyDown("space") && Gauge.canEat && !DrinkWater.isDrinking)
             {
-                eat += 2;
+                eat += 1;
                 Debug.Log(eat);
                 Space.SetActive(false);
                 b = 0;
