@@ -39,9 +39,15 @@ public class EndingPlayerMover : MonoBehaviour
         int displayedScore = 0;
         float duration = 2f;
         float elapsed = 0f;
-        float soundDuration = 1.2f; 
+        float soundDuration = 1.7f;
 
         int lastDisplayedScore = -1;
+
+        if (countUpSound != null)
+        {
+            audioSource.clip = countUpSound;
+            audioSource.Play();
+        }
 
         while (elapsed < duration)
         {
@@ -52,13 +58,12 @@ public class EndingPlayerMover : MonoBehaviour
             if (displayedScore != lastDisplayedScore)
             {
                 targetText.text = $"{label} Á¡¼ö: {displayedScore} Á¡";
-
-                if (elapsed <= soundDuration)
-                {
-                    audioSource.PlayOneShot(countUpSound);
-                }
-
                 lastDisplayedScore = displayedScore;
+            }
+
+            if (elapsed >= soundDuration && audioSource.isPlaying)
+            {
+                audioSource.Stop();
             }
 
             yield return null;
