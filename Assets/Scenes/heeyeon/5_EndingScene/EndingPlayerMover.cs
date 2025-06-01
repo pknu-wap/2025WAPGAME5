@@ -57,7 +57,7 @@ public class EndingPlayerMover : MonoBehaviour
 
             if (displayedScore != lastDisplayedScore)
             {
-                targetText.text = $"{label} 점수: {displayedScore} 점";
+                targetText.text = $"{displayedScore} 점";
                 lastDisplayedScore = displayedScore;
             }
 
@@ -69,7 +69,7 @@ public class EndingPlayerMover : MonoBehaviour
             yield return null;
         }
 
-        targetText.text = $"{label} 점수: {targetScore} 점";
+        targetText.text = $"{targetScore} 점";
     }
 
     void Update()

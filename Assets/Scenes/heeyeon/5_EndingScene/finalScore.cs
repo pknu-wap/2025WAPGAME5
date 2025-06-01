@@ -4,7 +4,10 @@ using UnityEngine.UI;
 public class FinalGradeCalculator : MonoBehaviour
 {
     public Image stampImage;
-    public Sprite gradeAPlus, gradeA, gradeB, gradeC, gradeD, gradeF;
+    public Image gradeAPlus, gradeA, gradeB, gradeC, gradeD, gradeF;
+
+    public Image O;
+    public Image X;
 
     void Start()
     {
@@ -24,18 +27,15 @@ public class FinalGradeCalculator : MonoBehaviour
         if (badMoodCount >= 7) averageScore -= 10f;
         if (isLate == 1) averageScore -= 10f;
 
-        string grade = "";
-        Sprite selectedStamp = null;
+        if (averageScore >= 95) {gradeAPlus.gameObject.SetActive(true);}
+        else if (averageScore >= 90) {gradeA.gameObject.SetActive(true);}
+        else if (averageScore >= 80) {gradeB.gameObject.SetActive(true);}
+        else if (averageScore >= 70) {gradeC.gameObject.SetActive(true);}
+        else if (averageScore >= 60) {gradeD.gameObject.SetActive(true);}
+        else {gradeF.gameObject.SetActive(true);}
 
-        if (averageScore >= 95) { grade = "A+"; selectedStamp = gradeAPlus; }
-        else if (averageScore >= 90) { grade = "A"; selectedStamp = gradeA; }
-        else if (averageScore >= 80) { grade = "B"; selectedStamp = gradeB; }
-        else if (averageScore >= 70) { grade = "C"; selectedStamp = gradeC; }
-        else if (averageScore >= 60) { grade = "D"; selectedStamp = gradeD; }
-        else { grade = "F"; selectedStamp = gradeF; }
+        if (isLate == 1) { O.gameObject.SetActive(true);}
+        else if (isLate == 0) { X.gameObject.SetActive(true); }
 
-        Debug.Log($"ÇÐÁ¡Àº: {grade}");
-        stampImage.sprite = selectedStamp;
-        stampImage.gameObject.SetActive(true);
     }
 }
