@@ -10,7 +10,7 @@ public class CarCrash : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
             Debug.Log("벽과 충돌");
-            GameManager.currentEmotion = 5;
+            GameManager.currentEmotion = 2; //나쁨
         }
     }
 }

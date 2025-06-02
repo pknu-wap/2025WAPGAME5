@@ -7,16 +7,16 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class GameManager : MonoBehaviour
 {
-    // 싱글톤 인스턴스
     public static GameManager Instance { get; private set; }
 
     public GameObject Emotion;
-    public static int currentEmotion = 0;
     public GameObject Mission;
+    public static int currentEmotion = 0;
+
     public static int currentMission = 0;
     public static int lastScene = 0;
     public static int currentScene= 0;
-    public static int scoreGTS = 0;//학교도착까지의 점수
+
     public Canvas canvas;
 
     public float breakfastTime;
@@ -30,11 +30,11 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
 
     private void Awake()
-    {
+    {// 씬 넘어가도 유지
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 넘어가도 유지
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -48,9 +48,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             //currentEmotion++;
-
             
-            if (currentEmotion >= 7) // 감정 개수
+            if (currentEmotion >= 3) // 감정 개수
             {
                 currentEmotion = 0;
             }
@@ -59,7 +58,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             //currentMission++;
-
 
             if (currentMission >= 4) // 미션 수 넣기
             {
@@ -81,9 +79,7 @@ public class GameManager : MonoBehaviour
             pausePanel.SetActive(true);
             AudioListener.pause = true;
             Time.timeScale = 0f; // 게임 일시정지
-
         }
-
     }
 
     public void JudgeLateness()
@@ -130,7 +126,6 @@ public class GameManager : MonoBehaviour
 
     public void Exit()
     {
-
         Application.Quit();
         #if UNITY_EDITOR
     // 에디터에서는 플레이 모드를 종료함
@@ -160,6 +155,4 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
-
 }

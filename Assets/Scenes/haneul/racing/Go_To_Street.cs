@@ -20,7 +20,8 @@ public class Go_To_Street : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Car") && timerStarted)
         {
             float elapsedTime = Time.time - startTime;
-            Debug.Log($"골목 도착 - 소요 시간: {elapsedTime:F2}초");
+
+            Debug.Log($"2단계 자동차:{elapsedTime:F2}초");
 
             GameManager.currentMission += 1;
 

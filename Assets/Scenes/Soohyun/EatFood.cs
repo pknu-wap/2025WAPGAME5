@@ -102,7 +102,7 @@ public class EatFood : MonoBehaviour
             a++;
         }
 
-        Debug.Log(totalEatTime);
+        Debug.Log($"1단계 아침밥:{totalEatTime:F2}초");
 
         if (GameManager.Instance != null)
         {

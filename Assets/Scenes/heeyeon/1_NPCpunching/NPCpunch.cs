@@ -22,7 +22,7 @@ public class NPCpunch : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && remainingCooldown <= 0f)
         {
-            GameManager.currentEmotion = 5;
+            GameManager.currentEmotion = 2;
 
             Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
             Ray ray = Camera.main.ScreenPointToRay(screenCenter);

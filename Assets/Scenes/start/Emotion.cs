@@ -24,6 +24,20 @@ public class Emotion : MonoBehaviour
 
         lastEmotion = GameManager.currentEmotion;
 
+        //  감정 카운트 
+        if (lastEmotion == 1) // Happy
+        {
+            Debug.Log("기분 좋다 +1");
+            int happyCount = PlayerPrefs.GetInt("Face_Happy_Count", 0);
+            PlayerPrefs.SetInt("Face_Happy_Count", happyCount + 1);
+        }
+        else if (lastEmotion == 2) // Angry
+        {
+            Debug.Log("기분 나쁘다 -1");
+            int angryCount = PlayerPrefs.GetInt("Face_angry_Count", 0);
+            PlayerPrefs.SetInt("Face_angry_Count", angryCount + 1);
+        }
+
         // 현재 감정 오브젝트만 활성화
         for (int i = 0; i < emotionObjects.Count; i++)
         {

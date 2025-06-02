@@ -14,6 +14,9 @@ public class FinalGradeCalculator : MonoBehaviour
     public TMP_Text resultText3;
     public TMP_Text resultText4;
     public TMP_Text resultText5;
+    public GameObject moodNormalImage;
+    public GameObject moodHappyImage;
+    public GameObject moodAngryImage;
 
     void Start()
     {
@@ -30,16 +33,18 @@ public class FinalGradeCalculator : MonoBehaviour
         int scoreHist = PlayerPrefs.GetInt("Score_History", 0);
         int scoreMath = PlayerPrefs.GetInt("Score_Math", 0);
         int scoreMusic = PlayerPrefs.GetInt("Score_Music", 0);
+
+        int angryCount = PlayerPrefs.GetInt("Face_angry_Count", 0);
+        int happyCount = PlayerPrefs.GetInt("Face_Happy_Count", 0);
+        int moodScoreRaw = happyCount - angryCount;
+
         int totalScore = scoreKor + scoreSci + scoreProg + scoreHist + scoreMath + scoreMusic;
 
         float averageScore = totalScore / 6f;
 
-        int badMoodCount = PlayerPrefs.GetInt("MoodCount_Worst", 0);  // 기분 가장 나쁜 표정 등장 횟수
         int isLate = PlayerPrefs.GetInt("IsLate", 0); // 1이면 지각
 
-        float deductedByMood = badMoodCount >= 7 ? 10f : 0f;
         float deductedByLate = isLate == 1 ? 5f : 0f;
-        float finalAverage = averageScore - deductedByMood - deductedByLate;
 
         // Step 1: 지각 여부 이미지 표시
         if (isLate == 1)
@@ -49,24 +54,64 @@ public class FinalGradeCalculator : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        // Step 2: 표정 관련 이미지 표시 (아직 미구현)
-        // TODO: Show mood-based image here
+        // Step 2: 표정
 
+        if (moodScoreRaw > 0) // 좋음
+        {
+            moodHappyImage.SetActive(true);
+        }
+        else if (moodScoreRaw < 0) // 나쁨
+        {
+            moodAngryImage.SetActive(true);
+        }
+        else // 보통
+        {
+            moodNormalImage.SetActive(true);
+        }
+
+        // 감정 점수 반영
+        float moodScoreDelta = moodScoreRaw;  // happy - angry (음수면 감점)
+        float finalAverage = averageScore - deductedByLate + moodScoreDelta;
+
+        yield return new WaitForSeconds(1f);
+
+        if (happyCount > angryCount)
+        {
+            moodScoreDelta = happyCount * 1f;
+        }
+        else if (angryCount > happyCount)
+        {
+            moodScoreDelta = angryCount * -1f;
+        }
+            
         // Step 3: 텍스트 표시
         resultText1.text = $"6과목 평균: {averageScore:F1}점";
         yield return new WaitForSeconds(1f);
 
         if (deductedByLate > 0)
+        {
             resultText2.text = "<color=red>- 지각 5점</color>";
-
+        }
         else
-            resultText2.text = "<color=green>지각 감점 없음!</color>";
+        {
+            resultText2.text = "<color=gray>지각 감점 없음!</color>";
+        }
+            
         yield return new WaitForSeconds(1f);
 
-        if (deductedByMood > 0)
-            resultText3.text = $"<color=red>- 나쁜 기분({badMoodCount}회) 10점</color>";
+        if (moodScoreDelta > 0)
+        {
+            resultText3.text = $"<color=green>+ 좋은 기분 {moodScoreDelta}점</color>";
+        }
+        else if (moodScoreDelta < 0)
+        {
+            resultText3.text = $"<color=red>- 나쁜 기분 {moodScoreDelta}점</color>";
+        }
         else
-            resultText3.text = "<color=green>기분 감점 없음!</color>";
+        {
+            resultText3.text = "<color=gray>기분 감점 없음!</color>";
+        }
+
         yield return new WaitForSeconds(1f);
 
         resultText4.gameObject.SetActive(true);

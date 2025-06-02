@@ -57,7 +57,8 @@ public class Manager : MonoBehaviour
         {
             isPlaying = false;
             float playTime = Time.time - startTime;
-            Debug.Log("플레이 시간: " + playTime + "초");
+
+            Debug.Log($"3단계 골목길:{playTime:F2}초");
 
             endUI.SetActive(true);
             if (player != null)

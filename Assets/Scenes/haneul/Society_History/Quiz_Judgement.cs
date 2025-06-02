@@ -29,7 +29,8 @@ public class Quiz_judgement : MonoBehaviour
 
         foreach (var choice in choices)
         {
-            choice.button.onClick.AddListener(() => OnChoiceSelected(choice));
+            var capturedChoice = choice; // 로컬 변수 복사
+            choice.button.onClick.AddListener(() => OnChoiceSelected(capturedChoice));
         }
     }
 
@@ -40,8 +41,8 @@ public class Quiz_judgement : MonoBehaviour
             Instantiate(CorrectPrefab, spawnParent);
             Debug.Log("정답!");
 
-            int currentCorrect = PlayerPrefs.GetInt("Correct_History", 0);
-            PlayerPrefs.SetInt("Correct_History", currentCorrect + 1);
+            int currentCorrect = PlayerPrefs.GetInt("CorrectHistory", 0);
+            PlayerPrefs.SetInt("CorrectHistory", currentCorrect + 1);
         }
         else
         {
