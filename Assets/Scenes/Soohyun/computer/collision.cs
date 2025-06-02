@@ -24,6 +24,7 @@ public class collision : MonoBehaviour
             restart.SetActive(true);
             //score -= 10;
             Debug.Log(score);
+            connect.moving = false;
         }
     }
 
@@ -38,6 +39,7 @@ public class collision : MonoBehaviour
             restart.SetActive(true);
             score -= 10;
             Debug.Log(score);
+            connect.moving = false;
         }
         else if (collision.collider.CompareTag("goal"))
         {

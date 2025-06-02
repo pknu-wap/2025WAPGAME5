@@ -22,7 +22,6 @@ public class PlayerAnimation : MonoBehaviour
 
         Vector3 horizontalVelocity = new Vector3(velocity.x, 0, velocity.z);
         float speed = horizontalVelocity.magnitude;
-
         bool isMoving = speed > 0.1f;
 
         m_anim.SetBool("isMoving", isMoving);

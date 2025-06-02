@@ -16,13 +16,15 @@ public class connect : MonoBehaviour
     public GameObject button11;
     public GameObject button2;
     public GameObject restart;
-    public float moveSpeed = 10f;
+    public float moveSpeed = 20f;
     public static int limit=10;
     public RectTransform start;
     public static Vector2 startpos;
+    public static Vector3 speed;
     public static bool canStart =true ;
     public static bool running = true;
     public static bool stop = false;
+    public static bool moving = false;
     public bool result = false;
     public List<Transform> children = new List<Transform>();
     public Camera camera1;
@@ -79,7 +81,7 @@ public class connect : MonoBehaviour
             else
             {
                 Debug.Log("못움직임");
-                canStart=true;
+                //canStart=true;
                 restart.SetActive(true);
                 button2.SetActive(false);
 
@@ -112,10 +114,13 @@ public class connect : MonoBehaviour
             float totalangle = 0f;
             float moveangle;
 
+            moving = true;
+            Vector3 rotate = robot.transform.eulerAngles;
             while (running)
             {
                 if (child.tag == "forward")
                 {
+                    speed= robot.transform.forward * moveSpeed * Time.deltaTime;
                     robot.transform.position += robot.transform.forward * moveSpeed * Time.deltaTime;
                     movedistance = Vector3.Distance(robot.transform.position, startpos);
                     if (movedistance > 10)
@@ -123,45 +128,69 @@ public class connect : MonoBehaviour
                         running = false;
                         Vector3 direction = (robot.transform.position - startpos).normalized;
                         robot.transform.position = startpos + direction * 10;
+                        moving = false;
                     }
-                    yield return null;
                 }
                 else if (child.tag == "left")
                 {
                     moveangle = 90 * Time.deltaTime;
                     transform.Rotate(0, -moveangle, 0);
                     totalangle -= moveangle;
-                    if (totalangle < -90)
+                    if (rotate.y > 180)
+                    {
+                        rotate.y -= 360;
+                    }
+                    float robotAngle = robot.transform.eulerAngles.y;
+                    if (robotAngle > 180)
+                    {
+                        robotAngle -= 360;
+                    }
+                    float angle = rotate.y - robotAngle;
+                    if (angle < 0)
+                        angle += 360;
+                    Debug.Log(angle);   
+                    if (angle > 90)
                     {
                         running = false;
-                        float yangle = (float)Math.Truncate(robot.transform.eulerAngles.y);
-                        if ((yangle % 90) != 0)
-                        {
-                            yangle = Mathf.FloorToInt(yangle / 90) * 90 + 90;
-                        }
+                        robot.transform.eulerAngles =rotate+ new Vector3(0, -90, 0);
+                        Debug.Log(robot.transform.eulerAngles);
 
-                        robot.transform.eulerAngles = new Vector3(0, (int)yangle, 0);
+                        moving = false;
                     }
-                    yield return null;
                 }
                 else if (child.tag == "right")
                 {
                     moveangle = 90 * Time.deltaTime;
                     transform.Rotate(0, moveangle, 0);
                     totalangle += moveangle;
-                    if (totalangle > 90)
+                    if (rotate.y > 180)
+                    {
+                        rotate.y -= 360;
+                    }
+                    float robotAngle = robot.transform.eulerAngles.y;
+                    if (robotAngle > 180)
+                    {
+                        robotAngle -= 360;
+                    }
+                    float angle = robotAngle - rotate.y;
+                    if (angle < 0)
+                        angle += 360;
+                    Debug.Log(angle);
+                    if (angle > 90)
                     {
                         running = false;
-                        robot.transform.eulerAngles = new Vector3(0, Mathf.FloorToInt(robot.transform.eulerAngles.y), 0);
+                        robot.transform.eulerAngles = rotate + new Vector3(0, 90, 0);
+                        Debug.Log(robot.transform.eulerAngles);
+
+                        moving = false;
                     }
-                    yield return null;
                 }
                 else
                 {
                     Debug.LogWarning($"알 수 없는 태그: {child.tag}");
                     running = false;
-                    yield return null;
                 }
+                yield return null;
             }
 
             Debug.Log(child + "끝");
