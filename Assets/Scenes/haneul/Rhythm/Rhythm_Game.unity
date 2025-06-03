@@ -578,7 +578,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05727434, y: -0.08546507}
+  m_Offset: {x: -1.2946424, y: -0.085464954}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -589,7 +589,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.6890726, y: 4.3846455}
+  m_Size: {x: 2.2143364, y: 4.3846455}
   m_EdgeRadius: 0
 --- !u!50 &351240055
 Rigidbody2D:
@@ -1847,7 +1847,7 @@ MonoBehaviour:
   ReadyText: {fileID: 393295961}
   StartPanel: {fileID: 549552661}
   SongPanel: {fileID: 1407823659}
-  bpm: 60
+  bpm: 80
 --- !u!4 &1561497879
 Transform:
   m_ObjectHideFlags: 0
@@ -2372,7 +2372,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009313107, y: -0.33687496}
+  m_Offset: {x: 1.4047335, y: -0.33687496}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2383,7 +2383,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.7552557, y: 4.6836777}
+  m_Size: {x: 1.9271623, y: 4.6836777}
   m_EdgeRadius: 0
 --- !u!50 &2088489133
 Rigidbody2D:

@@ -109,7 +109,7 @@ public class NoteGenerator : MonoBehaviour
         isPlayingPattern = false;
         currentIsCoroutine = null;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         PlayNextPattern();
     }
 
