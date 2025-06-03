@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject pausePanel;
     private bool isPaused = false;
+    public static bool isPausingInGame = false;
 
     private void Awake()
     {// 씬 넘어가도 유지
@@ -123,14 +124,18 @@ public class GameManager : MonoBehaviour
             Debug.Log("이어하기");
             pausePanel.SetActive(false);
             isPaused = false;
-            Time.timeScale = 1f;
+            if (!isPausingInGame)
+            {
+                Time.timeScale = 1f;
+            }
+            
             AudioListener.pause = false;
             if (Mouse_use == false)
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
-            ;
+            
         }
     }
 

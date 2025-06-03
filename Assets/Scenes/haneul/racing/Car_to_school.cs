@@ -46,8 +46,8 @@ public class Car_to_school : MonoBehaviour
             isRide = true;
             ridePanel.SetActive(false);
             Time.timeScale = 1f;
+            GameManager.isPausingInGame = false;
 
-            
             player.SetActive(false);
             carCamera.SetActive(true);
             point.SetActive(false);
@@ -112,6 +112,7 @@ public class Car_to_school : MonoBehaviour
             ridePanel.SetActive(true);
             Time.timeScale = 0f;
             isCollidedWithPlayer = true;
+            GameManager.isPausingInGame=true;
             hasPanelShown = true; // 한 번 표시한 것으로 기록
         }
     }
