@@ -109,8 +109,7 @@ public class NoteGenerator : MonoBehaviour
         isPlayingPattern = false;
         currentIsCoroutine = null;
 
-        // 다음 패턴 자동 재생
-        yield return new WaitForSeconds(0.5f); // 약간의 텀
+        yield return new WaitForSeconds(1.5f);
         PlayNextPattern();
     }
 
@@ -173,7 +172,7 @@ public class NoteGenerator : MonoBehaviour
         scriptNoteL.Create_Note(); yield return new WaitForSeconds(time_Signatures / 8);
         scriptNoteR.Create_Note(); yield return new WaitForSeconds(time_Signatures / 8);
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(4f);
         audioSource.Stop();
         Spectrum.SetActive(false);
         Debug.Log(Rhythm_Judgement.Rhythm_Score);
