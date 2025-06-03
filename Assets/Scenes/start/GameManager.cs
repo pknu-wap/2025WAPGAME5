@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public static int currentMission = 0;
     public static int lastScene = 0;
     public static int currentScene= 0;
+    public bool Mouse_use = false;
 
     public Canvas canvas;
 
@@ -77,6 +78,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)&&!isPaused)
         {
             isPaused = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             pausePanel.SetActive(true);
             AudioListener.pause = true;
             Time.timeScale = 0f; // 게임 일시정지
@@ -122,6 +125,12 @@ public class GameManager : MonoBehaviour
             isPaused = false;
             Time.timeScale = 1f;
             AudioListener.pause = false;
+            if (Mouse_use == false)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            ;
         }
     }
 
