@@ -15,6 +15,10 @@ public class MathGame : MonoBehaviour
     public TextMeshProUGUI wrongText;
     public TextMeshProUGUI resultText;
 
+    public AudioClip correctSound;
+    public AudioClip wrongSound;
+    public AudioSource audioSource;
+
     private float startTime;
     private bool gameStarted = false;
     private int currentQuestionIndex = 0;
@@ -24,6 +28,8 @@ public class MathGame : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         answerInput.caretWidth = 0; 
         answerInput.customCaretColor = true;
         answerInput.caretColor = new Color(0, 0, 0, 0);
@@ -38,7 +44,19 @@ public class MathGame : MonoBehaviour
         StartCoroutine(CountdownAndStart());
     }
 
-void CreateQuestions()
+    void PlayCorrect()
+    {
+        if (correctSound != null && audioSource != null)
+            audioSource.PlayOneShot(correctSound);
+    }
+
+    void PlayWrong()
+    {
+        if (wrongSound != null && audioSource != null)
+            audioSource.PlayOneShot(wrongSound);
+    }
+
+    void CreateQuestions()
 {
     List<Question> allQuestions = new List<Question>
     {
@@ -134,16 +152,17 @@ void ShowNextQuestion()
     {
         if (int.TryParse(answerInput.text, out int userAnswer))
         {
-            if (userAnswer == questions[currentQuestionIndex].answer)
+            if (userAnswer == questions[currentQuestionIndex].answer) 
             {
+                PlayCorrect();//정답일때
                 currentQuestionIndex++;
                 ShowNextQuestion();
             }
-            else
+            else 
             {
-                //소리로 삐- 하면 좋을 듯. 
+                PlayWrong();// 오답일때
                 StartCoroutine (ShowWrongText());
-                answerInput.text = ""; // 소리로 정답과 오답 나누기
+                answerInput.text = "";
                 answerInput.Select();
                 answerInput.ActivateInputField();
             }
@@ -159,19 +178,19 @@ void ShowNextQuestion()
     void EndGame()
     {
         float totalTime = Time.time - startTime;
-        Debug.Log("수학 문제 풀이 시간: " + totalTime + "초");
-
-        gameStarted = false;
-        questionText.gameObject.SetActive(false);
-
-        resultText.text = $"게임 끝!\n{totalTime:F2}초 걸렸습니다.";
-        resultText.gameObject.SetActive(true);
-
         float bestTime = 20f;
         float worstTime = 60f;
         float t = Mathf.InverseLerp(worstTime, bestTime, totalTime); // 역순으로!
         float score = Mathf.Clamp(t * 100f, 0f, 100f);
         int finalScore = Mathf.RoundToInt(score);
+
+        Debug.Log("수학 문제 풀이 시간: " + totalTime + "초");
+
+        gameStarted = false;
+        questionText.gameObject.SetActive(false);
+
+        resultText.text = $"게임 끝!\n{finalScore:F2}점 입니다.";
+        resultText.gameObject.SetActive(true);
 
         Debug.Log("수학 점수 저장됨: " + finalScore);
         PlayerPrefs.SetInt("Score_Math", finalScore);
