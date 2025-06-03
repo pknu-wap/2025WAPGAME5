@@ -99,20 +99,14 @@ public class FinalGradeCalculator : MonoBehaviour
         }
 
         // 감정 점수 반영
-        float moodScoreDelta = moodScoreRaw;  // happy - angry (음수면 감점)
+        int moodBalance = happyCount - angryCount;          // 좋은 기분 - 나쁜 기분
+        float moodScoreDelta = Mathf.Clamp(moodBalance, -5, 5);  // 최대 ±5점으로 제한
+
+        // Step 2: 최종 점수 계산
         float finalAverage = averageScore - deductedByLate + moodScoreDelta;
 
         yield return new WaitForSeconds(1f);
 
-        if (happyCount > angryCount)
-        {
-            moodScoreDelta = happyCount * 1f;
-        }
-        else if (angryCount > happyCount)
-        {
-            moodScoreDelta = angryCount * -1f;
-        }
-            
         // Step 3: 텍스트 표시
         resultText1.text = $"6과목 평균: {averageScore:F1}점";
         audioSource.PlayOneShot(textAppearSound);
@@ -128,17 +122,16 @@ public class FinalGradeCalculator : MonoBehaviour
             resultText2.text = "<color=#808080>  지각 감점 없음!</color>";
             audioSource.PlayOneShot(textAppearSound);
         }
-            
         yield return new WaitForSeconds(1f);
 
         if (moodScoreDelta > 0)
         {
-            resultText3.text = $"<color=green>+ 좋은 기분 {happyCount}점</color>";
+            resultText3.text = $"<color=green>+ 좋은 기분 {moodScoreDelta}점</color>";
             audioSource.PlayOneShot(textAppearSound);
         }
         else if (moodScoreDelta < 0)
         {
-            resultText3.text = $"<color=red>- 나쁜 기분 {angryCount}점</color>";
+            resultText3.text = $"<color=red>- 나쁜 기분 {Mathf.Abs(moodScoreDelta)}점</color>";
             audioSource.PlayOneShot(textAppearSound);
         }
         else
@@ -164,7 +157,7 @@ public class FinalGradeCalculator : MonoBehaviour
             gradeAPlus.gameObject.SetActive(true);
             PlayTextSoundShort();
         }
-        else if (finalAverage >= 80)
+        else if (finalAverage >= 85)
         {
             gradeA.gameObject.SetActive(true);
             PlayTextSoundShort();
