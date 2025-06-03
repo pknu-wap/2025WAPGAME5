@@ -5,9 +5,13 @@ using TMPro;
 
 public class History_Timer : MonoBehaviour
 {
-    public TextMeshProUGUI timerText;  
+    public TextMeshProUGUI timerText;
     public float timeElapsed = 0f;
     private bool isTimerRunning = true;
+
+    public AudioSource audioSource; 
+    public AudioClip correctClip;   
+    public AudioClip wrongClip;     
 
     void Update()
     {
@@ -20,18 +24,26 @@ public class History_Timer : MonoBehaviour
 
     void UpdateTimerText()
     {
-        
         timerText.text = "Time: " + timeElapsed.ToString("F1") + "s";
     }
+
     public void TimeStop()
     {
         isTimerRunning = false;
-
-    }   
+    }
 
     public void WrongAnswer()
     {
         timeElapsed += 3f;
         UpdateTimerText();
+
+        audioSource.PlayOneShot(wrongClip);
+    }
+
+    public void Correct()
+    {
+        UpdateTimerText();
+        
+        audioSource.PlayOneShot(correctClip);
     }
 }

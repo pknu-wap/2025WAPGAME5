@@ -39,6 +39,7 @@ public class Quiz_judgement : MonoBehaviour
         {
             Instantiate(CorrectPrefab, spawnParent);
             Debug.Log("Á¤´ä!");
+            timer.Correct();
         }
         else
         {
