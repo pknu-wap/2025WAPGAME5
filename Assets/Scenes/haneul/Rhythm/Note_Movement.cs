@@ -8,6 +8,7 @@ public class Note_Movement : MonoBehaviour
     public float x_Pos = 0f;
     private Vector3 targetPosition;
     private float duration = 1.5f;
+    public GameObject missObjectPrefab;
 
     void Start()
     {
@@ -28,9 +29,12 @@ public class Note_Movement : MonoBehaviour
         }
 
         transform.position = targetPosition;
-
-
-        Rhythm_Judgement.Rhythm_Score -= 3;
-        Destroy(gameObject,0.1f);
+        Vector3 spawnPosition = transform.position + new Vector3(0f, 1.95f, 1f);
+        
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(missObjectPrefab, spawnPosition, Quaternion.identity);
+        Debug.Log("miss");
+        Rhythm_Judgement.Rhythm_Score -= 1;
+        Destroy(gameObject);
     }
 }

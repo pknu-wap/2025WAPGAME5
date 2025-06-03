@@ -16,7 +16,7 @@ public class Rhythm_Judgement : MonoBehaviour
     private Queue<GameObject> noteQueue = new Queue<GameObject>(); // 충돌 중인 노트 큐
     private AudioSource audioSource;
 
-    public static int Rhythm_Score = 0;
+    public static int Rhythm_Score = 100;
 
     void Start()
     {
@@ -66,7 +66,7 @@ public class Rhythm_Judgement : MonoBehaviour
                     Instantiate(hitObjectPrefab, spawnPosition, Quaternion.identity);
 
                 Debug.Log("Hit!");
-                Rhythm_Score += 10;
+                
 
                 // 방향에 따라 사운드 다르게 재생
                 if (noteTag == "RightNote" && clip_R != null)
@@ -80,7 +80,7 @@ public class Rhythm_Judgement : MonoBehaviour
                     Instantiate(missObjectPrefab, spawnPosition, Quaternion.identity);
 
                 Debug.Log("Miss...");
-                Rhythm_Score -= 3;
+                Rhythm_Score -= 1;
             }
         }
     }
