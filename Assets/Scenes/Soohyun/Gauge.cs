@@ -40,7 +40,7 @@ public class Gauge : MonoBehaviour
 
             if (curGauge == 100)
             {
-                GameManager.currentEmotion = 2;
+                FindObjectOfType<Emotion>()?.ChangeEmotion(2);
                 canEat = false;
 
                 if (player != null)

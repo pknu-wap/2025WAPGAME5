@@ -101,11 +101,11 @@ public class FinalGradeCalculator : MonoBehaviour
 
         if (moodScoreDelta > 0)
         {
-            resultText3.text = $"<color=green>+ 좋은 기분 {moodScoreDelta}점</color>";
+            resultText3.text = $"<color=green>+ 좋은 기분 {happyCount}점</color>";
         }
         else if (moodScoreDelta < 0)
         {
-            resultText3.text = $"<color=red>- 나쁜 기분 {moodScoreDelta}점</color>";
+            resultText3.text = $"<color=red>- 나쁜 기분 {angryCount}점</color>";
         }
         else
         {

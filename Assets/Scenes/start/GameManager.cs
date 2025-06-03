@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.F))
+        /*if (Input.GetKeyDown(KeyCode.F))
         {
             //currentEmotion++;
             
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
             {
                 currentMission = 0;
             }
-        }
+        }*/
 
         //SceneManager
         if(currentScene != lastScene)
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     public void JudgeLateness()
     {
         float total = breakfastTime + racingTime + alleyTime;
-        Debug.Log($"총 소요 시간: {total:F1}초, (120초 초과 시 지각입니다)");
+        Debug.Log($"총 소요 시간: {total:F1}초, (120초 초과 시 지각!)");
 
         if (total > 120f)
         {

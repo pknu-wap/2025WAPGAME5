@@ -99,9 +99,9 @@ public class MyClock : MonoBehaviour
        
         if (bat != null && bat.GetIsSwing())
         {
-            GameManager.currentMission = 1;
+            GameManager.currentMission = 1; //미션
+            FindObjectOfType<Emotion>()?.ChangeEmotion(1); //감정
 
-            GameManager.currentEmotion = 1;
             float batForce = bat.GetSwingForce();
 
             // 충돌 지점의 첫 번째 contact normal 사용

@@ -10,7 +10,7 @@ public class CarCrash : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
             Debug.Log("º®°ú Ãæµ¹");
-            GameManager.currentEmotion = 2; //³ª»Ý
+            FindObjectOfType<Emotion>()?.ChangeEmotion(2); //³ª»Ý
         }
     }
 }

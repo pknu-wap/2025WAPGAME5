@@ -47,7 +47,7 @@ public class Player22 : MonoBehaviour
         float duration = 2f;
         float elapsed = 0f;
         float startY = transform.eulerAngles.y;
-        GameManager.currentEmotion = 2;
+        FindObjectOfType<Emotion>()?.ChangeEmotion(2); //³ª»Ý
 
         while (elapsed < duration)
         {
@@ -62,7 +62,6 @@ public class Player22 : MonoBehaviour
         isRotating = false;
         yield return new WaitForSeconds(2f);
         isCrash = false;
-        GameManager.currentEmotion = 0;
     }
 
     public void SetPlaying(bool playing)

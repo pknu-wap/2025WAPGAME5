@@ -18,6 +18,15 @@ public class Emotion : MonoBehaviour
         }
     }
 
+    public void ChangeEmotion(int emotion)
+    {
+        if (!isChangeEmotion && emotion != lastEmotion)
+        {
+            GameManager.currentEmotion = emotion;
+            StartCoroutine(HandleEmotionChange());
+        }
+    }
+
     private IEnumerator HandleEmotionChange()
     {
         isChangeEmotion = true;
@@ -27,13 +36,13 @@ public class Emotion : MonoBehaviour
         //  감정 카운트 
         if (lastEmotion == 1) // Happy
         {
-            Debug.Log("기분 좋다 +1");
+            Debug.Log("+ 기분 좋음");
             int happyCount = PlayerPrefs.GetInt("Face_Happy_Count", 0);
             PlayerPrefs.SetInt("Face_Happy_Count", happyCount + 1);
         }
         else if (lastEmotion == 2) // Angry
         {
-            Debug.Log("기분 나쁘다 -1");
+            Debug.Log("- 기분 나쁨");
             int angryCount = PlayerPrefs.GetInt("Face_angry_Count", 0);
             PlayerPrefs.SetInt("Face_angry_Count", angryCount + 1);
         }
