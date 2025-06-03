@@ -17,6 +17,10 @@ namespace ClockSample
 
         private void Start()
         {
+            FindObjectOfType<GameManager>().Emotion.SetActive(true);
+            FindObjectOfType<GameManager>().Mission.SetActive(true);
+            FindObjectOfType<GameManager>().Crosshair.SetActive(true);
+
             tutorial = FindObjectOfType<Tutorial>();
             StartCoroutine(PlayerLooksAtClock());
             InvokeRepeating(nameof(UpdateHands), 0, 1);

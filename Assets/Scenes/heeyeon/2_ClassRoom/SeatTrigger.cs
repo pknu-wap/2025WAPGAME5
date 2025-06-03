@@ -26,6 +26,10 @@ public class SitTrigger : MonoBehaviour
 
     void Start()
     {
+        FindObjectOfType<GameManager>().Emotion.SetActive(false);
+        FindObjectOfType<GameManager>().Mission.SetActive(false);
+        FindObjectOfType<GameManager>().Crosshair.SetActive(false);
+
         actionImage.gameObject.SetActive(false);
         SceneManager.sceneLoaded += OnSceneLoaded;
 

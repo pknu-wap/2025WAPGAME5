@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject Emotion;
     public GameObject Mission;
-    public static int currentEmotion = 0;
+    public GameObject Crosshair;
 
+    public static int currentEmotion = 0;
     public static int currentMission = 0;
     public static int lastScene = 0;
     public static int currentScene= 0;

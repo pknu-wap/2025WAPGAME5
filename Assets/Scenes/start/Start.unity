@@ -1220,6 +1220,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4905914108138351058, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
+      propertyPath: Crosshair
+      value: 
+      objectReference: {fileID: 1006191786}
+    - target: {fileID: 4905914108138351058, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
       propertyPath: latePanel
       value: 
       objectReference: {fileID: 1981630504}
@@ -1280,6 +1284,11 @@ PrefabInstance:
 --- !u!1 &1006191785 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5678695209591988673, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
+  m_PrefabInstance: {fileID: 1006191784}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1006191786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5423969360349998236, guid: 1ee0535a2236eae469cdc65d6f3dc42c, type: 3}
   m_PrefabInstance: {fileID: 1006191784}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1058817827

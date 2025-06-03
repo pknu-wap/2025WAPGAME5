@@ -18,9 +18,29 @@ public class FinalGradeCalculator : MonoBehaviour
     public GameObject moodHappyImage;
     public GameObject moodAngryImage;
 
+    public AudioSource audioSource;
+    public AudioClip stampSound;
+    public AudioClip textAppearSound;
+
     void Start()
     {
         StartCoroutine(ShowFinalResultSequence());
+    }
+
+    private void PlayTextSoundShort()
+    {
+        if (audioSource && stampSound)
+        {
+            StartCoroutine(PlayShortClip());
+        }
+    }
+
+    private IEnumerator PlayShortClip()
+    {
+        audioSource.clip = stampSound;
+        audioSource.Play();
+        yield return new WaitForSeconds(0.5f); // 0.5초만 재생 
+        audioSource.Stop();
     }
 
     IEnumerator ShowFinalResultSequence()
@@ -48,10 +68,16 @@ public class FinalGradeCalculator : MonoBehaviour
 
         // Step 1: 지각 여부 이미지 표시
         if (isLate == 1)
+        {
             O.gameObject.SetActive(true);
+            audioSource.PlayOneShot(textAppearSound);
+        }
+            
         else
+        {
             X.gameObject.SetActive(true);
-
+            audioSource.PlayOneShot(textAppearSound);
+        }
         yield return new WaitForSeconds(1f);
 
         // Step 2: 표정
@@ -59,14 +85,17 @@ public class FinalGradeCalculator : MonoBehaviour
         if (moodScoreRaw > 0) // 좋음
         {
             moodHappyImage.SetActive(true);
+            audioSource.PlayOneShot(textAppearSound);
         }
         else if (moodScoreRaw < 0) // 나쁨
         {
             moodAngryImage.SetActive(true);
+            audioSource.PlayOneShot(textAppearSound);
         }
         else // 보통
         {
             moodNormalImage.SetActive(true);
+            audioSource.PlayOneShot(textAppearSound);
         }
 
         // 감정 점수 반영
@@ -86,15 +115,18 @@ public class FinalGradeCalculator : MonoBehaviour
             
         // Step 3: 텍스트 표시
         resultText1.text = $"6과목 평균: {averageScore:F1}점";
+        audioSource.PlayOneShot(textAppearSound);
         yield return new WaitForSeconds(1f);
 
         if (deductedByLate > 0)
         {
-            resultText2.text = "<color=red>- 지각 5점</color>";
+            resultText2.text = $"<color=red>- 지각 5점</color>";
+            audioSource.PlayOneShot(textAppearSound);
         }
         else
         {
-            resultText2.text = "<color=gray>지각 감점 없음!</color>";
+            resultText2.text = "<color=#808080>  지각 감점 없음!</color>";
+            audioSource.PlayOneShot(textAppearSound);
         }
             
         yield return new WaitForSeconds(1f);
@@ -102,14 +134,17 @@ public class FinalGradeCalculator : MonoBehaviour
         if (moodScoreDelta > 0)
         {
             resultText3.text = $"<color=green>+ 좋은 기분 {happyCount}점</color>";
+            audioSource.PlayOneShot(textAppearSound);
         }
         else if (moodScoreDelta < 0)
         {
             resultText3.text = $"<color=red>- 나쁜 기분 {angryCount}점</color>";
+            audioSource.PlayOneShot(textAppearSound);
         }
         else
         {
-            resultText3.text = "<color=gray>기분 감점 없음!</color>";
+            resultText3.text = "<color=#808080>  기분 감점 없음!</color>";
+            audioSource.PlayOneShot(textAppearSound);
         }
 
         yield return new WaitForSeconds(1f);
@@ -118,16 +153,41 @@ public class FinalGradeCalculator : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         resultText5.text = $"최종 점수: {finalAverage:F1}점";
+        audioSource.PlayOneShot(textAppearSound);
         resultText5.color = Color.red;
 
         yield return new WaitForSeconds(1.5f);
 
         // Step 4: 학점 도장 표시
-        if (finalAverage >= 95) gradeAPlus.gameObject.SetActive(true);
-        else if (finalAverage >= 90) gradeA.gameObject.SetActive(true);
-        else if (finalAverage >= 80) gradeB.gameObject.SetActive(true);
-        else if (finalAverage >= 70) gradeC.gameObject.SetActive(true);
-        else if (finalAverage >= 60) gradeD.gameObject.SetActive(true);
-        else gradeF.gameObject.SetActive(true);
+        if (finalAverage >= 90)
+        {
+            gradeAPlus.gameObject.SetActive(true);
+            PlayTextSoundShort();
+        }
+        else if (finalAverage >= 80)
+        {
+            gradeA.gameObject.SetActive(true);
+            PlayTextSoundShort();
+        }
+        else if (finalAverage >= 70)
+        {
+            gradeB.gameObject.SetActive(true);
+            PlayTextSoundShort();
+        }
+        else if (finalAverage >= 60)
+        {
+            gradeC.gameObject.SetActive(true);
+            PlayTextSoundShort();
+        }
+        else if (finalAverage >= 50)
+        {
+            gradeD.gameObject.SetActive(true);
+            PlayTextSoundShort();
+        }
+        else
+        {
+            gradeF.gameObject.SetActive(true);
+            PlayTextSoundShort();
+        }
     }
 }
