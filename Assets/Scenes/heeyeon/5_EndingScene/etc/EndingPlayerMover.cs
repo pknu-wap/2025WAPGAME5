@@ -21,6 +21,7 @@ public class EndingPlayerMover : MonoBehaviour
 
     void Start()
     {
+        FindObjectOfType<EndingMusicPlayer>()?.PlayEndingMusic();
         StartCoroutine(ShowAllScoresSequentially());
     }
 
