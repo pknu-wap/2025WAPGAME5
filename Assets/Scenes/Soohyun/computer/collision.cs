@@ -11,6 +11,7 @@ public class collision : MonoBehaviour
     public GameObject restart;
     public TextMeshProUGUI nextLevel;
     public static int score =100;
+    public static bool next =false;
     // Start is called before the first frame update
     void Update()
     {
@@ -45,10 +46,11 @@ public class collision : MonoBehaviour
         {
             Debug.Log("레벨 클리어!");
             //PlayerReset();
-            transform.position = new Vector3(-20, 1.1f, -20);
-            transform.rotation = Quaternion.identity;
+            //transform.position = new Vector3(-20, 1.1f, -20);
+            //transform.rotation = Quaternion.identity;
             //connect.stop = true;
-            makeObstacle.clear = true;
+            nextLevel.gameObject.SetActive(true);
+            next = true;
             nextLevel.text = "다음 레벨";
         }
     }

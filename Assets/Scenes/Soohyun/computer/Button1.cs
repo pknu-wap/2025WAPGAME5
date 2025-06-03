@@ -60,6 +60,9 @@ public class button1 : MonoBehaviour
         button33.gameObject.SetActive(false);
         camera2.targetTexture = renderTex;
         rawImageUI.enabled = true;
+        if(collision.next)
+            makeObstacle.clear = true;
+        collision.next = false;
         nextLevel.text = "다시하기";
     }
 }

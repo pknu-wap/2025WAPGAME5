@@ -49,7 +49,7 @@ public class connect : MonoBehaviour
             children.Clear();
             stop = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canStart || makeObstacle.clear)
+        if (Input.GetKeyDown(KeyCode.Space) && canStart /*|| makeObstacle.clear*/)
         {
             canvas.SetActive(false);
             canStart = false; 
@@ -95,10 +95,9 @@ public class connect : MonoBehaviour
             result = false;
             restart.SetActive(true);
             button11.SetActive(true);
-            collision.score -= 10;
+            if (!makeObstacle.clear)
+                collision.score -= 10;
             Debug.Log(collision.score);
-            //restart.SetActive(false);
-            //button11.SetActive(true);
         }
 
     }
@@ -118,6 +117,7 @@ public class connect : MonoBehaviour
             Vector3 rotate = robot.transform.eulerAngles;
             while (running)
             {
+                //앞으로 이동
                 if (child.tag == "forward")
                 {
                     speed= robot.transform.forward * moveSpeed * Time.deltaTime;
@@ -131,6 +131,7 @@ public class connect : MonoBehaviour
                         moving = false;
                     }
                 }
+                //왼쪽 90도
                 else if (child.tag == "left")
                 {
                     moveangle = 90 * Time.deltaTime;
@@ -158,6 +159,7 @@ public class connect : MonoBehaviour
                         moving = false;
                     }
                 }
+                //오른쪽 90도
                 else if (child.tag == "right")
                 {
                     moveangle = 90 * Time.deltaTime;
@@ -197,8 +199,8 @@ public class connect : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             running = true;
         }
-
-        result = true;
+        if(!collision.next)
+            result = true;
         canStart = true;
         canvas2.SetActive(true);
         restart.SetActive(true);

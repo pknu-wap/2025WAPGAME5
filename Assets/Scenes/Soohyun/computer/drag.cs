@@ -14,8 +14,10 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     private RectTransform cloneRect;
     private CanvasGroup cloneCanvasGroup;
     bool canMake = true;
+    BoxCollider2D col;
     void Awake()
     {
+        col = GetComponent<BoxCollider2D>();
         if (parentCanvas == null)
         {
             parentCanvas = GetComponentInParent<Canvas>();
@@ -75,7 +77,6 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             Debug.Log(hit.collider);
             transform.SetParent(hit.collider.transform);
             hit.collider.gameObject.layer = LayerMask.NameToLayer("Parent");
-            //Debug.Log(hit.collider+"ºÎ¸ðµÊ");
 
 
             if (transform.parent.gameObject.layer == LayerMask.NameToLayer("Parent"))

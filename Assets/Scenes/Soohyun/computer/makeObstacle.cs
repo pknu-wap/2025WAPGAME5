@@ -40,15 +40,11 @@ public class makeObstacle : MonoBehaviour
         {
             if (level==1)
             {
-                List<int> where=new List<int>() { 1, 2, 3, 4, 12,13,14,15,17,18,19,20,22,23,24,25};
-                foreach(int i in where)
-                    SpawnObstacle(i);
-                SpawnGoal(5);
-                noObstacle = false;
+                StartCoroutine(WaitAndRun(new List<int>() { 1, 2, 3, 4, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25 }));
             }
             else if (level==2)
             {
-                StartCoroutine(WaitAndRun());
+                StartCoroutine(WaitAndRun(new List<int>() { 1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 22, 23, 24, 25 }));
             }
             else if (level==3)
             {
@@ -60,14 +56,15 @@ public class makeObstacle : MonoBehaviour
             }
         }
     }
-    IEnumerator WaitAndRun()
+    IEnumerator WaitAndRun(List<int> pos)
     {
-        yield return new WaitForSeconds(0.5f); 
-        List<int> where = new List<int>() { 1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 22, 23, 24, 25 };
+        //yield return new WaitForSeconds(0.5f);
+        List<int> where = pos;//new List<int>() { 1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 22, 23, 24, 25 };
         foreach (int i in where)
             SpawnObstacle(i);
         SpawnGoal(5);
         noObstacle = false;
+        yield return null;
     }
     void SpawnObstacle(int x)
     {

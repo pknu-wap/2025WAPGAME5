@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 3898841132652794647}
   m_Layer: 0
   m_Name: goal
-  m_TagString: obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
