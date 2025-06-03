@@ -10,7 +10,10 @@ public class NPCpunch : MonoBehaviour
 
     public float punchCooldown = 1.2f;    
     private float lastPunchTime = -Mathf.Infinity; 
-    public TextMeshProUGUI cooldownText;   
+    public TextMeshProUGUI cooldownText;
+
+    public AudioSource audioSource;
+    public AudioClip PunchSound;
 
     void Update()
     {
@@ -39,7 +42,7 @@ public class NPCpunch : MonoBehaviour
                     Vector3 launchDirection = Camera.main.transform.forward * launchForceForward + Vector3.up * launchForceUp;
 
                     rb.AddForce(launchDirection, ForceMode.Impulse);
-
+                    audioSource.PlayOneShot(PunchSound);
                     lastPunchTime = Time.time;
                 }
             }
