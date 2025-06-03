@@ -40,7 +40,7 @@ public class Quiz_judgement : MonoBehaviour
         {
             Instantiate(CorrectPrefab, spawnParent);
             Debug.Log("Á¤´ä!");
-
+            timer.Correct();
             int currentCorrect = PlayerPrefs.GetInt("CorrectHistory", 0);
             PlayerPrefs.SetInt("CorrectHistory", currentCorrect + 1);
         }
