@@ -23,6 +23,11 @@ public class StageManager : MonoBehaviour
     public GameObject draw2;
     public GameObject draw3;
     public GameObject blackFlashImage;
+
+    public AudioClip Sound321;
+    public AudioClip StartSound;
+    public AudioSource audioSource;
+
     private bool hasFlippedScreen = false;
 
     private bool gameStarted = false;
@@ -64,6 +69,16 @@ public class StageManager : MonoBehaviour
             StartCoroutine(PlayCombinedEffect());
             hasFlippedScreen = true;
         }
+    }
+    void Play321()
+    {
+        if (Sound321 != null && audioSource != null)
+            audioSource.PlayOneShot(Sound321);
+    }
+    void Playstart()
+    {
+        if (StartSound != null && audioSource != null)
+            audioSource.PlayOneShot(StartSound);
     }
 
     IEnumerator PlayCombinedEffect()
@@ -112,11 +127,13 @@ public class StageManager : MonoBehaviour
         while (countdown > 0)
         {
             countdownText.text = countdown.ToString();
+            Play321();
             yield return new WaitForSeconds(1f);
             countdown--;
         }
 
         countdownText.text = "START!";
+        Playstart();
         yield return new WaitForSeconds(0.5f);
         countdownText.gameObject.SetActive(false);
 

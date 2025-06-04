@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -8,6 +9,11 @@ public class EggController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isFalling = false;
     private bool isStopped = false;
+
+    public AudioClip chap;
+    public AudioSource audio1Source;
+
+    public AudioSource audio2Source; // eggfalling
 
     public DistanceMeter distanceMeter;
 
@@ -22,6 +28,7 @@ public class EggController : MonoBehaviour
 
     public void StartFalling()
     {
+        audio2Source.Play();
         isFalling = true;
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
@@ -40,6 +47,11 @@ public class EggController : MonoBehaviour
         isStopped = false; 
 
         rb.isKinematic = false;
+    }
+    void Eggchap()
+    {
+        if (chap != null && audio1Source != null)
+            audio1Source.PlayOneShot(chap);
     }
 
     public void StopEgg()
@@ -73,6 +85,9 @@ public class EggController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Eggchap();
+            audio2Source.Stop();
+
             rb.velocity = Vector2.zero;
             rb.bodyType = RigidbodyType2D.Static;
             isStopped = true;
