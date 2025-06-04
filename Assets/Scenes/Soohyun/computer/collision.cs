@@ -24,7 +24,6 @@ public class collision : MonoBehaviour
             connect.stop = true;
             restart.SetActive(true);
             //score -= 10;
-            Debug.Log(score);
             connect.moving = false;
         }
     }

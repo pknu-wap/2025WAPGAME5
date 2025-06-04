@@ -8,7 +8,6 @@ public class makeObstacle : MonoBehaviour
 {
     public GameObject obstacle;
     public GameObject goal;
-    public TextMeshProUGUI timer;
     public List<GameObject> spawnedobstacles = new List<GameObject>();
     bool noObstacle = true;
     public static bool clear = false;
@@ -23,7 +22,6 @@ public class makeObstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer.text = $"{level}/2";
         if (clear)
         {
             Debug.Log("클리어함");

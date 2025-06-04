@@ -26,7 +26,7 @@ public class connect : MonoBehaviour
     public static bool stop = false;
     public static bool moving = false;
     public bool result = false;
-    public List<Transform> children = new List<Transform>();
+    public static List<Transform> children = new List<Transform>();
     public Camera camera1;
     public Camera camera2;
     public RawImage rawImageUI;
@@ -60,8 +60,6 @@ public class connect : MonoBehaviour
             rawImageUI.enabled = false;
             button2.SetActive(false);
 
-            //transform.position = new Vector3(-20, 1.1f, -20);
-            //transform.rotation = Quaternion.identity;
 
             children.Clear();
             foreach (Transform child in start.transform.GetComponentsInChildren<Transform>())
@@ -90,13 +88,17 @@ public class connect : MonoBehaviour
 
         }
         //실패했을때 
-        if (result)//Input.GetKeyDown(KeyCode.Space) && 
+        if (result)
         {
             result = false;
             restart.SetActive(true);
             button11.SetActive(true);
             if (!makeObstacle.clear)
+            {
                 collision.score -= 10;
+                Debug.Log(collision.score);
+
+            }
             Debug.Log(collision.score);
         }
 
@@ -148,13 +150,11 @@ public class connect : MonoBehaviour
                     }
                     float angle = rotate.y - robotAngle;
                     if (angle < 0)
-                        angle += 360;
-                    Debug.Log(angle);   
+                        angle += 360; 
                     if (angle > 90)
                     {
                         running = false;
                         robot.transform.eulerAngles =rotate+ new Vector3(0, -90, 0);
-                        Debug.Log(robot.transform.eulerAngles);
 
                         moving = false;
                     }
@@ -177,12 +177,10 @@ public class connect : MonoBehaviour
                     float angle = robotAngle - rotate.y;
                     if (angle < 0)
                         angle += 360;
-                    Debug.Log(angle);
                     if (angle > 90)
                     {
                         running = false;
                         robot.transform.eulerAngles = rotate + new Vector3(0, 90, 0);
-                        Debug.Log(robot.transform.eulerAngles);
 
                         moving = false;
                     }

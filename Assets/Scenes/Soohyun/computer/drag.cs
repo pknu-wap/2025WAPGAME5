@@ -1,3 +1,4 @@
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     private CanvasGroup cloneCanvasGroup;
     bool canMake = true;
     BoxCollider2D col;
+
     void Awake()
     {
         col = GetComponent<BoxCollider2D>();
@@ -41,6 +43,12 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             cloneCanvasGroup.blocksRaycasts = true;
         }
         transform.SetAsLastSibling();
+
+
+
+        col.enabled = false;
+
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -52,11 +60,11 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     {
         canvasGroup.blocksRaycasts = true;
 
-        // 레이어 필터 설정
+        
         int layerMask = LayerMask.GetMask("Parentable");
         int layerMask2 = LayerMask.GetMask("trash");
 
-        // 마우스 위치 → 월드 위치
+        
         Vector3 mousePos = Input.mousePosition;
         float z = Camera.main.WorldToScreenPoint(transform.position).z;
         mousePos.z = z;
@@ -72,7 +80,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         }
 
         //맞았으면 연결
-        if (hit.collider != null && hit.collider.gameObject != gameObject)
+        if (hit.collider != null && hit.collider.gameObject != gameObject&& !hit.collider.transform.IsChildOf(transform))
         {
             Debug.Log(hit.collider);
             transform.SetParent(hit.collider.transform);
@@ -102,5 +110,6 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             }
 
         }
+        col.enabled = true;
     }
 }
