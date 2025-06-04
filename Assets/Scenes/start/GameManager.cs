@@ -35,17 +35,24 @@ public class GameManager : MonoBehaviour
 
     public GameObject pausePanel;
     private bool isPaused = false;
+    private bool isSeeking = false;
 
     public ArrivalVideoController arrivalVideoController;
     void Start()
     {
         if (videoPlayer != null)
         {
-            videoPlayer.isLooping = false; // 기본 루프 끄기
+            videoPlayer.isLooping = false;
+            videoPlayer.loopPointReached += OnLoopPointReached;
             videoPlayer.Play();
         }
     }
 
+    private void OnLoopPointReached(VideoPlayer vp)
+    {
+        // 비디오가 끝났을 때 강제로 원하는 위치로 이동 후 재생
+        StartCoroutine(SeekAndPlay(loopStartTime));
+    }
     private void Awake()
     {// 씬 넘어가도 유지
         if (Instance == null)
@@ -61,58 +68,30 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (videoPlayer != null)
-        {
-            if (videoPlayer.isPrepared && videoPlayer.time >= loopEndTime)
-            {
-                hasLooped = true;
-                videoPlayer.Pause(); // 먼저 멈추고
-                videoPlayer.time = loopStartTime;
-                videoPlayer.Play();
-            }
-
-            if (!videoPlayer.isPlaying && hasLooped)
-            {
-                videoPlayer.time = loopStartTime;
-                videoPlayer.Play();
-            }
-        }
-
-        /*if (Input.GetKeyDown(KeyCode.F))
-        {
-            //currentEmotion++;
-            
-            if (currentEmotion >= 3) // 감정 개수
-            {
-                currentEmotion = 0;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            //currentMission++;
-
-            if (currentMission >= 4) // 미션 수 넣기
-            {
-                currentMission = 0;
-            }
-        }*/
-
-        //SceneManager
         if (currentScene != lastScene)
-            {
-                UpdateScene();
-                lastScene = currentScene;
-            }
+        {
+            UpdateScene();
+            lastScene = currentScene;
+        }
 
-        // esc
-        if (Input.GetKeyDown(KeyCode.Escape)&&!isPaused)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
         {
             isPaused = true;
             pausePanel.SetActive(true);
             AudioListener.pause = true;
-            Time.timeScale = 0f; // 게임 일시정지
+            Time.timeScale = 0f;
         }
+    }
+    private IEnumerator SeekAndPlay(double time)
+    {
+        isSeeking = true;
+        videoPlayer.Pause();
+        videoPlayer.time = time;
+
+        yield return new WaitForSecondsRealtime(0.1f); // 시킹 반영 대기
+
+        videoPlayer.Play();
+        isSeeking = false;
     }
 
     public void JudgeLateness()
