@@ -15,9 +15,12 @@ public class MathGame : MonoBehaviour
     public TextMeshProUGUI wrongText;
     public TextMeshProUGUI resultText;
 
+    public AudioClip Sound321;
+    public AudioClip StartSound;
     public AudioClip correctSound;
     public AudioClip wrongSound;
     public AudioSource audioSource;
+
 
     private float startTime;
     private bool gameStarted = false;
@@ -54,6 +57,16 @@ public class MathGame : MonoBehaviour
     {
         if (wrongSound != null && audioSource != null)
             audioSource.PlayOneShot(wrongSound);
+    }
+    void Play321()
+    {
+        if (Sound321 != null && audioSource != null)
+            audioSource.PlayOneShot(Sound321);
+    }
+    void Playstart()
+    {
+        if (StartSound != null && audioSource != null)
+            audioSource.PlayOneShot(StartSound);
     }
 
     void CreateQuestions()
@@ -101,12 +114,16 @@ void ShuffleList(List<Question> list)
     IEnumerator CountdownAndStart()
     {
         countdownText.text = "3";
+        Play321();
         yield return new WaitForSeconds(1f);
         countdownText.text = "2";
+        Play321();
         yield return new WaitForSeconds(1f);
         countdownText.text = "1";
+        Play321();
         yield return new WaitForSeconds(1f);
         countdownText.text = "Start!";
+        Playstart();
         yield return new WaitForSeconds(1f);
         countdownText.gameObject.SetActive(false);
 

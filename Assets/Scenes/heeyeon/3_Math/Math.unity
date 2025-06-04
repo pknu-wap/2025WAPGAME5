@@ -520,6 +520,8 @@ MonoBehaviour:
   progressText: {fileID: 636920770}
   wrongText: {fileID: 1259105182}
   resultText: {fileID: 1368502577}
+  Sound321: {fileID: 8300000, guid: 4a067aa1c9c963449b6e738322a8ff5e, type: 3}
+  StartSound: {fileID: 8300000, guid: 320d2d665478cf845be244d5c102f996, type: 3}
   correctSound: {fileID: 8300000, guid: fada51d2a6f10134d94a81887a554551, type: 3}
   wrongSound: {fileID: 8300000, guid: 99d5c0517b1c86f4a9fd1f1683ad10b5, type: 3}
   audioSource: {fileID: 508640971}
