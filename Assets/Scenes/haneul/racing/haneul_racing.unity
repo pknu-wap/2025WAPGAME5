@@ -3661,6 +3661,7 @@ MonoBehaviour:
   speedBoostAmount: 150
   accelerationBoostAmount: 45
   duration: 0.5
+  emotionToTrigger: -1
 --- !u!114 &82703969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29714,7 +29715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &606451243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41979,6 +41980,7 @@ MonoBehaviour:
   speedBoostAmount: 150
   accelerationBoostAmount: 45
   duration: 0.5
+  emotionToTrigger: -1
 --- !u!114 &882342665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48452,6 +48454,7 @@ MonoBehaviour:
   speedBoostAmount: 30
   accelerationBoostAmount: 0
   duration: 2
+  emotionToTrigger: -1
 --- !u!114 &1015351035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83027,7 +83030,7 @@ MonoBehaviour:
   carCamera: {fileID: 1351983834}
   point: {fileID: 2197940629802891389}
   CarKEY: {fileID: 1966855456}
-  Potal: {fileID: 0}
+  Potal: {fileID: 606451242}
   isRide: 0
   frontLeftWheel: {fileID: 5706859339383698310}
   frontRightWheel: {fileID: 6269203419545603018}
@@ -99607,6 +99610,7 @@ MonoBehaviour:
   speedBoostAmount: 30
   accelerationBoostAmount: 0
   duration: 2
+  emotionToTrigger: -1
 --- !u!65 &8353040614940479500
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -99693,6 +99697,7 @@ MonoBehaviour:
   speedBoostAmount: 30
   accelerationBoostAmount: 10
   duration: 3
+  emotionToTrigger: -1
 --- !u!65 &8453361798042916612
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -99828,6 +99833,7 @@ MonoBehaviour:
   speedBoostAmount: 150
   accelerationBoostAmount: 45
   duration: 0.5
+  emotionToTrigger: -1
 --- !u!65 &8656232705733508590
 BoxCollider:
   m_ObjectHideFlags: 0

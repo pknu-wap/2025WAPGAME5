@@ -16,7 +16,7 @@ public class VisionPotion : MonoBehaviour
 
     private IEnumerator ActivateBlindness()
     {
-
+        FindObjectOfType<Emotion>()?.ChangeEmotion(2);
         if (blindImage != null)
             blindImage.SetActive(true);
 

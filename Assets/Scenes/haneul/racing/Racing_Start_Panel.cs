@@ -9,6 +9,7 @@ public class Racing_Start_Panel : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0f;
+        GameManager.isPausingInGame = true;
     }
 
     void Update()
@@ -17,6 +18,7 @@ public class Racing_Start_Panel : MonoBehaviour
         {
             gameObject.SetActive(false);
             Time.timeScale = 1f;
+            GameManager.isPausingInGame = false;
         }
 
     }
