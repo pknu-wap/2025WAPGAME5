@@ -35,10 +35,15 @@ public class GameManager : MonoBehaviour
 
     public GameObject pausePanel;
     private bool isPaused = false;
+
+    public ArrivalVideoController arrivalVideoController;
     void Start()
     {
-        videoPlayer.isLooping = false; // 기본 루프 끄기
-        videoPlayer.Play();
+        if (videoPlayer != null)
+        {
+            videoPlayer.isLooping = false; // 기본 루프 끄기
+            videoPlayer.Play();
+        }
     }
 
     private void Awake()
@@ -118,16 +123,14 @@ public class GameManager : MonoBehaviour
         if (total > 120f)
         {
             Debug.Log("지각입니다!");
-            latePanel.SetActive(true);
             PlayerPrefs.SetInt("IsLate", 1);
-            Invoke("HideLatePanel", 2f); 
+            arrivalVideoController.ShowArrivalVideo(true); // 지각 영상 재생
         }
         else
         {
             Debug.Log("정상 등교!");
-            normalPanel.SetActive(true);
             PlayerPrefs.SetInt("IsLate", 0);
-            Invoke("HideNormalPanel", 2f); 
+            arrivalVideoController.ShowArrivalVideo(false); // 정상 영상 재생
         }
     }
 
