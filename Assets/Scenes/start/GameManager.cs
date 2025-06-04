@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
@@ -20,9 +17,8 @@ public class GameManager : MonoBehaviour
     public static int currentScene= 0;
 
     public VideoPlayer videoPlayer;
-    public double loopStartTime = 2.22;  // 반복 시작 지점 (초)
-    public double loopEndTime = 5.0;    // 반복 끝 지점 (초)
-    private bool hasLooped = false;
+    public double loopStartTime = 2.22;  // 반복 시작시점
+    public double loopEndTime = 5.0;    // 반복 끝 지점
 
     public Canvas canvas;
 
@@ -50,7 +46,6 @@ public class GameManager : MonoBehaviour
 
     private void OnLoopPointReached(VideoPlayer vp)
     {
-        // 비디오가 끝났을 때 강제로 원하는 위치로 이동 후 재생
         StartCoroutine(SeekAndPlay(loopStartTime));
     }
     private void Awake()
@@ -88,7 +83,7 @@ public class GameManager : MonoBehaviour
         videoPlayer.Pause();
         videoPlayer.time = time;
 
-        yield return new WaitForSecondsRealtime(0.1f); // 시킹 반영 대기
+        yield return new WaitForSecondsRealtime(0.1f);
 
         videoPlayer.Play();
         isSeeking = false;
@@ -103,24 +98,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("지각입니다!");
             PlayerPrefs.SetInt("IsLate", 1);
-            arrivalVideoController.ShowArrivalVideo(true); // 지각 영상 재생
+            arrivalVideoController.ShowArrivalVideo(true); // 지각 영상
         }
         else
         {
             Debug.Log("정상 등교!");
             PlayerPrefs.SetInt("IsLate", 0);
-            arrivalVideoController.ShowArrivalVideo(false); // 정상 영상 재생
+            arrivalVideoController.ShowArrivalVideo(false); // 정상 영상
         }
-    }
-
-    void HideLatePanel()
-    {
-        latePanel.SetActive(false);
-    }
-
-    void HideNormalPanel()
-    {
-        normalPanel.SetActive(false);
     }
     public void Continue()
     {
