@@ -33,6 +33,11 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
     private bool isSeeking = false;
 
+    public AudioClip NORMALSound;
+    public AudioClip LATESound;
+    public AudioSource LATESource;
+
+
     public ArrivalVideoController arrivalVideoController;
     void Start()
     {
@@ -88,6 +93,21 @@ public class GameManager : MonoBehaviour
         videoPlayer.Play();
         isSeeking = false;
     }
+    void NORMALS()
+    {
+        if (NORMALSound != null && LATESource != null)
+        {
+            LATESource.PlayOneShot(NORMALSound);
+        }
+            
+    }
+    void LATES()
+    {
+        if (LATESound != null && LATESource != null)
+        {
+            LATESource.PlayOneShot(LATESound);
+        }
+    }
 
     public void JudgeLateness()
     {
@@ -97,12 +117,14 @@ public class GameManager : MonoBehaviour
         if (total > 120f)
         {
             Debug.Log("지각입니다!");
+            LATES();
             PlayerPrefs.SetInt("IsLate", 1);
             arrivalVideoController.ShowArrivalVideo(true); // 지각 영상
         }
         else
         {
             Debug.Log("정상 등교!");
+            NORMALS();
             PlayerPrefs.SetInt("IsLate", 0);
             arrivalVideoController.ShowArrivalVideo(false); // 정상 영상
         }
