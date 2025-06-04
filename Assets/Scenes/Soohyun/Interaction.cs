@@ -20,6 +20,7 @@ public class Interaction : MonoBehaviour
     private Rigidbody rb;
 
     public static bool isGameEnded = false;
+
     void Start()
     {
         Slider1.SetActive(false);
@@ -41,12 +42,16 @@ public class Interaction : MonoBehaviour
             {
                 On = true;
 
-                if (Input.GetKey("f"))
+                if (Input.GetKeyDown("f"))
                 {
-                    gameStart = true;
-                    Player.transform.position = new Vector3(-0.8f, 3.828f, -46.825f);
+                    Debug.Log("F pressed");
 
+                    gameStart = true;
                     playerScript.SetDontMove(true);
+                    rb.velocity = Vector3.zero;
+
+                    rb.MovePosition(new Vector3(-0.8f, 3.828f, -46.825f));
+
                     repeat = false;
                     Slider1.SetActive(On);
                     Slider2.SetActive(On);
@@ -71,10 +76,11 @@ public class Interaction : MonoBehaviour
         Debug.Log("¿òÁ÷¿©");
         gameStart = false;
         repeat = false;
-        Player.transform.position = new Vector3(-2.47f, 2.71f, -51.82f);
         rb.velocity = Vector3.zero;
+
+        rb.MovePosition(new Vector3(-2.47f, 2.71f, -51.82f));
         playerScript.SetDontMove(false);
-        
+
         Slider1.SetActive(false);
         Slider2.SetActive(false);
         SliderDrink.SetActive(false);
