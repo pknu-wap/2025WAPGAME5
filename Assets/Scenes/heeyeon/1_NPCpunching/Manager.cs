@@ -17,6 +17,7 @@ public class Manager : MonoBehaviour
         Cursor.visible = false;
 
         Time.timeScale = 0;
+        GameManager.isPausingInGame = true;
         startUI.SetActive(true);
         endUI.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
@@ -26,6 +27,7 @@ public class Manager : MonoBehaviour
     {
         if (!isPlaying && Input.GetKeyDown(KeyCode.Space))
         {
+            GameManager.isPausingInGame = false;
             StartGame();
             PunchCoolDown.SetActive(true);
         }
