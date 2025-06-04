@@ -81,9 +81,4 @@ public class Gauge : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        SliderEat.gameObject.SetActive(false);
-        SliderDrink.gameObject.SetActive(false);
-    }
 }

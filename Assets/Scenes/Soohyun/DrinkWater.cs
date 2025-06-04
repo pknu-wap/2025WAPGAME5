@@ -5,6 +5,7 @@ public class DrinkWater : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static bool isDrinking = false;
+    public AudioSource audioSource;
     // Update is called once per frame
     private void Update()
     {
@@ -16,6 +17,7 @@ public class DrinkWater : MonoBehaviour
             Debug.Log(hit.transform.name);
             if (!isDrinking && Interaction.gameStart)
             {
+                audioSource.Play();
                 Debug.Log("²Ü²© ²Ü²©");
                 isDrinking = true;
             }
