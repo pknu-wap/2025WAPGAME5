@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class GameManager : MonoBehaviour
     public static int lastScene = 0;
     public static int currentScene= 0;
 
+    public VideoPlayer videoPlayer;
+    public double loopStartTime = 2.22;  // 반복 시작 지점 (초)
+    public double loopEndTime = 5.0;    // 반복 끝 지점 (초)
+    private bool hasLooped = false;
+
     public Canvas canvas;
 
     public float breakfastTime;
@@ -29,6 +35,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject pausePanel;
     private bool isPaused = false;
+    void Start()
+    {
+        videoPlayer.isLooping = false; // 기본 루프 끄기
+        videoPlayer.Play();
+    }
 
     private void Awake()
     {// 씬 넘어가도 유지
@@ -45,7 +56,23 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if (videoPlayer != null)
+        {
+            if (videoPlayer.isPrepared && videoPlayer.time >= loopEndTime)
+            {
+                hasLooped = true;
+                videoPlayer.Pause(); // 먼저 멈추고
+                videoPlayer.time = loopStartTime;
+                videoPlayer.Play();
+            }
+
+            if (!videoPlayer.isPlaying && hasLooped)
+            {
+                videoPlayer.time = loopStartTime;
+                videoPlayer.Play();
+            }
+        }
+
         /*if (Input.GetKeyDown(KeyCode.F))
         {
             //currentEmotion++;
@@ -67,7 +94,7 @@ public class GameManager : MonoBehaviour
         }*/
 
         //SceneManager
-        if(currentScene != lastScene)
+        if (currentScene != lastScene)
             {
                 UpdateScene();
                 lastScene = currentScene;
