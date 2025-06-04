@@ -145,7 +145,7 @@ public class FinalGradeCalculator : MonoBehaviour
         resultText4.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
 
-        resultText5.text = $"최종 점수: {finalAverage:F1}점";
+        resultText5.text = $"최종: {finalAverage:F1}점";
         audioSource.PlayOneShot(textAppearSound);
         resultText5.color = Color.red;
 
