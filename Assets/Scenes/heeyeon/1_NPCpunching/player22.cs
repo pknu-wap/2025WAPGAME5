@@ -7,6 +7,9 @@ public class Player22 : MonoBehaviour
     public float moveSpeed = 5f;
     public bool isCrash = false;
 
+    public AudioClip spinSound;
+    public AudioSource spinSource;
+
     private bool isPlaying = false;
     private bool isPaused = false;
     private bool isRotating = false;
@@ -37,6 +40,11 @@ public class Player22 : MonoBehaviour
             StartCoroutine(RotateAroundPlayer());
         }
     }
+    void Playspin()
+    {
+        if (spinSound != null && spinSource != null)
+            spinSource.PlayOneShot(spinSound);
+    }
 
     IEnumerator RotateAroundPlayer()
     {
@@ -48,6 +56,7 @@ public class Player22 : MonoBehaviour
         float elapsed = 0f;
         float startY = transform.eulerAngles.y;
         FindObjectOfType<Emotion>()?.ChangeEmotion(2); //³ª»Ý
+        Playspin();
 
         while (elapsed < duration)
         {

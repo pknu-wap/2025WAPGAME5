@@ -5,11 +5,12 @@ using System.Collections;
 public class Manager : MonoBehaviour
 {
     public GameObject startUI, endUI;
-    public Texture2D fistCursor;
     public bool isPlaying = false;
     private float startTime;
     private GameObject player;
     public GameObject PunchCoolDown;
+
+    public AudioSource bgmSource;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class Manager : MonoBehaviour
         if (!isPlaying && Input.GetKeyDown(KeyCode.Space))
         {
             StartGame();
+            bgmSource.Play();
             PunchCoolDown.SetActive(true);
         }
     }
@@ -38,8 +40,6 @@ public class Manager : MonoBehaviour
         Time.timeScale = 1;
         isPlaying = true;
         startTime = Time.time;
-
-        Cursor.SetCursor(fistCursor, Vector2.zero, CursorMode.Auto);
 
         Cursor.lockState = CursorLockMode.Locked; // Ä¿¼­ Àá±Ý
         Cursor.visible = false;                   // Ä¿¼­ ¼û±è
@@ -59,6 +59,8 @@ public class Manager : MonoBehaviour
             float playTime = Time.time - startTime;
 
             Debug.Log($"3´Ü°è °ñ¸ñ±æ:{playTime:F2}ÃÊ");
+
+            bgmSource.Stop();
 
             endUI.SetActive(true);
             if (player != null)
