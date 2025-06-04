@@ -20,7 +20,6 @@ public class Manager : MonoBehaviour
         Time.timeScale = 0;
         startUI.SetActive(true);
         endUI.SetActive(false);
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()

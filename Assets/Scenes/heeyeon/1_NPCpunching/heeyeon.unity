@@ -32835,6 +32835,8 @@ MonoBehaviour:
   isPlaying: 0
   PunchCoolDown: {fileID: 0}
   bgmSource: {fileID: 0}
+  player1: {fileID: 0}
+  desiredEulerAngles: {x: 0, y: 90, z: 0}
 --- !u!4 &1254648931
 Transform:
   m_ObjectHideFlags: 0
@@ -36130,6 +36132,8 @@ MonoBehaviour:
   isPlaying: 0
   PunchCoolDown: {fileID: 1358429061}
   bgmSource: {fileID: 1754114836}
+  player1: {fileID: 3688848455155858297}
+  desiredEulerAngles: {x: 0, y: 90, z: 0}
 --- !u!4 &1380084959
 Transform:
   m_ObjectHideFlags: 0
@@ -45982,10 +45986,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 55cf694b35e754a4f98cdaa0157b56f2, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.41
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
