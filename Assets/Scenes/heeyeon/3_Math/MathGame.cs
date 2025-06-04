@@ -184,12 +184,12 @@ void ShowNextQuestion()
         float score = Mathf.Clamp(t * 100f, 0f, 100f);
         int finalScore = Mathf.RoundToInt(score);
 
-        Debug.Log("수학 문제 풀이 시간: " + totalTime + "초");
+        Debug.Log("수학 문제 풀이 시간: " + totalTime.ToString("F2") + "초");
 
         gameStarted = false;
         questionText.gameObject.SetActive(false);
 
-        resultText.text = $"게임 끝!\n{finalScore:F2}점 입니다.";
+        resultText.text = $"게임 끝!\n{finalScore:F0}점 입니다.";
         resultText.gameObject.SetActive(true);
 
         Debug.Log("수학 점수 저장됨: " + finalScore);
