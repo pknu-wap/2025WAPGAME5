@@ -5,6 +5,7 @@ public class Interaction : MonoBehaviour
 {
     public static bool gameStart = false;
     public static bool repeat = true;
+    bool explain = false;
 
     public GameObject Player;
     public GameObject Table;
@@ -12,6 +13,8 @@ public class Interaction : MonoBehaviour
     public GameObject Slider1;
     public GameObject Slider2;
     public GameObject SliderDrink;
+    public GameObject Text;
+    public GameObject Point;
 
     float Dist;
     bool On = false;
@@ -33,6 +36,25 @@ public class Interaction : MonoBehaviour
 
     void Update()
     {
+
+
+
+        if (explain)
+        {
+            Text.SetActive(true);
+            if (Input.GetKeyDown("space"))
+            {
+                gameStart = true;
+                Text.SetActive(false);
+                explain = false;
+
+                Slider1.SetActive(On);
+                Slider2.SetActive(On);
+                SliderDrink.SetActive(On);
+
+            }
+        }
+
         if (!gameStart && repeat)
         {
             Button_on();
@@ -46,16 +68,14 @@ public class Interaction : MonoBehaviour
                 {
                     Debug.Log("F pressed");
 
-                    gameStart = true;
+                    explain = true;
                     playerScript.SetDontMove(true);
                     rb.velocity = Vector3.zero;
+                    Point.SetActive(false);
 
                     rb.MovePosition(new Vector3(-0.8f, 3.828f, -46.825f));
 
                     repeat = false;
-                    Slider1.SetActive(On);
-                    Slider2.SetActive(On);
-                    SliderDrink.SetActive(On);
                     Button.SetActive(!On);
                 }
             }
