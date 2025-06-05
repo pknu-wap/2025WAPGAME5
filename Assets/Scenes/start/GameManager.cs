@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject pausePanel;
     private bool isPaused = false;
-    private bool isSeeking = false;
+
+    public static bool isPausingInGame = false;
 
     public AudioClip NORMALSound;
     public AudioClip LATESound;
@@ -84,14 +85,12 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator SeekAndPlay(double time)
     {
-        isSeeking = true;
         videoPlayer.Pause();
         videoPlayer.time = time;
 
         yield return new WaitForSecondsRealtime(0.1f);
 
         videoPlayer.Play();
-        isSeeking = false;
     }
     void NORMALS()
     {
@@ -136,7 +135,10 @@ public class GameManager : MonoBehaviour
             Debug.Log("이어하기");
             pausePanel.SetActive(false);
             isPaused = false;
-            Time.timeScale = 1f;
+            if (!isPausingInGame)
+            {
+                Time.timeScale = 1f;
+            }
             AudioListener.pause = false;
         }
     }

@@ -32958,8 +32958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddf90c76ebbc9240b4e95f5ec81c5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startUI: {fileID: 1071333724}
-  endUI: {fileID: 403946368}
+  startUI: {fileID: 0}
+  endUI: {fileID: 0}
   isPlaying: 0
   PunchCoolDown: {fileID: 0}
   bgmSource: {fileID: 0}
@@ -53650,10 +53650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86dc1b9e8ebb29a4bb646dd9bad92ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  isCrash: 0
-  spinSound: {fileID: 8300000, guid: cdc579b935467e84b92abbcc90fac295, type: 3}
-  spinSource: {fileID: 4833456876180610951}
 --- !u!54 &2007313473
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -56664,7 +56660,7 @@ Transform:
   m_GameObject: {fileID: 2097343399}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5257, y: 1.2332, z: -16.8144}
+  m_LocalPosition: {x: 0.52573013, y: 1.2331848, z: -16.814392}
   m_LocalScale: {x: 0.28835014, y: 2.5555634, z: 13.357339}
   m_ConstrainProportionsScale: 0
   m_Children: []

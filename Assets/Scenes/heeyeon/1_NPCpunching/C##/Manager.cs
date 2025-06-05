@@ -17,7 +17,7 @@ public class Manager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
         GameManager.isPausingInGame = true;
         startUI.SetActive(true);
         endUI.SetActive(false);
