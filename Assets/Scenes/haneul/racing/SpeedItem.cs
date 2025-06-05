@@ -9,14 +9,33 @@ public class SpeedItem : MonoBehaviour
     public float accelerationBoostAmount = 10f;
     public float duration = 3f;
 
+    [Header("감정 변화 설정")]
+    public EmotionType emotionToTrigger = EmotionType.normal;
+
+    public enum EmotionType
+    {
+        normal = 0,
+        Happy = 1,
+        Angry = 2
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Car"))
         {
-            Debug.Log("충돌");
-            Car_to_school car = other.GetComponent<Car_to_school>();
+            Debug.Log("속도 아이템 충돌");
 
-            car.ApplySpeedBoost(speedBoostAmount, accelerationBoostAmount, duration);
+            Car_to_school car = other.GetComponent<Car_to_school>();
+            if (car != null)
+            {
+                car.ApplySpeedBoost(speedBoostAmount, accelerationBoostAmount, duration);
+            }
+
+            // 감정 변경 처리
+            if (emotionToTrigger != EmotionType.normal)
+            {
+                FindObjectOfType<Emotion>()?.ChangeEmotion((int)emotionToTrigger);
+            }
 
             Destroy(gameObject);
         }

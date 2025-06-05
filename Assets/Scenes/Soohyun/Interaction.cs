@@ -1,4 +1,3 @@
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,12 +5,9 @@ public class Interaction : MonoBehaviour
 {
     public static bool gameStart = false;
     public static bool repeat = true;
-    public static bool explain = false;
 
     public GameObject Player;
-    public GameObject Text;
     public GameObject Table;
-    public GameObject Point;
     public GameObject Button;
     public GameObject Slider1;
     public GameObject Slider2;
@@ -24,6 +20,7 @@ public class Interaction : MonoBehaviour
     private Rigidbody rb;
 
     public static bool isGameEnded = false;
+
     void Start()
     {
         Slider1.SetActive(false);
@@ -36,26 +33,6 @@ public class Interaction : MonoBehaviour
 
     void Update()
     {
-        if (explain)
-        {
-            playerScript.SetDontMove(true);
-            Text.SetActive(true);
-            if (Input.GetKeyDown("space"))
-            {
-                gameStart = true;
-                Text.SetActive(false);
-                explain = false;
-
-            }
-        }
-        if (gameStart)
-        {
-
-            playerScript.SetDontMove(true);
-            Slider1.SetActive(On);
-            Slider2.SetActive(On);
-            SliderDrink.SetActive(On);
-        }
         if (!gameStart && repeat)
         {
             Button_on();
@@ -65,13 +42,20 @@ public class Interaction : MonoBehaviour
             {
                 On = true;
 
-                if (Input.GetKey("f"))
+                if (Input.GetKeyDown("f"))
                 {
-                    explain=true;
-                    Player.transform.position = new Vector3(-0.8f, 3.828f, -46.825f);
+                    Debug.Log("F pressed");
+
+                    gameStart = true;
+                    playerScript.SetDontMove(true);
+                    rb.velocity = Vector3.zero;
+
+                    rb.MovePosition(new Vector3(-0.8f, 3.828f, -46.825f));
 
                     repeat = false;
-                    Point.SetActive(false);
+                    Slider1.SetActive(On);
+                    Slider2.SetActive(On);
+                    SliderDrink.SetActive(On);
                     Button.SetActive(!On);
                 }
             }
@@ -81,6 +65,7 @@ public class Interaction : MonoBehaviour
             }
         }
     }
+
     void Button_on()
     {
         Button.SetActive(On);
@@ -91,10 +76,11 @@ public class Interaction : MonoBehaviour
         Debug.Log("¿òÁ÷¿©");
         gameStart = false;
         repeat = false;
-        Player.transform.position = new Vector3(-2.47f, 2.71f, -51.82f);
         rb.velocity = Vector3.zero;
+
+        rb.MovePosition(new Vector3(-2.47f, 2.71f, -51.82f));
         playerScript.SetDontMove(false);
-        
+
         Slider1.SetActive(false);
         Slider2.SetActive(false);
         SliderDrink.SetActive(false);

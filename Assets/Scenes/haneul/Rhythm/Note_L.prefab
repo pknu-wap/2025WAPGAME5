@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   x_Pos: -4
+  missObjectPrefab: {fileID: 1563855811568565075, guid: 31ba77167479c8d4eb3c7c113c6f1627, type: 3}
 --- !u!61 &-5660263599612536797
 BoxCollider2D:
   m_ObjectHideFlags: 0

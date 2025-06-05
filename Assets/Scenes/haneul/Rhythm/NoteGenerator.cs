@@ -115,6 +115,7 @@ public class NoteGenerator : MonoBehaviour
 
     IEnumerator PlaySong1()
     {
+        Rhythm_Judgement.Rhythm_Score = 100;
         bpm = 175f;
         float beat = 60f / bpm;
         float timeUnit = beat / 4f;
@@ -177,8 +178,8 @@ public class NoteGenerator : MonoBehaviour
         Spectrum.SetActive(false);
         Debug.Log(Rhythm_Judgement.Rhythm_Score);
 
-        Debug.Log("À½¾Ç Á¡¼ö ÀúÀåµÊ: " + Rhythm_Judgement.Rhythm_Score /10);
-        PlayerPrefs.SetInt("Score_Music", Rhythm_Judgement.Rhythm_Score / 10);
+        Debug.Log("À½¾Ç Á¡¼ö ÀúÀåµÊ: " + Rhythm_Judgement.Rhythm_Score);
+        PlayerPrefs.SetInt("Score_Music", Rhythm_Judgement.Rhythm_Score);
 
         PlayerPrefs.SetInt("ReturnedFromMusic", 1);
         SceneManager.LoadScene("ClassRoom");
