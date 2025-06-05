@@ -6,6 +6,7 @@ public class Manager : MonoBehaviour
 {
     public GameObject startUI, endUI;
     public bool isPlaying = false;
+    private bool isFinished = false;
     private float startTime;
     private GameObject player;
     public GameObject PunchCoolDown;
@@ -25,7 +26,7 @@ public class Manager : MonoBehaviour
 
     void Update()
     {
-        if (!isPlaying && Input.GetKeyDown(KeyCode.Space))
+        if (!isPlaying && !isFinished && Input.GetKeyDown(KeyCode.Space))
         {
             GameManager.isPausingInGame = false;
             StartGame();
@@ -57,6 +58,7 @@ public class Manager : MonoBehaviour
         if (isPlaying)
         {
             isPlaying = false;
+            isFinished = true;
             float playTime = Time.time - startTime;
 
             Debug.Log($"3단계 골목길:{playTime:F2}초");
