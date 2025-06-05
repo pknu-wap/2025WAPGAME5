@@ -15,6 +15,7 @@ public class button1 : MonoBehaviour
     public Camera camera1;
     public Camera camera2;
     public GameObject canvas;
+    public GameObject background;
     public RawImage rawImageUI;
     public RenderTexture renderTex;
     public TextMeshProUGUI nextLevel;
@@ -53,6 +54,16 @@ public class button1 : MonoBehaviour
     }
     void MyFunction3()
     {
+    //    if (connect.children == null)
+    //        Debug.Log("없음");
+    //    else
+    //        Debug.Log("있음");
+    //    List<Transform> destroy = connect.children;
+    //    foreach (Transform obj in destroy)
+    //    {
+    //        Debug.Log(obj.name);
+    //        Destroy(obj.gameObject);
+    //    }
         connect.stop= true;
         connect.canStart = true;
         canvas.SetActive(true);
@@ -64,5 +75,9 @@ public class button1 : MonoBehaviour
             makeObstacle.clear = true;
         collision.next = false;
         nextLevel.text = "다시하기";
+    }
+    private void LateUpdate()
+    {
+        background.transform.SetAsLastSibling();
     }
 }

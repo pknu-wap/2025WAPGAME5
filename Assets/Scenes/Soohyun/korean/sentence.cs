@@ -208,7 +208,7 @@ public class sentence : MonoBehaviour
                 {
                     if (input[i] == correct[i])
                         highlighted += $"<color=blue>{correct[i]}</color>";
-                else
+                    else
                         highlighted += $"<color=red>{correct[i]}</color>";
                 }
                 else

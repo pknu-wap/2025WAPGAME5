@@ -1,3 +1,4 @@
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,9 +6,12 @@ public class Interaction : MonoBehaviour
 {
     public static bool gameStart = false;
     public static bool repeat = true;
+    public static bool explain = false;
 
     public GameObject Player;
+    public GameObject Text;
     public GameObject Table;
+    public GameObject Point;
     public GameObject Button;
     public GameObject Slider1;
     public GameObject Slider2;
@@ -32,6 +36,26 @@ public class Interaction : MonoBehaviour
 
     void Update()
     {
+        if (explain)
+        {
+            playerScript.SetDontMove(true);
+            Text.SetActive(true);
+            if (Input.GetKeyDown("space"))
+            {
+                gameStart = true;
+                Text.SetActive(false);
+                explain = false;
+
+            }
+        }
+        if (gameStart)
+        {
+
+            playerScript.SetDontMove(true);
+            Slider1.SetActive(On);
+            Slider2.SetActive(On);
+            SliderDrink.SetActive(On);
+        }
         if (!gameStart && repeat)
         {
             Button_on();
@@ -43,14 +67,11 @@ public class Interaction : MonoBehaviour
 
                 if (Input.GetKey("f"))
                 {
-                    gameStart = true;
+                    explain=true;
                     Player.transform.position = new Vector3(-0.8f, 3.828f, -46.825f);
 
-                    playerScript.SetDontMove(true);
                     repeat = false;
-                    Slider1.SetActive(On);
-                    Slider2.SetActive(On);
-                    SliderDrink.SetActive(On);
+                    Point.SetActive(false);
                     Button.SetActive(!On);
                 }
             }
@@ -60,7 +81,6 @@ public class Interaction : MonoBehaviour
             }
         }
     }
-
     void Button_on()
     {
         Button.SetActive(On);

@@ -45,6 +45,7 @@ public class connect : MonoBehaviour
             Debug.Log("정지");
             //restart.SetActive(false);
             button11.SetActive(true);
+            running = true;
 
             children.Clear();
             stop = false;
@@ -60,8 +61,6 @@ public class connect : MonoBehaviour
             rawImageUI.enabled = false;
             button2.SetActive(false);
 
-            //transform.position = new Vector3(-20, 1.1f, -20);
-            //transform.rotation = Quaternion.identity;
 
             children.Clear();
             foreach (Transform child in start.transform.GetComponentsInChildren<Transform>())
@@ -90,13 +89,17 @@ public class connect : MonoBehaviour
 
         }
         //실패했을때 
-        if (result)//Input.GetKeyDown(KeyCode.Space) && 
+        if (result)
         {
             result = false;
             restart.SetActive(true);
             button11.SetActive(true);
             if (!makeObstacle.clear)
+            {
                 collision.score -= 10;
+                Debug.Log(collision.score);
+
+            }
             Debug.Log(collision.score);
         }
 
@@ -112,7 +115,6 @@ public class connect : MonoBehaviour
             float movedistance;
             float totalangle = 0f;
             float moveangle;
-
             moving = true;
             Vector3 rotate = robot.transform.eulerAngles;
             while (running)
@@ -134,6 +136,7 @@ public class connect : MonoBehaviour
                 //왼쪽 90도
                 else if (child.tag == "left")
                 {
+                    Debug.Log("왼쪽 90도");
                     moveangle = 90 * Time.deltaTime;
                     transform.Rotate(0, -moveangle, 0);
                     totalangle -= moveangle;
@@ -142,19 +145,19 @@ public class connect : MonoBehaviour
                         rotate.y -= 360;
                     }
                     float robotAngle = robot.transform.eulerAngles.y;
-                    if (robotAngle > 180)
+                    if (robotAngle >= 180)
                     {
                         robotAngle -= 360;
                     }
                     float angle = rotate.y - robotAngle;
                     if (angle < 0)
-                        angle += 360;
-                    Debug.Log(angle);   
+                        angle += 360; 
+                    Debug.Log(angle);
                     if (angle > 90)
                     {
+                        Debug.Log("끝");
                         running = false;
                         robot.transform.eulerAngles =rotate+ new Vector3(0, -90, 0);
-                        Debug.Log(robot.transform.eulerAngles);
 
                         moving = false;
                     }
@@ -177,19 +180,17 @@ public class connect : MonoBehaviour
                     float angle = robotAngle - rotate.y;
                     if (angle < 0)
                         angle += 360;
-                    Debug.Log(angle);
                     if (angle > 90)
                     {
                         running = false;
                         robot.transform.eulerAngles = rotate + new Vector3(0, 90, 0);
-                        Debug.Log(robot.transform.eulerAngles);
 
                         moving = false;
                     }
                 }
                 else
                 {
-                    Debug.LogWarning($"알 수 없는 태그: {child.tag}");
+                    Debug.Log($"알 수 없는 태그: {child.tag}");
                     running = false;
                 }
                 yield return null;
@@ -201,10 +202,11 @@ public class connect : MonoBehaviour
         }
         if(!collision.next)
             result = true;
-        canStart = true;
+        //canStart = true;
         canvas2.SetActive(true);
         restart.SetActive(true);
         children.Clear();
+        connect.moving = false;
     }
 
 }
