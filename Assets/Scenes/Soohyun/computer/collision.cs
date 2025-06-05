@@ -35,11 +35,10 @@ public class collision : MonoBehaviour
         {
            // PlayerReset();
             Debug.Log("½ÇÆÐ");
-            connect.stop = true;
+            //connect.stop = true;
             restart.SetActive(true);
             score -= 10;
             Debug.Log(score);
-            connect.moving = false;
         }
         else if (collision.collider.CompareTag("goal"))
         {
