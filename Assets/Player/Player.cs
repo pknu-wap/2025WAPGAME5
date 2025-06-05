@@ -88,10 +88,14 @@ public class Player : MonoBehaviour
 
         m_fCurrentCamRotationY += (m_fMouseXInput * m_fLookSensitivity);
         m_fCurrentCamRotationX -= (m_fMouseYInput * m_fLookSensitivity);
-        m_fCurrentCamRotationX = Mathf.Clamp(m_fCurrentCamRotationX, -m_fMaxLookAngle, m_fMaxLookAngle);
 
-        m_trs.rotation = Quaternion.Euler(0, m_fCurrentCamRotationY, 0);
-        m_camera.transform.rotation = Quaternion.Euler(m_fCurrentCamRotationX, m_fCurrentCamRotationY, 0);
+        m_fCurrentCamRotationX = Mathf.Clamp(m_fCurrentCamRotationX, -120f, 60f); // 제한 더....(아래, 위)각도 
+
+        // 본체는 좌우 회전만
+        m_trs.rotation = Quaternion.Euler(0f, m_fCurrentCamRotationY, 0f);
+
+        // 카메라는 상하 회전만
+        m_camera.transform.localRotation = Quaternion.Euler(m_fCurrentCamRotationX, 0f, 0f);
     }
 
     public void SetDontMove(bool _transition)
