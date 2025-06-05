@@ -9,12 +9,14 @@ public class makeObstacle : MonoBehaviour
     public GameObject obstacle;
     public GameObject goal;
     public List<GameObject> spawnedobstacles = new List<GameObject>();
+    public AudioSource codingbgmSource;
     bool noObstacle = true;
     public static bool clear = false;
     int level=1;
     // Start is called before the first frame update
     void Start()
     {
+        codingbgmSource.Play();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -44,8 +46,9 @@ public class makeObstacle : MonoBehaviour
             {
                 StartCoroutine(WaitAndRun(new List<int>() { 1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 22, 23, 24, 25 }));
             }
-            else if (level==3)
+            else if (level==3) // 게임 끝 
             {
+                codingbgmSource.Stop();
                 Debug.Log("코딩 점수 저장됨: " + collision.score);
                 PlayerPrefs.SetInt("Score_Programming", collision.score);
                 PlayerPrefs.SetInt("ReturnedFromProgramming", 1);
